@@ -34,7 +34,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 },
               );
             },
-            icon: const Icon(Icons.add),
+            icon: Icon(Icons.add, color: AppColors.oliveGreen),
           ),
         ],
         backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
