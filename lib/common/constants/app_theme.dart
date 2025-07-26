@@ -8,6 +8,6 @@ class AppTheme {
       //Obsolete:
       //background: AppColors.paper,
     ),
-    scaffoldBackgroundColor: AppColors.paper,
+    scaffoldBackgroundColor: AppColors.darkWood,
   );
 }

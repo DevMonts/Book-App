@@ -1,3 +1,4 @@
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/register_book/presentation/widget/register_book_dialog.dart';
 import 'package:flutter/material.dart';
@@ -39,16 +40,29 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
       ),
       //TODO: Bookcase
-      bottomNavigationBar: Container(
-        child: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(null), label: ''),
-            BottomNavigationBarItem(icon: Icon(null), label: ''),
-          ],
-          backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
-        ),
-        decoration: BoxDecoration(border: Border(top: BorderSide(width: 6))),
+      body: Column(
+        children: [
+          Row(),
+          Divider(color: AppColors.middleWood, thickness: 50),
+          Row(),
+          Divider(color: AppColors.middleWood, thickness: 50),
+          Row(),
+          Divider(color: AppColors.middleWood, thickness: 50),
+          Row(),
+          Divider(color: AppColors.middleWood, thickness: 50),
+        ],
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
       ),
+      // bottomNavigationBar: Container(
+      //   child: BottomNavigationBar(
+      //     items: const [
+      //       BottomNavigationBarItem(icon: Icon(null), label: ''),
+      //       BottomNavigationBarItem(icon: Icon(null), label: ''),
+      //     ],
+      //     backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
+      //   ),
+      //   decoration: BoxDecoration(border: Border(top: BorderSide(width: 6))),
+      // ),
     );
   }
 }

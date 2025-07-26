@@ -1,6 +1,6 @@
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/common/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class RegisterBookDialog extends StatelessWidget {
@@ -76,7 +76,7 @@ class RegisterBookDialog extends StatelessWidget {
           icon: const Icon(Icons.add),
         ),
       ],
-      backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
+      backgroundColor: AppColors.paper,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(50), //.zero,
         //side: BorderSide(width: 6),
