@@ -79,7 +79,7 @@ class RegisterBookDialog extends StatelessWidget {
       backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(50), //.zero,
-        side: BorderSide(width: 6),
+        //side: BorderSide(width: 6),
       ),
     );
   }
