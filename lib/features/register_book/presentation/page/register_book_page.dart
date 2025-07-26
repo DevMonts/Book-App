@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/register_book/presentation/widget/register_book_dialog.dart';
 import 'package:flutter/material.dart';
@@ -23,23 +22,23 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: Bookcase
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const RegisterBookDialog();
-              },
-            );
-          },
-          child: const Text(AppStrings.registerBook),
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(side: BorderSide(width: 6)),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const RegisterBookDialog();
+                },
+              );
+            },
+            icon: const Icon(Icons.add),
           ),
-        ),
+        ],
+        backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
       ),
+      //TODO: Bookcase
       bottomNavigationBar: Container(
         child: BottomNavigationBar(
           items: const [
