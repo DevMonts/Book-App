@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "608848829670",
+    "project_id": "estante-af0b7",
+    "storage_bucket": "estante-af0b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608848829670:android:b5d326566cfad82c49af27",
+        "android_client_info": {
+          "package_name": "com.example.book_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt7iR70wCm37mJ8331CUxzKspQtyfAyO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

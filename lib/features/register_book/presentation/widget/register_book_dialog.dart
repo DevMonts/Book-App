@@ -12,6 +12,7 @@ class RegisterBookDialog extends StatelessWidget {
       titlePadding: EdgeInsets.all(40),
       title: Row(
         children: [
+          //TODO: Use use books registered by other users
           //TODO: Floating Book Cover
           Expanded(
             child: TextField(

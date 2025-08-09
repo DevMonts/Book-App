@@ -42,6 +42,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
       //TODO: Bookcase
       body: Column(
         children: [
+          //TODO: Book Animation
           Row(),
           Divider(color: AppColors.middleWood, thickness: 50),
           Row(),
