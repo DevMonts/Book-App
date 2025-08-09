@@ -7,5 +7,6 @@ class AppStrings {
   static const String title = 'Título';
   static const String author = 'Autor';
   static const String gender = 'Gênero';
+  static const String format = 'Formato Ex.:físico, epub, ebook, pdf';
   static const String synopsis = 'Sinopse';
 }
