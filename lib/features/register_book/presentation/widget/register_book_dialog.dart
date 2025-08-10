@@ -1,13 +1,21 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
+import 'package:book_app/features/register_book/logic/provider/book_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterBookDialog extends StatelessWidget {
   const RegisterBookDialog({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final pagesController = TextEditingController();
+    final publicationDateController = TextEditingController();
+    final titleController = TextEditingController();
+    final authorController = TextEditingController();
+    final genderController = TextEditingController();
+    final formatController = TextEditingController();
+    final synopsisController = TextEditingController();
     return AlertDialog(
       titlePadding: EdgeInsets.all(40),
       title: Row(
@@ -20,6 +28,7 @@ class RegisterBookDialog extends StatelessWidget {
                 labelText: AppStrings.pages,
               ),
               keyboardType: TextInputType.number,
+              controller: pagesController,
             ),
           ),
           const SizedBox(width: 30),
@@ -29,6 +38,7 @@ class RegisterBookDialog extends StatelessWidget {
                 labelText: AppStrings.publicationDate,
               ),
               keyboardType: TextInputType.datetime,
+              controller: publicationDateController,
             ),
           ),
         ],
@@ -41,21 +51,30 @@ class RegisterBookDialog extends StatelessWidget {
             decoration: AppInputDecoration.inputDecoration.copyWith(
               labelText: AppStrings.title,
             ),
+            controller: titleController,
           ),
           SizedBox(height: 40),
           TextFormField(
             decoration: AppInputDecoration.inputDecoration.copyWith(
               labelText: AppStrings.author,
             ),
+            controller: authorController,
           ),
           SizedBox(height: 40),
           TextFormField(
             decoration: AppInputDecoration.inputDecoration.copyWith(
               labelText: AppStrings.gender,
             ),
+            controller: genderController,
           ),
           SizedBox(height: 40),
-          TextFormField(decoration: AppInputDecoration.inputDecoration),
+          TextFormField(
+            decoration: AppInputDecoration.inputDecoration.copyWith(
+              labelText: AppStrings.format,
+            ),
+            controller: formatController,
+          ),
+
           SizedBox(height: 60),
 
           Container(
@@ -64,6 +83,7 @@ class RegisterBookDialog extends StatelessWidget {
                 labelText: AppStrings.synopsis,
               ),
               maxLines: 3,
+              controller: synopsisController,
             ),
             width: 500,
           ),
@@ -71,7 +91,20 @@ class RegisterBookDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         IconButton(
-          onPressed: () {
+          onPressed: () async {
+            final bookProvider = Provider.of<BookProvider>(
+              context,
+              listen: false,
+            );
+            await bookProvider.sendBookToFirestore(
+              pages: pagesController.text,
+              publicationDate: publicationDateController.text,
+              title: titleController.text,
+              author: authorController.text,
+              gender: genderController.text,
+              format: formatController.text,
+              synopsis: synopsisController.text,
+            );
             Navigator.of(context).pop();
           },
           icon: const Icon(Icons.add),
