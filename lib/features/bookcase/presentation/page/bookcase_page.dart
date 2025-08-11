@@ -1,14 +1,15 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
-import 'package:book_app/features/register_book/logic/provider/book_provider.dart';
+import 'package:book_app/features/bookcase/logic/provider/bookcase_provider.dart';
+import 'package:book_app/features/register_book/logic/provider/register_book_provider.dart';
 import 'package:book_app/features/register_book/presentation/widget/register_book_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RegisterBookPage extends StatefulWidget {
-  const RegisterBookPage({super.key});
+class BookcasePage extends StatefulWidget {
+  const BookcasePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -20,13 +21,14 @@ class RegisterBookPage extends StatefulWidget {
   // always marked "final".
 
   @override
-  State<RegisterBookPage> createState() => _RegisterBookPageState();
+  State<BookcasePage> createState() => _BookcasePageState();
 }
 
-class _RegisterBookPageState extends State<RegisterBookPage> {
+class _BookcasePageState extends State<BookcasePage> {
   @override
   Widget build(BuildContext context) {
-    final bookProvider = Provider.of<BookProvider>(context, listen: false);
+    final registerBookProvider = Provider.of<RegisterBookProvider>(context, listen: false);
+    final bookcaseProvider = Provider.of<BookcaseProvider>(context, listen: false); 
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -45,7 +47,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: bookProvider.showBooksFromFirestore(),
+        stream: registerBookProvider.showBooksFromFirestore(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -75,7 +77,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                     Wrap(
                       children: books
                           .map((book) {
-                            final bookColor = bookProvider.randomizeColors();
+                            final bookColor = bookcaseProvider.randomizeColors();
                             return RotatedBox(
                               quarterTurns: 3,
                               child: Container(
