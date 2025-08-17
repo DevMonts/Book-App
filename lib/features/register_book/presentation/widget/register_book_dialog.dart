@@ -1,7 +1,7 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/features/register_book/logic/provider/book_provider.dart';
+import 'package:book_app/features/register_book/logic/provider/register_book_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -92,7 +92,7 @@ class RegisterBookDialog extends StatelessWidget {
       actions: <Widget>[
         IconButton(
           onPressed: () async {
-            final bookProvider = Provider.of<BookProvider>(
+            final bookProvider = Provider.of<RegisterBookProvider>(
               context,
               listen: false,
             );
