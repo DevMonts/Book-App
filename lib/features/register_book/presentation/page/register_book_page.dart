@@ -1,7 +1,11 @@
 import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
+import 'package:book_app/features/register_book/logic/provider/book_provider.dart';
 import 'package:book_app/features/register_book/presentation/widget/register_book_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterBookPage extends StatefulWidget {
   const RegisterBookPage({super.key});
@@ -22,6 +26,7 @@ class RegisterBookPage extends StatefulWidget {
 class _RegisterBookPageState extends State<RegisterBookPage> {
   @override
   Widget build(BuildContext context) {
+    final bookProvider = Provider.of<BookProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -34,25 +39,77 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 },
               );
             },
-            icon: Icon(Icons.add, color: AppColors.oliveGreen),
+            icon: Icon(Icons.add, color: AppColors.larissaGreen),
           ),
         ],
         backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
       ),
-      //TODO: Bookcase
-      body: Column(
-        children: [
-          //TODO: Book Animation
-          Row(),
-          Divider(color: AppColors.middleWood, thickness: 50),
-          Row(),
-          Divider(color: AppColors.middleWood, thickness: 50),
-          Row(),
-          Divider(color: AppColors.middleWood, thickness: 50),
-          Row(),
-          Divider(color: AppColors.middleWood, thickness: 50),
-        ],
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: StreamBuilder<QuerySnapshot>(
+        stream: bookProvider.showBooksFromFirestore(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Padding(
+              padding: const EdgeInsetsGeometry.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.north_east, color: AppColors.larissaGreen),
+                  Text(
+                    AppStrings.empty,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: AppColors.larissaGreen),
+                  ),
+                ],
+              ),
+            );
+          }
+          final books = snapshot.data?.docs;
+          return SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  for (int i = 0; i < books!.length; i += 6) ...[
+                    Wrap(
+                      children: books
+                          .map((book) {
+                            final bookColor = bookProvider.randomizeColors();
+                            return RotatedBox(
+                              quarterTurns: 3,
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: 150,
+                                height: 50,
+                                decoration: BoxDecoration(color: bookColor),
+                                margin: EdgeInsetsGeometry.all(5),
+                                child: TextButton(
+                                  child: Text(
+                                    book['title'],
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onPressed: () {
+                                    //TODO: Book Animation
+                                  },
+                                ),
+                              ),
+                            );
+                          })
+                          .toList()
+                          .sublist(
+                            i,
+                            (i + 6 > books.length) ? books.length : i + 6,
+                          ),
+                    ),
+                    Divider(color: AppColors.middleWood, thickness: 30),
+                  ],
+                ],
+              ),
+            ),
+          );
+        },
       ),
       // bottomNavigationBar: Container(
       //   child: BottomNavigationBar(
