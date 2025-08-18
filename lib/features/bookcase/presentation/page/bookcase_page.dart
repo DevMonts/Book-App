@@ -2,6 +2,7 @@ import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/bookcase/logic/provider/bookcase_provider.dart';
+import 'package:book_app/features/details/presentation/widget/details_dialog.dart';
 import 'package:book_app/features/register_book/logic/provider/register_book_provider.dart';
 import 'package:book_app/features/register_book/presentation/widget/register_book_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,8 +28,14 @@ class BookcasePage extends StatefulWidget {
 class _BookcasePageState extends State<BookcasePage> {
   @override
   Widget build(BuildContext context) {
-    final registerBookProvider = Provider.of<RegisterBookProvider>(context, listen: false);
-    final bookcaseProvider = Provider.of<BookcaseProvider>(context, listen: false); 
+    final registerBookProvider = Provider.of<RegisterBookProvider>(
+      context,
+      listen: false,
+    );
+    final bookcaseProvider = Provider.of<BookcaseProvider>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -77,7 +84,8 @@ class _BookcasePageState extends State<BookcasePage> {
                     Wrap(
                       children: books
                           .map((book) {
-                            final bookColor = bookcaseProvider.randomizeColors();
+                            final bookColor = bookcaseProvider
+                                .randomizeColors();
                             return RotatedBox(
                               quarterTurns: 3,
                               child: Container(
@@ -94,6 +102,24 @@ class _BookcasePageState extends State<BookcasePage> {
                                   ),
                                   onPressed: () {
                                     //TODO: Book Animation
+                                    showDialog(
+                                      context: context,
+                                      builder:
+                                          (
+                                            BuildContext context,
+                                          ) {
+                                            return DetailsDialog(
+                                              title: book['title'],
+                                              author: book['author'],
+                                              pages: book['pages'],
+                                              publicationDate:
+                                                  book['publicationDate'],
+                                              gender: book['gender'],
+                                              format: book['format'],
+                                              synopsis: book['synopsis'],
+                                            );
+                                          },
+                                    );
                                   },
                                 ),
                               ),
