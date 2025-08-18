@@ -1,7 +1,11 @@
 import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailsDialog extends StatefulWidget {
+  final String bookId;
   final String title;
   final String author;
   final String pages;
@@ -11,6 +15,7 @@ class DetailsDialog extends StatefulWidget {
   final String synopsis;
   const DetailsDialog({
     super.key,
+    required this.bookId,
     required this.title,
     required this.author,
     required this.pages,
@@ -55,17 +60,25 @@ class _DetailsDialogState extends State<DetailsDialog> {
         mainAxisSize: MainAxisSize.min,
       ),
       actions: [
+        IconButton(
+          onPressed: () {
+            final deleteBookProvider = Provider.of<DeleteBookProvider>(
+              context,
+              listen: false,
+            );
+            deleteBookProvider.deleteBookFromFirestore(
+              bookId: widget.bookId,
+            );
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.delete,
+            color: AppColors.wine,
+          ),
+        ),
         //TODO:
-        //1- Delete
-        //2- Edit
-        // IconButton(
-        //   onPressed: () {},
-        //   icon: Icon(
-        //     Icons.delete,
-        //     color: AppColors.wine,
-        //   ),
-        // ),
-        // IconButton(
+        // IconButton
+        //(
         //   onPressed: () {},
         //   icon: Icon(
         //     Icons.edit,

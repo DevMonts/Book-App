@@ -1,7 +1,7 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
-import 'package:book_app/features/bookcase/logic/provider/bookcase_provider.dart';
+import 'package:book_app/features/bookcase/logic/provider/random_colors_provider.dart';
 import 'package:book_app/features/details/presentation/widget/details_dialog.dart';
 import 'package:book_app/features/register_book/logic/provider/register_book_provider.dart';
 import 'package:book_app/features/register_book/presentation/widget/register_book_dialog.dart';
@@ -32,7 +32,7 @@ class _BookcasePageState extends State<BookcasePage> {
       context,
       listen: false,
     );
-    final bookcaseProvider = Provider.of<BookcaseProvider>(
+    final bookcaseProvider = Provider.of<RandomColorsProvider>(
       context,
       listen: false,
     );
@@ -109,6 +109,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                             BuildContext context,
                                           ) {
                                             return DetailsDialog(
+                                              bookId: book.id,
                                               title: book['title'],
                                               author: book['author'],
                                               pages: book['pages'],

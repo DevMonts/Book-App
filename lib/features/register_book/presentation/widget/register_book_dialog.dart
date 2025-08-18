@@ -92,11 +92,11 @@ class RegisterBookDialog extends StatelessWidget {
       actions: <Widget>[
         IconButton(
           onPressed: () async {
-            final bookProvider = Provider.of<RegisterBookProvider>(
+            final registerBookProvider = Provider.of<RegisterBookProvider>(
               context,
               listen: false,
             );
-            await bookProvider.sendBookToFirestore(
+            await registerBookProvider.sendBookToFirestore(
               pages: pagesController.text,
               publicationDate: publicationDateController.text,
               title: titleController.text,

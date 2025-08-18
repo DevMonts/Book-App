@@ -1,5 +1,6 @@
 import 'package:book_app/app.dart';
-import 'package:book_app/features/bookcase/logic/provider/bookcase_provider.dart';
+import 'package:book_app/features/bookcase/logic/provider/random_colors_provider.dart';
+import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
 import 'package:book_app/features/register_book/logic/provider/register_book_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => RegisterBookProvider()),
-        ChangeNotifierProvider(create: (context) => BookcaseProvider()),
+        ChangeNotifierProvider(create: (context) => RandomColorsProvider()),
+        ChangeNotifierProvider(create: (context) => DeleteBookProvider()),
       ],
       child: const App(),
     ),
