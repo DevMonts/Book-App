@@ -1,3 +1,4 @@
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DetailsDialog extends StatefulWidget {
@@ -76,6 +77,7 @@ class _DetailsDialogState extends State<DetailsDialog> {
           },
           icon: Icon(
             Icons.sensor_door,
+            color: AppColors.middleWood,
           ),
         ),
       ],
