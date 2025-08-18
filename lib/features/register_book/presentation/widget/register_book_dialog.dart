@@ -107,7 +107,10 @@ class RegisterBookDialog extends StatelessWidget {
             );
             Navigator.of(context).pop();
           },
-          icon: const Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            color: AppColors.larissaGreen,
+          ),
         ),
       ],
       backgroundColor: AppColors.paper,
