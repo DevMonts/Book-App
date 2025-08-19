@@ -17,7 +17,9 @@ class RegisterBookDialog extends StatelessWidget {
     final formatController = TextEditingController();
     final synopsisController = TextEditingController();
     return AlertDialog(
-      titlePadding: EdgeInsets.all(40),
+      // titlePadding: EdgeInsets.all(
+      //   40,
+      // ),
       title: Row(
         children: [
           //TODO: Use use books registered by other users
@@ -31,7 +33,9 @@ class RegisterBookDialog extends StatelessWidget {
               controller: pagesController,
             ),
           ),
-          const SizedBox(width: 30),
+          const SizedBox(
+            width: 30,
+          ),
           Expanded(
             child: TextField(
               decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -43,51 +47,61 @@ class RegisterBookDialog extends StatelessWidget {
           ),
         ],
       ),
-      contentPadding: EdgeInsets.all(40),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextFormField(
-            decoration: AppInputDecoration.inputDecoration.copyWith(
-              labelText: AppStrings.title,
-            ),
-            controller: titleController,
-          ),
-          SizedBox(height: 40),
-          TextFormField(
-            decoration: AppInputDecoration.inputDecoration.copyWith(
-              labelText: AppStrings.author,
-            ),
-            controller: authorController,
-          ),
-          SizedBox(height: 40),
-          TextFormField(
-            decoration: AppInputDecoration.inputDecoration.copyWith(
-              labelText: AppStrings.gender,
-            ),
-            controller: genderController,
-          ),
-          SizedBox(height: 40),
-          TextFormField(
-            decoration: AppInputDecoration.inputDecoration.copyWith(
-              labelText: AppStrings.format,
-            ),
-            controller: formatController,
-          ),
-
-          SizedBox(height: 60),
-
-          Container(
-            child: TextFormField(
+      // contentPadding: EdgeInsets.all(
+      //   40,
+      // ),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
               decoration: AppInputDecoration.inputDecoration.copyWith(
-                labelText: AppStrings.synopsis,
+                labelText: AppStrings.title,
               ),
-              maxLines: 3,
-              controller: synopsisController,
+              controller: titleController,
             ),
-            width: 500,
-          ),
-        ],
+            SizedBox(
+              height: 40,
+            ),
+            TextFormField(
+              decoration: AppInputDecoration.inputDecoration.copyWith(
+                labelText: AppStrings.author,
+              ),
+              controller: authorController,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            TextFormField(
+              decoration: AppInputDecoration.inputDecoration.copyWith(
+                labelText: AppStrings.gender,
+              ),
+              controller: genderController,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            TextFormField(
+              decoration: AppInputDecoration.inputDecoration.copyWith(
+                labelText: AppStrings.format,
+              ),
+              controller: formatController,
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            SizedBox(
+              width: 500,
+              child: TextFormField(
+                decoration: AppInputDecoration.inputDecoration.copyWith(
+                  labelText: AppStrings.synopsis,
+                ),
+                maxLines: 3,
+                controller: synopsisController,
+              ),
+            ),
+          ],
+        ),
       ),
       actions: <Widget>[
         IconButton(
@@ -105,7 +119,9 @@ class RegisterBookDialog extends StatelessWidget {
               format: formatController.text,
               synopsis: synopsisController.text,
             );
-            Navigator.of(context).pop();
+            Navigator.of(
+              context,
+            ).pop();
           },
           icon: Icon(
             Icons.add,
@@ -115,7 +131,9 @@ class RegisterBookDialog extends StatelessWidget {
       ],
       backgroundColor: AppColors.paper,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(50), //.zero,
+        borderRadius: BorderRadiusGeometry.circular(
+          50,
+        ), //.zero,
         //side: BorderSide(width: 6),
       ),
     );
