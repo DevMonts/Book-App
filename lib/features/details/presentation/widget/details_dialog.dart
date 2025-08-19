@@ -57,7 +57,7 @@ class _DetailsDialogState extends State<DetailsDialog> {
             'Sinopse: ${widget.synopsis}',
           ),
         ],
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min, //TODO: enlarge
       ),
       actions: [
         IconButton(

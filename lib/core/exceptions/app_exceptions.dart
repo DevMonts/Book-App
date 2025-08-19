@@ -1,0 +1,1 @@
+//TODO: try-catch and swith-case with all Firebase Auth exceptions

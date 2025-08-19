@@ -85,7 +85,7 @@ class _BookcasePageState extends State<BookcasePage> {
                       children: books
                           .map((book) {
                             final bookColor = bookcaseProvider
-                                .randomizeColors();
+                                .randomizeColors(); //TODO: randomize sizes
                             return RotatedBox(
                               quarterTurns: 3,
                               child: Container(
