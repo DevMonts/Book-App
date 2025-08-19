@@ -44,9 +44,9 @@ class _DetailsDialogState extends State<DetailsDialog> {
           Text(
             'Páginas: ${widget.pages}',
           ),
-          Text(
-            'Data de Publicação: ${widget.publicationDate}',
-          ),
+          // Text(
+          //   'Data de Publicação: ${widget.publicationDate}',
+          // ),
           Text(
             'Gênero: ${widget.gender}',
           ),

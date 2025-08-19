@@ -20,33 +20,35 @@ class RegisterBookDialog extends StatelessWidget {
       // titlePadding: EdgeInsets.all(
       //   40,
       // ),
-      title: Row(
-        children: [
-          //TODO: Use use books registered by other users
-          //TODO: Floating Book Cover
-          Expanded(
-            child: TextField(
-              decoration: AppInputDecoration.inputDecoration.copyWith(
-                labelText: AppStrings.pages,
-              ),
-              keyboardType: TextInputType.number,
-              controller: pagesController,
-            ),
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          Expanded(
-            child: TextField(
-              decoration: AppInputDecoration.inputDecoration.copyWith(
-                labelText: AppStrings.publicationDate,
-              ),
-              keyboardType: TextInputType.datetime,
-              controller: publicationDateController,
-            ),
-          ),
-        ],
-      ),
+      // title: Row(
+      //   children: [
+      //TODO: Use use books registered by other users
+      //TODO: Floating Book Cover
+
+      // Expanded(
+      //   child: TextField(
+      //     decoration: AppInputDecoration.inputDecoration.copyWith(
+      //       labelText: AppStrings.pages,
+      //     ),
+      //     keyboardType: TextInputType.number,
+      //     controller: pagesController,
+      //   ),
+      // ),
+      // const SizedBox(
+      //   width: 30,
+      // ),
+      // Expanded(
+      //   child: TextField(
+      //     decoration: AppInputDecoration.inputDecoration.copyWith(
+      //       labelText: AppStrings.publicationDate,
+      //     ),
+      //     keyboardType: TextInputType.datetime,
+      //     controller: publicationDateController,
+      //   ),
+      // ),
+      //TODO:change to avaliation with stars
+      //   ],
+      // ),
       // contentPadding: EdgeInsets.all(
       //   40,
       // ),
@@ -54,6 +56,10 @@ class RegisterBookDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            SizedBox(
+              height: //40
+                  10,
+            ),
             TextFormField(
               decoration: AppInputDecoration.inputDecoration.copyWith(
                 labelText: AppStrings.title,
@@ -61,7 +67,19 @@ class RegisterBookDialog extends StatelessWidget {
               controller: titleController,
             ),
             SizedBox(
-              height: 40,
+              height: //40
+                  10,
+            ),
+            TextFormField(
+              decoration: AppInputDecoration.inputDecoration.copyWith(
+                labelText: AppStrings.pages,
+              ),
+              keyboardType: TextInputType.number,
+              controller: pagesController,
+            ),
+            SizedBox(
+              height: //40
+                  10,
             ),
             TextFormField(
               decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -70,7 +88,8 @@ class RegisterBookDialog extends StatelessWidget {
               controller: authorController,
             ),
             SizedBox(
-              height: 40,
+              height: //40
+                  10,
             ),
             TextFormField(
               decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -79,7 +98,8 @@ class RegisterBookDialog extends StatelessWidget {
               controller: genderController,
             ),
             SizedBox(
-              height: 40,
+              height: //40
+                  10,
             ),
             TextFormField(
               decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -88,7 +108,8 @@ class RegisterBookDialog extends StatelessWidget {
               controller: formatController,
             ),
             SizedBox(
-              height: 60,
+              height: //60
+                  10,
             ),
             SizedBox(
               width: 500,
