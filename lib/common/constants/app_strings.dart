@@ -20,8 +20,8 @@ class AppStrings {
   static const String pages = 'Páginas';
   static const String publicationDate = 'Publicação';
   static const String title = 'Título';
-  static const String author = 'Autor';
+  static const String author = 'Autor(a)';
   static const String gender = 'Gênero';
-  static const String format = 'Formato Ex.:físico, epub, ebook, pdf';
+  static const String format = 'Físico ou Ebook?';
   static const String synopsis = 'Sinopse';
 }
