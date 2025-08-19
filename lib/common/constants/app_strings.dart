@@ -13,7 +13,32 @@ class AppStrings {
   static const String empty =
       'Clique no ícone + para adicionar o primeiro livro na sua estante';
 
-  //Errors
+  //Firebase Auth Exceptions
+  static const String accountExistsWithDifferentCredential =
+      'Conta existente com credenciais diferentes';
+  static const String credentialAlreadyInUse = 'Email e senha já estão em uso';
+  static const String emailAlreadyInUse =
+      'Outra pessoa já está usando esse email';
+  static const String internalError =
+      'Erro interno. Entre em contato com o desenvolvedor: (75) 9 9954-2609';
+  static const String invalidCredential = 'Credenciais inválidas';
+  static const String invalidEmail = 'Email inválido';
+  static const String invalidPassword = 'Senha inválida';
+  static const String invalidVerificationCode =
+      'Código de verificação inválido';
+  static const String invalidVerificationId = 'ID de verificação inválido';
+  static const String networkRequestFailed = 'Falha na conexão';
+  static const String nullUser = 'Usuário nulo';
+  static const String operationNotAllowed =
+      'Erro: "operationNotAllowed". Entre em contato com o desenvolvedor: (75) 9 9954-2609';
+  static const String requiresRecentLogin =
+      'Erro: "requiresRecentLogin". Entre em contato com o desenvolvedor: (75) 9 9954-2609';
+  static const String tooManyRequests = 'Tentativas excedidas';
+  static const String userDisabled = 'Usuário desativado';
+  static const String userNotFound = 'Usuário não encontrado';
+  static const String weakPassword = 'Senha fraca';
+  static const String wrongPassword = 'Senha errada';
+
   static const String generalError = 'Erro';
 
   //Casebook Page

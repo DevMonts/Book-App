@@ -114,16 +114,28 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       final authProvider = Provider.of<AuthProvider>(
                         context,
                         listen: false,
                       );
-                      authProvider.loginUser(
-                        context,
-                        emailController.text.trim(),
-                        passwordController.text.trim(),
-                      );
+                      try {
+                        await authProvider.loginUser(
+                          context,
+                          emailController.text.trim(),
+                          passwordController.text.trim(),
+                        );
+                      } catch (e) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              e.toString(),
+                            ),
+                          ),
+                        );
+                      }
                     },
                     icon: Icon(
                       Icons.send,

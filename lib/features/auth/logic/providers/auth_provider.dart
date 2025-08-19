@@ -1,5 +1,5 @@
-//TODO: refactor in validators.dart
 import 'package:book_app/common/constants/app_strings.dart';
+import 'package:book_app/core/exceptions/app_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +18,14 @@ class AuthProvider extends ChangeNotifier {
     String email,
     String password,
   ) async {
-    //TODO: exceptions on app_exceptions.dart
-    await firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      throw AuthFirebaseException.authFirebaseException(e);
+    }
   }
 
   Future<void> loginUser(
@@ -30,7 +33,6 @@ class AuthProvider extends ChangeNotifier {
     String email,
     String password,
   ) async {
-    //TODO: exceptions on app_exceptions.dart
     try {
       await firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -53,14 +55,17 @@ class AuthProvider extends ChangeNotifier {
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(
-        SnackBar(
-          content: Text(
-            AppStrings.generalError,
-          ),
-        ),
+      // ScaffoldMessenger.of(
+      //   context,
+      // ).showSnackBar(
+      //   SnackBar(
+      //     content: Text(
+      //       AppStrings.generalError,
+      //     ),
+      //   ),
+      // );
+      throw AuthFirebaseException.authFirebaseException(
+        e,
       );
     }
   }
