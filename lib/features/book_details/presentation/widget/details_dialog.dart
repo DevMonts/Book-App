@@ -36,28 +36,42 @@ class _DetailsDialogState extends State<DetailsDialog> {
       title: Text(
         widget.title,
       ),
-      content: Column(
-        children: [
-          Text(
-            'Autor: ${widget.author}',
-          ),
-          Text(
-            'Páginas: ${widget.pages}',
-          ),
-          // Text(
-          //   'Data de Publicação: ${widget.publicationDate}',
-          // ),
-          Text(
-            'Gênero: ${widget.gender}',
-          ),
-          Text(
-            'Formato: ${widget.format}',
-          ),
-          Text(
-            'Sinopse: ${widget.synopsis}', //TODO: fix format
-          ),
-        ],
-        mainAxisSize: MainAxisSize.min, //TODO: enlarge
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Autor: ${widget.author}',
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Páginas: ${widget.pages}',
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Gênero: ${widget.gender}',
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Formato: ${widget.format}',
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Sinopse: ${widget.synopsis}',
+            ),
+          ],
+          mainAxisSize: MainAxisSize.min, //TODO: enlarge
+        ),
       ),
       actions: [
         IconButton(
