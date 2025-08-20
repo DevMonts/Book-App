@@ -28,7 +28,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> loginUser(
+  Future<void> loginUser( //TODO: stay logged
     BuildContext context,
     String email,
     String password,

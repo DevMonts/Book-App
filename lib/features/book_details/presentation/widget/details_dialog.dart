@@ -1,5 +1,5 @@
 import 'package:book_app/common/constants/app_colors.dart';
-import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
+import 'package:book_app/features/book_details/logic/provider/delete_book_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +54,7 @@ class _DetailsDialogState extends State<DetailsDialog> {
             'Formato: ${widget.format}',
           ),
           Text(
-            'Sinopse: ${widget.synopsis}',
+            'Sinopse: ${widget.synopsis}', //TODO: fix format
           ),
         ],
         mainAxisSize: MainAxisSize.min, //TODO: enlarge

@@ -7,7 +7,7 @@ class RandomColorsProvider extends ChangeNotifier {
     AppColors.larissaGreen,
     AppColors.larissaDarkGreenBook,
     AppColors.wine,
-    AppColors.yellowHerryPotter,
+    AppColors.yellowHarryPotter,
     AppColors.beigeBook,
     AppColors.blueBook,
     AppColors.darkBrowBook,

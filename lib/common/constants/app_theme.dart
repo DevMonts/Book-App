@@ -10,4 +10,56 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: AppColors.darkWood,
   );
+  static Widget bookcaseBg(
+    BuildContext context,
+  ) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 160,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 100,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 12,
+        ),
+        SizedBox(
+          height: 160,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 100,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 12,
+        ),
+        SizedBox(
+          height: 160,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 100,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 12,
+        ),
+        SizedBox(
+          height: 160,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 100,
+        ),
+        Divider(
+          color: AppColors.middleWood,
+          thickness: 12,
+        ),
+      ],
+    );
+  }
 }

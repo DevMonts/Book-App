@@ -34,23 +34,7 @@ class RegisterBookProvider extends ChangeNotifier {
           'gender': gender,
           'format': format,
           'synopsis': synopsis,
+          'createdAt': FieldValue.serverTimestamp(),
         });
-  }
-
-  Stream<QuerySnapshot> showBooksFromFirestore() {
-    final userId = firebaseAuth.currentUser!.uid;
-    return
-    //F
-    firebaseFirestore //.instance
-        .collection(
-          'users',
-        )
-        .doc(
-          userId,
-        )
-        .collection(
-          'books',
-        )
-        .snapshots();
   }
 }
