@@ -102,6 +102,7 @@ class _BookListState extends State<BookList> {
                             onPressed: () {
                               deleteBookProvider.deleteBookFromFirestore(
                                 bookId: book.id,
+                                context: context,
                               );
                             },
                             icon: Icon(

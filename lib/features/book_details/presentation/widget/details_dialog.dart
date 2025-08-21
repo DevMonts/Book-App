@@ -32,82 +32,102 @@ class DetailsDialog extends StatefulWidget {
 class _DetailsDialogState extends State<DetailsDialog> {
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(
-        widget.title,
-      ),
-      content: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Autor: ${widget.author}',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Páginas: ${widget.pages}',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Gênero: ${widget.gender}',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Formato: ${widget.format}',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Sinopse: ${widget.synopsis}',
-            ),
-          ],
-          mainAxisSize: MainAxisSize.min, //TODO: enlarge
-        ),
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            final deleteBookProvider = Provider.of<DeleteBookProvider>(
-              context,
-              listen: false,
+    Provider.of<DeleteBookProvider>(
+      context,
+      listen: false,
+    );
+    return Consumer<DeleteBookProvider>(
+      builder:
+          (
+            context,
+            deleteBookProvider,
+            child,
+          ) {
+            return AlertDialog(
+              title: Text(
+                widget.title,
+              ),
+              content: SingleChildScrollView(
+                child: Column( 
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Autor: ${widget.author}',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Páginas: ${widget.pages}',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Gênero: ${widget.gender}',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Formato: ${widget.format}',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Sinopse: ${widget.synopsis}',
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () async {
+                    // final
+                    await deleteBookProvider
+                        .deleteBookFromFirestore //= Provider.of<DeleteBookProvider>
+                        (
+                          context: context,
+                          //   listen: false,
+                          // );
+                          // deleteBookProvider.deleteBookFromFirestore(
+                          bookId: widget.bookId,
+                        );
+                    if (!deleteBookProvider.isDeleteConfirmed) {
+                      Navigator.of(
+                        context,
+                      ).pop();
+                    }
+                  },
+                  icon: Icon(
+                    Icons.delete,
+                    color: AppColors.wine,
+                  ),
+                ),
+                //TODO: edit
+                // IconButton
+                //(
+                //   onPressed: () {},
+                //   icon: Icon(
+                //     Icons.edit,
+                //   ),
+                // ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.sensor_door,
+                    color: AppColors.middleWood,
+                  ),
+                ),
+              ],
             );
-            deleteBookProvider.deleteBookFromFirestore(
-              bookId: widget.bookId,
-            );
-            Navigator.of(context).pop();
           },
-          icon: Icon(
-            Icons.delete,
-            color: AppColors.wine,
-          ),
-        ),
-        //TODO:
-        // IconButton
-        //(
-        //   onPressed: () {},
-        //   icon: Icon(
-        //     Icons.edit,
-        //   ),
-        // ),
-        IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(
-            Icons.sensor_door,
-            color: AppColors.middleWood,
-          ),
-        ),
-      ],
     );
   }
 }

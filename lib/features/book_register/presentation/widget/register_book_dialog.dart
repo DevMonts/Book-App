@@ -46,7 +46,7 @@ class RegisterBookDialog extends StatelessWidget {
       //     controller: publicationDateController,
       //   ),
       // ),
-      //TODO:change to avaliation with stars
+      //TODO: change to avaliation with stars
       //   ],
       // ),
       // contentPadding: EdgeInsets.all(

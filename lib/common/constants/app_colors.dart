@@ -4,8 +4,8 @@ class AppColors {
   static Color larissaGreen = const Color.fromRGBO(128, 128, 0, 1);
   static Color larissaDarkGreenBook = const Color(0xFF25271D);
   static Color paper = const Color.fromRGBO(217, 211, 199, 1);
-  static Color middleWood = const Color.fromRGBO(93, 64, 55, 1); //TODO: change
-  static Color darkWood = const Color.fromRGBO(78, 52, 46, 1); //TODO: change
+  static Color middleWood = const Color.fromRGBO(93, 64, 55, 1); //TODO: change color
+  static Color darkWood = const Color.fromRGBO(78, 52, 46, 1); //TODO: change color
   static Color wine = const Color(0xFF7B1B38);
   static Color yellowHarryPotter = const Color(0xFFCD8D00);
   static Color beigeBook = const Color(0xFFCFAE7E);
