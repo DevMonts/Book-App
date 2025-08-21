@@ -1,6 +1,5 @@
 import 'package:book_app/common/constants/app_colors.dart';
-import 'package:book_app/features/book_details/logic/provider/delete_book_provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:book_app/features/book/logic/provider/delete_book_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

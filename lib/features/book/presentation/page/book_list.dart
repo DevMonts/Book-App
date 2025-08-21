@@ -1,9 +1,9 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/features/book_details/logic/provider/delete_book_provider.dart';
-import 'package:book_app/features/book_details/presentation/widget/details_dialog.dart';
-import 'package:book_app/features/book_list/logic/provider/show_books_provider.dart';
-import 'package:book_app/features/book_register/presentation/widget/register_book_dialog.dart';
+import 'package:book_app/features/book/logic/provider/delete_book_provider.dart';
+import 'package:book_app/features/book/logic/provider/show_books_provider.dart';
+import 'package:book_app/features/book/presentation/widget/details_dialog.dart';
+import 'package:book_app/features/book/presentation/widget/register_book_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,7 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/features/book_register/logic/provider/register_book_provider.dart';
+import 'package:book_app/features/book/logic/provider/register_book_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
