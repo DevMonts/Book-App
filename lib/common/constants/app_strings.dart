@@ -42,6 +42,7 @@ class AppStrings {
   static const String generalError = 'Erro';
 
   //Casebook Page
+  static const String oneBook = 'Muita poeira e só um livro';
   static const String pages = 'Páginas';
   static const String publicationDate = 'Publicação';
   static const String title = 'Título';
@@ -50,5 +51,6 @@ class AppStrings {
   static const String format = 'Físico ou Ebook?';
   static const String synopsis = 'Sinopse';
 
-  static const String deleteConfirmation = 'Clique novamente na lixeira novamente pra confirmar a exclusão';
+  static const String deleteConfirmation =
+      'Clique novamente na lixeira novamente pra confirmar a exclusão';
 }

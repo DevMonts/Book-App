@@ -38,6 +38,56 @@ class _BookcasePageState extends State<BookcasePage> {
     );
     return Scaffold(
       appBar: AppBar(
+        title:
+        StreamBuilder<QuerySnapshot>(
+          stream: showBooksProvider.showBooksFromFirestore(),
+          builder:
+              (
+                context,
+                snapshot,
+              ) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (!snapshot.hasData ||
+                    snapshot.data!.docs.isEmpty ||
+                    snapshot.data!.docs.length == 24) {
+                  return Text(
+                    '',
+                  );
+                }
+                if (snapshot.hasData) {
+                  // final booksCount = snapshot.data!.docs.length;
+                  // return Text(
+                  //   '${AppStrings.bookcase} ($booksCount)',
+                  //   style: TextStyle(
+                  //     color: AppColors.larissaGreen,
+                  //   ),
+                  // );
+                  if (snapshot.data!.docs.length == 1) {
+                    return Center(
+                      child: Text(
+                        AppStrings.oneBook,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: AppColors.larissaGreen,
+                        ),
+                      ),
+                    );
+                  }
+                }
+                return Center(
+                  child: Text(
+                    '${snapshot.data!.docs.length} livros',
+                    style: TextStyle(
+                      color: AppColors.larissaGreen,
+                    ),
+                  ),
+                );
+              },
+        ),
         actions: [
           IconButton(
             onPressed: () {

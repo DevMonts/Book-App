@@ -27,6 +27,33 @@ class _BookListState extends State<BookList> {
     );
     return Scaffold(
       appBar: AppBar(
+        title: StreamBuilder<QuerySnapshot>(
+          stream: showBooksProvider.showBooksFromFirestore(),
+          builder:
+              (
+                context,
+                snapshot,
+              ) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: const CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.data!.docs.length == 1) {
+                  return Center(
+                    child: Text(
+                      AppStrings.oneBook,
+                    ),
+                  );
+                }
+                final booksCount = snapshot.data?.docs.length ?? 0;
+                return Center(
+                  child: Text(
+                    ' ${booksCount} Livros',
+                  ),
+                );
+              },
+        ),
         actions: [
           IconButton(
             onPressed: () {
