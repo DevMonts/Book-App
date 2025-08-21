@@ -2,15 +2,31 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/core/exceptions/app_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   User? user;
+  bool isLogged = false;
   AuthProvider() {
     firebaseAuth.authStateChanges().listen((
       User? newUser,
-    ) {
+    ) async {
       user = newUser;
+      if (newUser != null) {
+        isLogged = true;
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setBool(
+          'isLogged',
+          true,
+        );
+      } else {
+        isLogged = false;
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.remove(
+          'isLogged',
+        );
+      }
       notifyListeners();
     });
   }
@@ -28,7 +44,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> loginUser( //TODO: stay logged
+  Future<void> loginUser(
     BuildContext context,
     String email,
     String password,
@@ -38,22 +54,27 @@ class AuthProvider extends ChangeNotifier {
         email: email,
         password: password,
       );
-      if (firebaseAuth.currentUser != null) {
-        Navigator.pushNamed(
-          context,
-          '/bookcase',
-        );
-      } else {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(
-          const SnackBar(
-            content: Text(
-              AppStrings.generalError,
-            ),
-          ),
-        );
-      }
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(
+        'isLogged',
+        true,
+      );
+      // if (firebaseAuth.currentUser != null) {
+      Navigator.pushReplacementNamed(
+        context,
+        '/bookcase',
+      );
+      // } else {
+      //   ScaffoldMessenger.of(
+      //     context,
+      //   ).showSnackBar(
+      //     const SnackBar(
+      //       content: Text(
+      //         AppStrings.generalError,
+      //       ),
+      //     ),
+      //   );
+      // }
     } catch (e) {
       // ScaffoldMessenger.of(
       //   context,
@@ -68,5 +89,11 @@ class AuthProvider extends ChangeNotifier {
         e,
       );
     }
+  }
+
+  Future<void> logged() async {
+    final prefs = await SharedPreferences.getInstance();
+    isLogged = prefs.getBool('isLogged') ?? false;
+    notifyListeners();
   }
 }

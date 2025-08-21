@@ -13,14 +13,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AsyncSnapshot.waiting();
   await Firebase.initializeApp();
+  final authProvider = AuthProvider();
+  await authProvider.logged();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => PasswordViewProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => AuthProvider(),
+        ChangeNotifierProvider.value(
+          value: //create: (context) => A
+              authProvider, //()
         ),
         ChangeNotifierProvider(
           create: (context) => RegisterBookProvider(),
