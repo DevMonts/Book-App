@@ -31,13 +31,13 @@ class _LoginPageState extends State<LoginPage> {
                 AppStrings.title,
                 style: TextStyle(
                   fontSize: 100,
-                  color: AppColors.larissaGreen,
+                  color: AppColors.paper,
                 ),
               ),
               Text(
                 AppStrings.description,
                 style: TextStyle(
-                  color: AppColors.larissaGreen,
+                  color: AppColors.paper,
                 ),
               ),
               SizedBox(
@@ -48,13 +48,13 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   labelText: AppStrings.email,
                   labelStyle: TextStyle(
-                    color: AppColors.larissaGreen,
+                    color: AppColors.paper,
                   ),
                   border: const OutlineInputBorder(),
                 ),
                 controller: emailController,
                 style: TextStyle(
-                  color: AppColors.larissaGreen,
+                  color: AppColors.paper,
                 ),
               ),
               Consumer<PasswordViewProvider>(
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                           labelText: AppStrings.password,
                           labelStyle: TextStyle(
-                            color: AppColors.larissaGreen,
+                            color: AppColors.paper,
                           ),
                           border: OutlineInputBorder(),
                           suffixIcon: IconButton(
@@ -77,8 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                               color: passwordViewProvider.obscureText
-                                  ? AppColors.larissaDarkGreenBook
-                                  : AppColors.larissaGreen,
+                                  ? AppColors.larissaGreen
+                                  : AppColors.paper,
                             ),
                             onPressed: () {
                               Provider.of<PasswordViewProvider>(
@@ -92,8 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                         controller: passwordController,
                         style: TextStyle(
                           color: passwordViewProvider.obscureText
-                              ? AppColors.larissaDarkGreenBook
-                              : AppColors.larissaGreen,
+                              ? AppColors.larissaGreen
+                              : AppColors.paper,
                         ),
                       );
                     },
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     icon: Icon(
                       Icons.add,
-                      color: AppColors.larissaGreen,
+                      color: AppColors.paper,
                     ),
                   ),
                   IconButton(
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     icon: Icon(
                       Icons.send,
-                      color: AppColors.larissaGreen,
+                      color: AppColors.paper,
                     ),
                   ),
                 ],
