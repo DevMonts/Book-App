@@ -18,6 +18,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: new theme
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,

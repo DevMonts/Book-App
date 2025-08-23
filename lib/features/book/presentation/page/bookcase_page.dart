@@ -4,7 +4,7 @@ import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/book/logic/provider/random_colors_provider.dart';
 import 'package:book_app/features/book/logic/provider/show_books_provider.dart';
 import 'package:book_app/features/book/presentation/widget/details_dialog.dart';
-import 'package:book_app/features/book/presentation/widget/register_book_dialog.dart';
+import 'package:book_app/features/book/presentation/widget/register_book_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,269 +37,341 @@ class _BookcasePageState extends State<BookcasePage> {
       listen: false,
     );
     return Scaffold(
-      appBar: AppBar(
-        title:
-        StreamBuilder<QuerySnapshot>(
-          stream: showBooksProvider.showBooksFromFirestore(),
-          builder:
-              (
-                context,
-                snapshot,
-              ) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (!snapshot.hasData ||
-                    snapshot.data!.docs.isEmpty ||
-                    snapshot.data!.docs.length == 24) {
-                  return Text(
-                    '',
-                  );
-                }
-                if (snapshot.hasData) {
-                  // final booksCount = snapshot.data!.docs.length;
-                  // return Text(
-                  //   '${AppStrings.bookcase} ($booksCount)',
-                  //   style: TextStyle(
-                  //     color: AppColors.larissaGreen,
-                  //   ),
-                  // );
-                  if (snapshot.data!.docs.length == 1) {
-                    return Center(
-                      child: Text(
-                        AppStrings.oneBook,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: AppColors.larissaGreen,
-                        ),
+      // appBar: AppBar(
+      //   title: StreamBuilder<QuerySnapshot>(
+      //     stream: showBooksProvider.showBooksFromFirestore(),
+      //     builder:
+      //         (
+      //           context,
+      //           snapshot,
+      //         ) {
+      //           if (snapshot.connectionState == ConnectionState.waiting) {
+      //             return const Center(
+      //               child: CircularProgressIndicator(),
+      //             );
+      //           }
+      //           if (!snapshot.hasData ||
+      //               snapshot
+      //                   .data!
+      //                   .docs
+      //                   .isEmpty // ||
+      //           //snapshot.data!.docs.length == 24
+      //           ) {
+      //             return Text(
+      //               '',
+      //             );
+      //           }
+      //           if (snapshot.hasData) {
+      //             // final booksCount = snapshot.data!.docs.length;
+      //             // return Text(
+      //             //   '${AppStrings.bookcase} ($booksCount)',
+      //             //   style: TextStyle(
+      //             //     color: AppColors.larissaGreen,
+      //             //   ),
+      //             // );
+      //             if (snapshot.data!.docs.length == 1) {
+      //               return Center(
+      //                 child: Text(
+      //                   AppStrings.oneBook,
+      //                   style: TextStyle(
+      //                     fontSize: 13,
+      //                     color: AppColors.larissaGreen,
+      //                   ),
+      //                 ),
+      //               );
+      //             }
+      //           }
+      //           return Center(
+      //             child: Text(
+      //               '${snapshot.data!.docs.length} livros',
+      //               style: TextStyle(
+      //                 color: AppColors.larissaGreen,
+      //               ),
+      //             ),
+      //           );
+      //         },
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         Navigator.of(
+      //           context,
+      //         ).pushNamed(
+      //           '/bookList',
+      //         );
+      //       },
+      //       icon: Icon(
+      //         Icons.density_small,
+      //       ),
+      //     ),
+      //     IconButton(
+      //       onPressed: () {
+      //         showDialog(
+      //           context: context,
+      //           builder: (BuildContext context) {
+      //             return const RegisterBookDialog();
+      //           },
+      //         );
+      //       },
+      //       icon: Icon(Icons.add, color: AppColors.larissaGreen),
+      //     ),
+      //   ],
+      //   backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
+      // ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: showBooksProvider.showBooksFromFirestore(),
+        builder:
+            (
+              context,
+              snapshot,
+            ) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                return Padding(
+                  padding: const EdgeInsetsGeometry.all(10),
+                  child: Center(
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Icon(
+                    //       Icons.north_east,
+                    //       color: AppColors.larissaGreen,
+                    //     ),
+                    child: Text(
+                      AppStrings.empty,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        //   color: AppColors.larissaGreen,
+                        fontSize: 30,
                       ),
-                    );
-                  }
-                }
-                return Center(
-                  child: Text(
-                    '${snapshot.data!.docs.length} livros',
-                    style: TextStyle(
-                      color: AppColors.larissaGreen,
                     ),
+                    //   ],
+                    // ),
                   ),
                 );
-              },
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(
-                context,
-              ).pushNamed(
-                '/bookList',
-              );
-            },
-            icon: Icon(
-              Icons.density_small,
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const RegisterBookDialog();
-                },
-              );
-            },
-            icon: Icon(Icons.add, color: AppColors.larissaGreen),
-          ),
-        ],
-        backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
-      ),
-      body: Stack(
-        children: [
-          AppTheme.bookcaseBg(
-            context,
-          ),
-          StreamBuilder<QuerySnapshot>(
-            stream: showBooksProvider.showBooksFromFirestore(),
-            builder:
-                (
-                  context,
-                  snapshot,
-                ) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                    return Padding(
-                      padding: const EdgeInsetsGeometry.all(10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.north_east,
-                            color: AppColors.larissaGreen,
-                          ),
-                          Text(
-                            AppStrings.empty,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.larissaGreen,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  final books = snapshot.data?.docs;
-                  return SingleChildScrollView(
-                    child: Center(
-                      child: Column(
-                        children: [
-                          for (int i = 0; i < books!.length; i += 6,) ...[
-                            Wrap(
-                              children: books
-                                  .map((book) {
-                                    final bookColor = randomColorsProvider
-                                        .randomizeColors();
-                                    //TODO: randomize sizes
-                                    //TODO: do not randomize with the state
-                                    return RotatedBox(
-                                      quarterTurns: 3,
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: 150,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: bookColor,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(
-                                              15,
+              }
+              final books = snapshot.data?.docs;
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Stack(
+                      children: [
+                        AppTheme.bookcaseBg(
+                          //context,
+                          (books!.length / 6).ceil(),
+                        ),
+                        Center(
+                          child: Column(
+                            children: [
+                              for (int i = 0; i < books!.length; i += 6,) ...[
+                                Wrap(
+                                  children: books
+                                      .map((
+                                        book,
+                                      ) {
+                                        final bookColor = randomColorsProvider
+                                            .randomizeColors();
+                                        //TODO: randomize sizes
+                                        //TODO: do not randomize with the state
+                                        return RotatedBox(
+                                          quarterTurns: 3,
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            width: 150,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              color: bookColor,
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(
+                                                  15,
+                                                ),
+                                                bottomLeft: Radius.circular(
+                                                  15,
+                                                ),
+                                              ),
                                             ),
-                                            bottomLeft: Radius.circular(
-                                              15,
+                                            margin: EdgeInsetsGeometry.all(
+                                              5,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: TextButton(
+                                                    child: Text(
+                                                      book['title'],
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    onPressed: () {
+                                                      //TODO: Book Animation
+                                                      showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (
+                                                              BuildContext
+                                                              context,
+                                                            ) {
+                                                              return DetailsDialog(
+                                                                bookId: book.id,
+                                                                title:
+                                                                    book['title'],
+                                                                author:
+                                                                    book['author'],
+                                                                pages:
+                                                                    book['pages'],
+                                                                publicationDate:
+                                                                    book['publicationDate'],
+                                                                gender:
+                                                                    book['gender'],
+                                                                format:
+                                                                    book['format'],
+                                                                synopsis:
+                                                                    book['synopsis'],
+                                                              );
+                                                            },
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                                // IconButton(
+                                                //   onPressed: () {
+                                                //     //TODO: favorite books
+                                                //   },
+                                                //   icon: Icon(
+                                                //     Icons.favorite,
+                                                //     color: AppColors.wine,
+                                                //     size: 10,
+                                                //   ),
+                                                // ),
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.paper,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                10,
+                                                              ),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                10,
+                                                              ),
+                                                        ),
+                                                    border: Border(
+                                                      right: BorderSide(
+                                                        color: Theme.of(
+                                                          context,
+                                                        ).scaffoldBackgroundColor,
+                                                        width: 7,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  width: 40,
+                                                  height: 44,
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ),
-                                        margin: EdgeInsetsGeometry.all(
-                                          5,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: TextButton(
-                                                child: Text(
-                                                  book['title'],
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                onPressed: () {
-                                                  //TODO: Book Animation
-                                                  showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (
-                                                          BuildContext context,
-                                                        ) {
-                                                          return DetailsDialog(
-                                                            bookId: book.id,
-                                                            title:
-                                                                book['title'],
-                                                            author:
-                                                                book['author'],
-                                                            pages:
-                                                                book['pages'],
-                                                            publicationDate:
-                                                                book['publicationDate'],
-                                                            gender:
-                                                                book['gender'],
-                                                            format:
-                                                                book['format'],
-                                                            synopsis:
-                                                                book['synopsis'],
-                                                          );
-                                                        },
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                            // IconButton(
-                                            //   onPressed: () {
-                                            //     //TODO: favorite books
-                                            //   },
-                                            //   icon: Icon(
-                                            //     Icons.favorite,
-                                            //     color: AppColors.wine,
-                                            //     size: 10,
-                                            //   ),
-                                            // ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                color: AppColors.paper,
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(
-                                                    10,
-                                                  ),
-                                                  bottomLeft: Radius.circular(
-                                                    10,
-                                                  ),
-                                                ),
-                                                border: Border(
-                                                  right: BorderSide(
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).scaffoldBackgroundColor,
-                                                    width: 7,
-                                                  ),
-                                                ),
-                                              ),
-                                              width: 40,
-                                              height: 44,
-                                            ),
-                                          ],
-                                        ),
+                                        );
+                                      })
+                                      .toList()
+                                      .sublist(
+                                        i,
+                                        (i + 6 > books.length)
+                                            ? books.length
+                                            : i + 6,
                                       ),
-                                    );
-                                  })
-                                  .toList()
-                                  .sublist(
-                                    i,
-                                    (i + 6 > books.length)
-                                        ? books.length
-                                        : i + 6,
-                                  ),
-                            ),
-                            Divider(
-                              thickness: 100,
-                              color: Colors.transparent,
-                            ),
-                            Divider(
-                              thickness: 100,
-                              color: Colors.transparent,
-                            ),
-                          ],
-                        ],
-                      ),
+                                ),
+                                Divider(
+                                  thickness: 100,
+                                  color: Colors.transparent,
+                                ),
+                                Divider(
+                                  thickness: 100,
+                                  color: Colors.transparent,
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                },
+                  ],
+                ),
+              );
+            },
+      ),
+      extendBody: true,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: ElevatedButton(
+              onPressed: () {
+                Navigator.of(
+                  context,
+                ).pushNamed(
+                  '/login',
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: CircleBorder(),
+                backgroundColor: AppColors.darkWood.withAlpha(
+                  100,
+                ),
+                elevation: 0,
+              ),
+              child: Icon(
+                color: AppColors.paper,
+                Icons.logout,
+              ),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: ElevatedButton(
+              onPressed: () {
+                showModalBottomSheet //Dialog
+                (
+                  context: context,
+                  builder:
+                      (
+                        BuildContext context,
+                      ) {
+                        return const RegisterBookWidget();
+                      },
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  isScrollControlled: true,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: CircleBorder(),
+                backgroundColor: AppColors.darkWood.withAlpha(
+                  100,
+                ),
+                elevation: 0,
+              ),
+              child: Icon(
+                color: AppColors.paper,
+                Icons.add,
+              ),
+            ),
+            label: '',
           ),
         ],
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      // bottomNavigationBar: Container(
-      //   child: BottomNavigationBar(
-      //     items: const [
-      //       BottomNavigationBarItem(icon: Icon(null), label: ''),
-      //       BottomNavigationBarItem(icon: Icon(null), label: ''),
-      //     ],
-      //     backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
-      //   ),
-      //   decoration: BoxDecoration(border: Border(top: BorderSide(width: 6))),
-      // ),
     );
   }
 }

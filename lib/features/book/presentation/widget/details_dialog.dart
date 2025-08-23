@@ -42,12 +42,13 @@ class _DetailsDialogState extends State<DetailsDialog> {
             deleteBookProvider,
             child,
           ) {
-            return AlertDialog(
+            return //TODO: new theme
+            AlertDialog(
               title: Text(
                 widget.title,
               ),
               content: SingleChildScrollView(
-                child: Column( 
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(

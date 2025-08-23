@@ -21,9 +21,9 @@ class ShowBooksProvider extends ChangeNotifier {
           'createdAt',
           descending: true,
         )
-        .limit(
-          24, //TODO: show all
-        )
+        // .limit(
+        //   24,
+        // )
         .snapshots();
   }
 }

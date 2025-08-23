@@ -1,6 +1,5 @@
 import 'package:book_app/features/auth/presentation/pages/login_page.dart';
 import 'package:book_app/features/auth/presentation/pages/register_user_page.dart';
-import 'package:book_app/features/book/presentation/page/book_list.dart';
 import 'package:book_app/features/book/presentation/page/bookcase_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +20,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const BookcasePage(),
         );
-      case '/bookList':
-        return MaterialPageRoute(
-          builder: (context) => const BookList(),
-        );
+      // case '/bookList':
+      //   return MaterialPageRoute(
+      //     builder: (context) => const BookList(),
+      //   );
       default:
         return MaterialPageRoute(
           builder: (context) => const LoginPage(),
