@@ -79,7 +79,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           10,
                     ),
                     TextFormField(
-                      initialValue: widget.pages,
+                      initialValue: '${widget.pages} páginas',
                       decoration: AppInputDecoration.inputDecoration,
                       readOnly: true,
                       style: TextStyle(
@@ -119,13 +119,15 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         initialValue: widget.synopsis,
                         decoration: AppInputDecoration.inputDecoration.copyWith(
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.zero,
+                            borderRadius:
+                                BorderRadius.zero, //TODO: tablet border
                             borderSide: BorderSide(
                               color: Colors.transparent,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.zero,
+                            borderRadius:
+                                BorderRadius.zero, //TODO: tablet border
                             borderSide: BorderSide(
                               color: Colors.transparent,
                             ),

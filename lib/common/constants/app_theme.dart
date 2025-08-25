@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   //TODO: edit transparency
   //TODO: fix dark theme
+  //TODO: responsiveness on tablets
   static final ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.darkWood, //larissaGreen
