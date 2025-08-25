@@ -3,7 +3,7 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/book/logic/provider/random_colors_provider.dart';
 import 'package:book_app/features/book/logic/provider/show_books_provider.dart';
-import 'package:book_app/features/book/presentation/widget/details_dialog.dart';
+import 'package:book_app/features/book/presentation/widget/details_widget.dart';
 import 'package:book_app/features/book/presentation/widget/register_book_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -214,14 +214,14 @@ class _BookcasePageState extends State<BookcasePage> {
                                                     ),
                                                     onPressed: () {
                                                       //TODO: Book Animation
-                                                      showDialog(
+                                                      showModalBottomSheet(
                                                         context: context,
                                                         builder:
                                                             (
                                                               BuildContext
                                                               context,
                                                             ) {
-                                                              return DetailsDialog(
+                                                              return DetailsWidget(
                                                                 bookId: book.id,
                                                                 title:
                                                                     book['title'],
@@ -239,6 +239,11 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                     book['synopsis'],
                                                               );
                                                             },
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        elevation: 0,
+                                                        isScrollControlled:
+                                                            true,
                                                       );
                                                     },
                                                   ),

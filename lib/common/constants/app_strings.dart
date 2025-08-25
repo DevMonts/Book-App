@@ -12,6 +12,9 @@ class AppStrings {
   //static const String registerBook = 'Criar um Livro';
   static const String empty =
       'Clique no ícone + para adicionar o primeiro livro na sua estante';
+  static const String doubleClickToDelete =
+      'Clique aqui 2 vezes pra deletar';
+  static const String delete = 'Deletar';
 
   //Firebase Auth Exceptions
   static const String accountExistsWithDifferentCredential =

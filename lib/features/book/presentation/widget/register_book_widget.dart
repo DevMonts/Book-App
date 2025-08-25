@@ -71,10 +71,10 @@ class RegisterBookWidget extends StatelessWidget {
               //   //side: BorderSide(width: 6),
               // ),
               children: [
-                SizedBox(
-                  height: //40
-                      10,
-                ),
+                // SizedBox(
+                //   height: //40
+                //       10,
+                // ),
                 TextFormField(
                   //TODO: required field
                   decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -172,30 +172,9 @@ class RegisterBookWidget extends StatelessWidget {
                       context,
                     ).pop();
                   },
-                  child: IconButton(
-                    onPressed: () async {
-                      final registerBookProvider =
-                          Provider.of<RegisterBookProvider>(
-                            context,
-                            listen: false,
-                          );
-                      await registerBookProvider.sendBookToFirestore(
-                        pages: pagesController.text,
-                        publicationDate: publicationDateController.text,
-                        title: titleController.text,
-                        author: authorController.text,
-                        gender: genderController.text,
-                        format: formatController.text,
-                        synopsis: synopsisController.text,
-                      );
-                      Navigator.of(
-                        context,
-                      ).pop();
-                    },
-                    icon: Icon(
-                      Icons.add,
-                      color: AppColors.paper,
-                    ),
+                  child: Icon(
+                    Icons.add,
+                    color: AppColors.paper,
                   ),
                 ),
               ],
