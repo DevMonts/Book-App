@@ -146,7 +146,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     // ),
                     //TODO: edit button
                     TextButton(
-                      style: ElevatedButton.styleFrom(
+                      style: TextButton.styleFrom(
                         backgroundColor: AppColors.wine,
                         minimumSize: const Size(
                           double.infinity,

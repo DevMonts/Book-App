@@ -3,7 +3,8 @@ class AppStrings {
   static const String description = 'Simples, bonito e leve';
 
   //Auth Pages
-  static const String register = 'Registrar';
+  static const String login = 'Entrar';
+  static const String register = 'Cadastrar';
   static const String email = 'Email';
   static const String password = 'Senha';
   static const String success = 'Sucesso';

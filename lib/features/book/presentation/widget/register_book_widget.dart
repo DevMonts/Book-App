@@ -55,7 +55,9 @@ class RegisterBookWidget extends StatelessWidget {
     //content:
     Padding(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
+        bottom: MediaQuery.of(
+          context,
+        ).viewInsets.bottom,
       ),
       child: SingleChildScrollView(
         child:
@@ -179,7 +181,6 @@ class RegisterBookWidget extends StatelessWidget {
                 ),
               ],
             ),
-        //],
       ),
     );
   }
