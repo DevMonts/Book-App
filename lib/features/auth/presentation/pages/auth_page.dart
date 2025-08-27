@@ -3,8 +3,8 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/presentation/widget/login_widget.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class AuthPage extends StatelessWidget {
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {

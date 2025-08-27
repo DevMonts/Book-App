@@ -2,6 +2,7 @@ import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
+import 'package:book_app/features/auth/presentation/widget/register_user_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
@@ -68,7 +69,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         labelStyle: TextStyle(
                           color: AppColors.paper,
                         ),
-                        border: OutlineInputBorder(),
+                        //border: OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
                             passwordViewProvider.obscureText
@@ -118,9 +119,21 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/register',
+                      showModalBottomSheet(
+                        // Navigator.pushNamed(
+                        //   context,
+                        //   '/register',
+                        // );
+                        context: context,
+                        builder:
+                            (
+                              BuildContext context,
+                            ) {
+                              return RegisterUserWidget();
+                            },
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        isScrollControlled: true,
                       );
                     },
                     child: //Icon

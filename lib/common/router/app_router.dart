@@ -1,5 +1,5 @@
-import 'package:book_app/features/auth/presentation/pages/login_page.dart';
-import 'package:book_app/features/auth/presentation/pages/register_user_page.dart';
+import 'package:book_app/features/auth/presentation/pages/auth_page.dart';
+import 'package:book_app/features/auth/presentation/widget/register_user_widget.dart';
 import 'package:book_app/features/book/presentation/page/bookcase_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +10,12 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (context) => const LoginPage(),
+          builder: (context) => const AuthPage(),
         );
-      case '/register':
-        return MaterialPageRoute(
-          builder: (context) => const RegisterUserPage(),
-        );
+      // case '/register':
+      //   return MaterialPageRoute(
+      //     builder: (context) => const RegisterUserPage(),
+      //   );
       case '/bookcase':
         return MaterialPageRoute(
           builder: (context) => const BookcasePage(),
@@ -26,7 +26,7 @@ class AppRouter {
       //   );
       default:
         return MaterialPageRoute(
-          builder: (context) => const LoginPage(),
+          builder: (context) => const AuthPage(),
         );
     }
   }

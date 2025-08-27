@@ -1,4 +1,5 @@
 import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
@@ -6,53 +7,62 @@ import 'package:book_app/features/auth/logic/providers/password_view_provider.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RegisterUserPage extends StatefulWidget {
-  const RegisterUserPage({super.key});
+class RegisterUserWidget extends StatefulWidget {
+  const RegisterUserWidget({super.key});
   @override
-  State<RegisterUserPage> createState() => _RegisterUserPageState();
+  State<RegisterUserWidget> createState() => _RegisterUserWidgetState();
 }
 
-class _RegisterUserPageState extends State<RegisterUserPage> {
+class _RegisterUserWidgetState extends State<RegisterUserWidget> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    //TODO: new theme
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(
-          50,
-        ),
+    return //Scaffold(
+    // appBar: AppBar(
+    //   backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
+    // ),
+    //body:
+    Padding(
+      padding:
+          EdgeInsets. //all
+          only(
+            //50
+            bottom: MediaQuery.of(
+              context,
+            ).viewInsets.bottom,
+          ),
+      child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 10,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // spacing: 10,
           children: [
-            Text(
-              AppStrings.register,
-              style: TextStyle(
-                color: AppColors.larissaGreen,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+            // Text(
+            //   AppStrings.register,
+            //   style: TextStyle(
+            //     color: AppColors.larissaGreen,
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
             TextFormField(
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+              decoration: AppInputDecoration.inputDecoration.copyWith(
                 labelText: AppStrings.email,
-                labelStyle: TextStyle(
-                  color: AppColors.larissaGreen,
-                ),
-                border: OutlineInputBorder(),
+                // labelStyle: TextStyle(
+                //   color: AppColors.larissaGreen,
+                // ),
+                // border: OutlineInputBorder(),
               ),
               controller: emailController,
-              style: TextStyle(
-                color: AppColors.larissaGreen,
-              ),
+              // style: TextStyle(
+              //   color: AppColors.larissaGreen,
+              // ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Consumer<PasswordViewProvider>(
               builder:
@@ -62,20 +72,22 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                     child,
                   ) {
                     return TextFormField(
-                      decoration: InputDecoration(
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
                         labelText: AppStrings.password,
                         labelStyle: TextStyle(
-                          color: AppColors.larissaGreen,
+                          color: AppColors
+                              . //larissaGreen
+                              paper,
                         ),
-                        border: OutlineInputBorder(),
+                        //border: OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
                             passwordViewProvider.obscureText
                                 ? Icons.visibility_off
                                 : Icons.visibility,
-                            color: passwordViewProvider.obscureText
-                                ? AppColors.larissaDarkGreenBook
-                                : AppColors.larissaGreen,
+                            // color: passwordViewProvider.obscureText
+                            //     ? AppColors.larissaDarkGreenBook
+                            //     : AppColors.larissaGreen,
                           ),
                           onPressed: () {
                             Provider.of<PasswordViewProvider>(
@@ -87,15 +99,30 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                       ),
                       obscureText: passwordViewProvider.obscureText,
                       controller: passwordController,
-                      style: TextStyle(
-                        color: passwordViewProvider.obscureText
-                            ? AppColors.larissaDarkGreenBook
-                            : AppColors.larissaGreen,
-                      ),
+                      // style: TextStyle(
+                      //   color: passwordViewProvider.obscureText
+                      //       ? AppColors.larissaDarkGreenBook
+                      //       : AppColors.larissaGreen,
+                      // ),
                     );
                   },
             ),
-            IconButton(
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors
+                    . //larissaGreen
+                    darkWood,
+                minimumSize: const Size(
+                  double.infinity,
+                  50,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+              ),
               onPressed: () {
                 final email = emailController.text.trim();
                 final password = passwordController.text.trim();
@@ -119,9 +146,15 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   ),
                 );
               },
-              icon: Icon(
-                Icons.send,
-                color: AppColors.larissaGreen,
+              child: //Icon
+              Text(
+                //Icons.send,
+                style: TextStyle(
+                  color: AppColors
+                      . //larissaGreen
+                      paper,
+                ),
+                AppStrings.register,
               ),
             ),
           ],
