@@ -1,5 +1,4 @@
 import 'package:book_app/features/auth/presentation/pages/auth_page.dart';
-import 'package:book_app/features/auth/presentation/widget/register_user_widget.dart';
 import 'package:book_app/features/book/presentation/page/bookcase_page.dart';
 import 'package:flutter/material.dart';
 
