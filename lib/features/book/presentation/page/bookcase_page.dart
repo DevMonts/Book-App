@@ -135,7 +135,9 @@ class _BookcasePageState extends State<BookcasePage> {
               }
               if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                 return Padding(
-                  padding: const EdgeInsetsGeometry.all(10),
+                  padding: const EdgeInsetsGeometry.all(
+                    10,
+                  ),
                   child: Center(
                     // Column(
                     //   mainAxisAlignment: MainAxisAlignment.center,
@@ -173,7 +175,13 @@ class _BookcasePageState extends State<BookcasePage> {
                         Center(
                           child: Column(
                             children: [
-                              for (int i = 0; i < books!.length; i += 6,) ...[
+                              for (
+                                int i = 0;
+                                i <
+                                    books //!
+                                        .length;
+                                i += 6,
+                              ) ...[
                                 Wrap(
                                   children: books
                                       .map((
