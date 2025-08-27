@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:book_app/common/constants/app_circle_button.dart';
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
@@ -216,27 +219,35 @@ class _BookcasePageState extends State<BookcasePage> {
                                                       //TODO: Book Animation
                                                       showModalBottomSheet(
                                                         context: context,
+
                                                         builder:
                                                             (
-                                                              BuildContext
                                                               context,
                                                             ) {
-                                                              return DetailsWidget(
-                                                                bookId: book.id,
-                                                                title:
-                                                                    book['title'],
-                                                                author:
-                                                                    book['author'],
-                                                                pages:
-                                                                    book['pages'],
-                                                                publicationDate:
-                                                                    book['publicationDate'],
-                                                                gender:
-                                                                    book['gender'],
-                                                                format:
-                                                                    book['format'],
-                                                                synopsis:
-                                                                    book['synopsis'],
+                                                              return BackdropFilter(
+                                                                filter:
+                                                                    ImageFilter.blur(
+                                                                      sigmaX: 5,
+                                                                      sigmaY: 5,
+                                                                    ),
+                                                                child: DetailsWidget(
+                                                                  bookId:
+                                                                      book.id,
+                                                                  title:
+                                                                      book['title'],
+                                                                  author:
+                                                                      book['author'],
+                                                                  pages:
+                                                                      book['pages'],
+                                                                  publicationDate:
+                                                                      book['publicationDate'],
+                                                                  gender:
+                                                                      book['gender'],
+                                                                  format:
+                                                                      book['format'],
+                                                                  synopsis:
+                                                                      book['synopsis'],
+                                                                ),
                                                               );
                                                             },
                                                         backgroundColor:
@@ -320,7 +331,7 @@ class _BookcasePageState extends State<BookcasePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: ElevatedButton(
+            icon: AppCircleButton(
               onPressed: () {
                 Navigator.of(
                   context,
@@ -328,46 +339,37 @@ class _BookcasePageState extends State<BookcasePage> {
                   '/login',
                 );
               },
-              style: ElevatedButton.styleFrom(
-                shape: CircleBorder(),
-                backgroundColor: AppColors.darkWood.withAlpha(
-                  100,
-                ),
-                elevation: 0,
-              ),
-              child: Icon(
-                color: AppColors.paper,
+              icon: Icon(
                 Icons.logout,
               ),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: ElevatedButton(
+            icon: AppCircleButton(
               onPressed: () {
                 showModalBottomSheet //Dialog
                 (
                   context: context,
+
                   builder:
                       (
-                        BuildContext context,
+                        context,
                       ) {
-                        return const RegisterBookWidget();
+                        return BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 5,
+                            sigmaY: 5,
+                          ),
+                          child: const RegisterBookWidget(),
+                        );
                       },
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   isScrollControlled: true,
                 );
               },
-              style: ElevatedButton.styleFrom(
-                shape: CircleBorder(),
-                backgroundColor: AppColors.darkWood.withAlpha(
-                  100,
-                ),
-                elevation: 0,
-              ),
-              child: Icon(
-                color: AppColors.paper,
+              icon: Icon(
                 Icons.add,
               ),
             ),

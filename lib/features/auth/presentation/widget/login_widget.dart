@@ -127,7 +127,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         context: context,
                         builder:
                             (
-                              BuildContext context,
+                              context,
                             ) {
                               return RegisterUserWidget();
                             },

@@ -44,7 +44,6 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: fix login
   Future<void> loginUser(
     BuildContext context,
     String email,

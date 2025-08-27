@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/presentation/widget/login_widget.dart';
@@ -33,10 +35,21 @@ class AuthPage extends StatelessWidget {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
-                  builder: (context) => const LoginWidget(),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   isScrollControlled: true,
+                  builder:
+                      (
+                        context,
+                      ) {
+                        return BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 5,
+                            sigmaY: 5,
+                          ),
+                          child: const LoginWidget(),
+                        );
+                      },
                 );
               },
               style: ElevatedButton.styleFrom(
