@@ -17,6 +17,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  String? error;
   @override
   Widget build(BuildContext context) {
     return //Scaffold(
@@ -100,6 +101,14 @@ class _LoginWidgetState extends State<LoginWidget> {
             SizedBox(
               height: 10,
             ),
+            (error != null)
+                ? Text(
+                    error!,
+                    style: TextStyle(
+                      color: AppColors.wine,
+                    ),
+                  )
+                : Container(),
             Row(
               mainAxisAlignment: MainAxisAlignment
                   . //center
@@ -175,14 +184,26 @@ class _LoginWidgetState extends State<LoginWidget> {
                         );
                       } catch (e) {
                         if (!mounted) return;
-                        ScaffoldMessenger.of(
-                          context,
-                        ).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              e.toString(),
-                            ),
+                        // ScaffoldMessenger.of(
+                        //   context,
+                        // ).showSnackBar(
+                        //   SnackBar(
+                        //     content: Text(
+                        setState(() {
+                          error = e.toString(); //,
+                          //     ),
+                          //   ),
+                          // );
+                        });
+                        Future.delayed(
+                          const Duration(
+                            seconds: 3,
                           ),
+                          () {
+                            setState(() {
+                              error = null;
+                            });
+                          },
                         );
                       }
                     },

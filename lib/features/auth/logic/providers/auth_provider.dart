@@ -8,6 +8,8 @@ class AuthProvider extends ChangeNotifier {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   User? user;
   bool isLogged = false;
+  String? error;
+
   AuthProvider() {
     firebaseAuth.authStateChanges().listen((
       User? newUser,
