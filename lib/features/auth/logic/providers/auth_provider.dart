@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/core/exceptions/app_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
