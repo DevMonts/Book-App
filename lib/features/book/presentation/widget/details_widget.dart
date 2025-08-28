@@ -14,7 +14,10 @@ class DetailsWidget extends StatefulWidget {
   //final String publicationDate;
   final String gender;
   final String format;
+  final String color;
   final String synopsis;
+    //TODO: book size
+    //TODO: book icon
   const DetailsWidget({
     super.key,
     required this.bookId,
@@ -25,7 +28,10 @@ class DetailsWidget extends StatefulWidget {
     //required this.publicationDate,
     required this.gender,
     required this.format,
+    required this.color,
     required this.synopsis,
+    //TODO: book size
+    //TODO: book icon
   });
 
   @override
@@ -134,6 +140,19 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       height: 10,
                     ),
 
+                    TextFormField(
+                      initialValue: widget.color,
+                      decoration: AppInputDecoration.inputDecoration,
+                      readOnly: true,
+                      style: TextStyle(
+                        color: AppColors.paper,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
                     SingleChildScrollView(
                       child: TextFormField(
                         initialValue: widget.synopsis,
@@ -154,7 +173,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           ),
                         ),
                         readOnly: true,
-                        maxLines: 15,
+                        maxLines: 10,
                         style: TextStyle(
                           color: AppColors.paper,
                         ),

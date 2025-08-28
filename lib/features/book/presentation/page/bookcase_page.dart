@@ -227,7 +227,6 @@ class _BookcasePageState extends State<BookcasePage> {
                                                       //TODO: Book Animation
                                                       showModalBottomSheet(
                                                         context: context,
-
                                                         builder:
                                                             (
                                                               context,
@@ -247,7 +246,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                       book['author'],
                                                                   pages:
                                                                       book['pages'],
-                                                                  currentPage: 
+                                                                  currentPage:
                                                                       book['currentPage'],
                                                                   // publicationDate:
                                                                   //     book['publicationDate'],
@@ -257,6 +256,8 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                       book['format'],
                                                                   synopsis:
                                                                       book['synopsis'],
+                                                                  color:
+                                                                      book['color'],
                                                                 ),
                                                               );
                                                             },

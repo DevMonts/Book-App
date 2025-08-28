@@ -54,6 +54,7 @@ class AppStrings {
   static const String gender = 'Gênero';
   static const String format = 'Físico ou Ebook?';
   static const String synopsis = 'Sinopse';
+  static const String color = 'Cor';
 
   static const String deleteConfirmation =
       'Clique novamente na lixeira novamente pra confirmar a exclusão';
