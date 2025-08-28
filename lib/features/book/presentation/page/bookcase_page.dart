@@ -247,8 +247,10 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                       book['author'],
                                                                   pages:
                                                                       book['pages'],
-                                                                  publicationDate:
-                                                                      book['publicationDate'],
+                                                                  currentPage: 
+                                                                      book['currentPage'],
+                                                                  // publicationDate:
+                                                                  //     book['publicationDate'],
                                                                   gender:
                                                                       book['gender'],
                                                                   format:

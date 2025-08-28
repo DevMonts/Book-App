@@ -6,9 +6,12 @@ class RegisterBookProvider extends ChangeNotifier {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   Future<void> sendBookToFirestore({
-    //TODO: atualPage
+    //TODO: book color
+    //TODO: book size
+    //TODO: book icon
+    required currentPage,
     required pages,
-    required publicationDate,
+    //required publicationDate,
     required title,
     required author,
     required gender,
@@ -27,8 +30,9 @@ class RegisterBookProvider extends ChangeNotifier {
           'books',
         )
         .add({
+          'currentPage': currentPage,
           'pages': pages,
-          'publicationDate': publicationDate,
+          //'publicationDate': publicationDate,
           'title': title,
           'author': author,
           'gender': gender,

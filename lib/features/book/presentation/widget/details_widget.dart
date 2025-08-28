@@ -10,7 +10,8 @@ class DetailsWidget extends StatefulWidget {
   final String title;
   final String author;
   final String pages;
-  final String publicationDate;
+  final String currentPage;
+  //final String publicationDate;
   final String gender;
   final String format;
   final String synopsis;
@@ -20,7 +21,8 @@ class DetailsWidget extends StatefulWidget {
     required this.title,
     required this.author,
     required this.pages,
-    required this.publicationDate,
+    required this.currentPage,
+    //required this.publicationDate,
     required this.gender,
     required this.format,
     required this.synopsis,
@@ -62,10 +64,11 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         color: AppColors.paper,
                       ),
                     ),
+
                     SizedBox(
-                      height: //20
-                          10,
+                      height: 10,
                     ),
+
                     TextFormField(
                       initialValue: widget.author,
                       decoration: AppInputDecoration.inputDecoration,
@@ -74,10 +77,11 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         color: AppColors.paper,
                       ),
                     ),
+
                     SizedBox(
-                      height: //20
-                          10,
+                      height: 10,
                     ),
+
                     TextFormField(
                       initialValue: '${widget.pages} páginas',
                       decoration: AppInputDecoration.inputDecoration,
@@ -86,10 +90,24 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         color: AppColors.paper,
                       ),
                     ),
+
                     SizedBox(
-                      height: //20
-                          10,
+                      height: 10,
                     ),
+
+                    TextFormField(
+                      initialValue: '${widget.currentPage} páginas lidas',
+                      decoration: AppInputDecoration.inputDecoration,
+                      readOnly: true,
+                      style: TextStyle(
+                        color: AppColors.paper,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
                     TextFormField(
                       initialValue: widget.gender,
                       decoration: AppInputDecoration.inputDecoration,
@@ -98,10 +116,11 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         color: AppColors.paper,
                       ),
                     ),
+
                     SizedBox(
-                      height: //20
-                          10,
+                      height: 10,
                     ),
+
                     TextFormField(
                       initialValue: widget.format,
                       decoration: AppInputDecoration.inputDecoration,
@@ -110,10 +129,11 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         color: AppColors.paper,
                       ),
                     ),
+
                     SizedBox(
-                      height: //20
-                          10,
+                      height: 10,
                     ),
+
                     SingleChildScrollView(
                       child: TextFormField(
                         initialValue: widget.synopsis,
@@ -140,6 +160,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         ),
                       ),
                     ),
+
                     // SizedBox(
                     //   height: //20
                     //       10,
@@ -187,6 +208,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                             ),
                           ),
                     ),
+
                     // IconButton(
                     //   onPressed: () {
                     //     Navigator.of(context).pop();

@@ -47,6 +47,7 @@ class AppStrings {
   //Casebook Page
   static const String oneBook = 'Muita poeira e só um livro';
   static const String pages = 'Páginas';
+  static const String currentPage = 'Página atual';
   static const String publicationDate = 'Publicação';
   static const String title = 'Título';
   static const String author = 'Autor(a)';

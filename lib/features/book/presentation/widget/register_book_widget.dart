@@ -12,8 +12,9 @@ class RegisterBookWidget extends StatelessWidget {
     //TODO: book color
     //TODO: book size
     //TODO: book icon
+    final currentPageController = TextEditingController();
     final pagesController = TextEditingController();
-    final publicationDateController = TextEditingController();
+    //final publicationDateController = TextEditingController();
     final titleController = TextEditingController();
     final authorController = TextEditingController();
     final genderController = TextEditingController();
@@ -73,10 +74,6 @@ class RegisterBookWidget extends StatelessWidget {
               //   //side: BorderSide(width: 6),
               // ),
               children: [
-                // SizedBox(
-                //   height: //40
-                //       10,
-                // ),
                 TextFormField(
                   //TODO: required field
                   decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -94,6 +91,17 @@ class RegisterBookWidget extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.number,
                   controller: pagesController,
+                ),
+                SizedBox(
+                  height: //40
+                      10,
+                ),
+                TextFormField(
+                  decoration: AppInputDecoration.inputDecoration.copyWith(
+                    labelText: AppStrings.currentPage,
+                  ),
+                  keyboardType: TextInputType.number,
+                  controller: currentPageController,
                 ),
                 SizedBox(
                   height: //40
@@ -162,8 +170,9 @@ class RegisterBookWidget extends StatelessWidget {
                           listen: false,
                         );
                     await registerBookProvider.sendBookToFirestore(
+                      currentPage: currentPageController.text,
                       pages: pagesController.text,
-                      publicationDate: publicationDateController.text,
+                      //publicationDate: publicationDateController.text,
                       title: titleController.text,
                       author: authorController.text,
                       gender: genderController.text,
