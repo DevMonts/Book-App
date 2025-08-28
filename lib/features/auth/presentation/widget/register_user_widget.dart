@@ -1,7 +1,6 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:flutter/material.dart';
