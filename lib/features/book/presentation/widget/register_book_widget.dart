@@ -157,7 +157,8 @@ class RegisterBookWidget extends StatelessWidget {
                     backgroundColor: AppColors.darkWood,
                     minimumSize: const Size(
                       double.infinity,
-                      100,
+                      //100
+                      50,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero,
