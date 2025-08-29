@@ -262,6 +262,8 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                       book['synopsis'],
                                                                   color:
                                                                       book['color'],
+                                                                  bookColor:
+                                                                      bookColor,
                                                                 ),
                                                               );
                                                             },

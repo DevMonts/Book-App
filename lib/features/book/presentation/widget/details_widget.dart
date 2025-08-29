@@ -16,8 +16,9 @@ class DetailsWidget extends StatefulWidget {
   final String format;
   final String color;
   final String synopsis;
-    //TODO: book size
-    //TODO: book icon
+  //TODO: book size
+  //TODO: book icon
+  final Color bookColor;
   const DetailsWidget({
     super.key,
     required this.bookId,
@@ -32,6 +33,7 @@ class DetailsWidget extends StatefulWidget {
     required this.synopsis,
     //TODO: book size
     //TODO: book icon
+    required this.bookColor,
   });
 
   @override
@@ -64,7 +66,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                   children: [
                     TextFormField(
                       initialValue: widget.title,
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -77,7 +81,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
                     TextFormField(
                       initialValue: widget.author,
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -90,7 +96,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
                     TextFormField(
                       initialValue: '${widget.pages} páginas',
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -103,7 +111,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
                     TextFormField(
                       initialValue: '${widget.currentPage} páginas lidas',
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -116,7 +126,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
                     TextFormField(
                       initialValue: widget.gender,
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -129,7 +141,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
                     TextFormField(
                       initialValue: widget.format,
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -142,7 +156,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
 
                     TextFormField(
                       initialValue: widget.color,
-                      decoration: AppInputDecoration.inputDecoration,
+                      decoration: AppInputDecoration.inputDecoration.copyWith(
+                        fillColor: widget.bookColor,
+                      ),
                       readOnly: true,
                       style: TextStyle(
                         color: AppColors.paper,
@@ -157,6 +173,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       child: TextFormField(
                         initialValue: widget.synopsis,
                         decoration: AppInputDecoration.inputDecoration.copyWith(
+                          fillColor: widget.bookColor,
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.zero, //TODO: tablet border
