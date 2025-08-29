@@ -100,6 +100,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 TextFormField(
                   //TODO: required field
                   decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
                     labelText: AppStrings.title,
                   ),
                   controller: titleController,
@@ -112,6 +113,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
 
                 TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
                     labelText: AppStrings.pages,
                   ),
                   keyboardType: TextInputType.number,
@@ -124,6 +126,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
                 TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
                     labelText: AppStrings.currentPage,
                   ),
                   keyboardType: TextInputType.number,
@@ -137,6 +140,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
 
                 TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
                     labelText: AppStrings.author,
                   ),
                   controller: authorController,
@@ -149,6 +153,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
 
                 TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
                     labelText: AppStrings.gender,
                   ),
                   controller: genderController,
@@ -161,6 +166,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
 
                 TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
                     labelText: AppStrings.format,
                   ),
                   controller: formatController,
@@ -175,6 +181,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                   width: 500,
                   child: TextFormField(
                     decoration: AppInputDecoration.inputDecoration.copyWith(
+                      fillColor: selectedColor,
                       labelText: AppStrings.synopsis,
                     ),
                     maxLines: 3,
@@ -188,7 +195,9 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
 
                 TextFormField(
                   controller: colorController,
-                  decoration: AppInputDecoration.inputDecoration,
+                  decoration: AppInputDecoration.inputDecoration.copyWith(
+                    fillColor: selectedColor,
+                  ),
                   readOnly: true,
                   onTap: () async {
                     final pickedColor = await showDialog<Color>(
@@ -234,7 +243,9 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 //TODO: change to avaliation with stars
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.darkWood,
+                    backgroundColor: (selectedColor != null)
+                        ? selectedColor
+                        : AppColors.darkWood,
                     minimumSize: const Size(
                       double.infinity,
                       //100
