@@ -5,7 +5,6 @@ import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/common/utils/color_converter.dart';
-import 'package:book_app/features/book/logic/provider/random_colors_provider.dart';
 import 'package:book_app/features/book/logic/provider/show_books_provider.dart';
 import 'package:book_app/features/book/presentation/widget/details_widget.dart';
 import 'package:book_app/features/book/presentation/widget/register_book_widget.dart';

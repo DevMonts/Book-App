@@ -176,14 +176,14 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           fillColor: widget.bookColor,
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.zero, //TODO: tablet border
+                                BorderRadius.zero,
                             borderSide: BorderSide(
                               color: Colors.transparent,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.zero, //TODO: tablet border
+                                BorderRadius.zero,
                             borderSide: BorderSide(
                               color: Colors.transparent,
                             ),
