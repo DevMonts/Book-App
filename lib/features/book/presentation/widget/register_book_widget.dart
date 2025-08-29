@@ -188,9 +188,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
 
                 TextFormField(
                   controller: colorController,
-                  decoration: AppInputDecoration.inputDecoration.copyWith(
-                    labelText: AppStrings.color,
-                  ),
+                  decoration: AppInputDecoration.inputDecoration,
                   readOnly: true,
                   onTap: () async {
                     final pickedColor = await showDialog<Color>(

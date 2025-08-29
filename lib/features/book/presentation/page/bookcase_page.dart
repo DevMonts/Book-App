@@ -4,6 +4,7 @@ import 'package:book_app/common/constants/app_circle_button.dart';
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
+import 'package:book_app/common/utils/color_converter.dart';
 import 'package:book_app/features/book/logic/provider/random_colors_provider.dart';
 import 'package:book_app/features/book/logic/provider/show_books_provider.dart';
 import 'package:book_app/features/book/presentation/widget/details_widget.dart';
@@ -35,10 +36,10 @@ class _BookcasePageState extends State<BookcasePage> {
       context,
       listen: false,
     );
-    final randomColorsProvider = Provider.of<RandomColorsProvider>(
-      context,
-      listen: false,
-    );
+    // final randomColorsProvider = Provider.of<RandomColorsProvider>(
+    //   context,
+    //   listen: false,
+    // );
     return Scaffold(
       // appBar: AppBar(
       //   title: StreamBuilder<QuerySnapshot>(
@@ -187,10 +188,13 @@ class _BookcasePageState extends State<BookcasePage> {
                                       .map((
                                         book,
                                       ) {
-                                        final bookColor = randomColorsProvider
-                                            .randomizeColors();
+                                        final bookHexColor = book['color'];
+                                        final bookColor = //randomColorsProvider
+                                            //.randomizeColors();
+                                            colorConverter(
+                                              bookHexColor,
+                                            );
                                         //TODO: randomize sizes
-                                        //TODO: do not randomize with the state
                                         return RotatedBox(
                                           quarterTurns: 3,
                                           child: Container(

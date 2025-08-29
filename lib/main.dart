@@ -31,9 +31,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => ShowBooksProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => RandomColorsProvider(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => RandomColorsProvider(),
+        // ),
         ChangeNotifierProvider(
           create: (context) => DeleteBookProvider(),
         ),
