@@ -1,7 +1,7 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/features/book/logic/provider/delete_book_provider.dart';
+import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -175,15 +175,13 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         decoration: AppInputDecoration.inputDecoration.copyWith(
                           fillColor: widget.bookColor,
                           enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.zero,
+                            borderRadius: BorderRadius.zero,
                             borderSide: BorderSide(
                               color: Colors.transparent,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.zero,
+                            borderRadius: BorderRadius.zero,
                             borderSide: BorderSide(
                               color: Colors.transparent,
                             ),

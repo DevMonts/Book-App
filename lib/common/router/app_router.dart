@@ -1,5 +1,5 @@
 import 'package:book_app/features/auth/presentation/pages/auth_page.dart';
-import 'package:book_app/features/book/presentation/page/bookcase_page.dart';
+import 'package:book_app/features/bookcase/presentation/page/bookcase_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

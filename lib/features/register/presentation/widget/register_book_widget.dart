@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/features/book/logic/provider/register_book_provider.dart';
-import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
+import 'package:book_app/features/register/logic/providers/register_book_provider.dart';
+import 'package:book_app/features/details/presentation/widget/select_color_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

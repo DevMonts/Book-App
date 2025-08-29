@@ -1,9 +1,9 @@
 import 'package:book_app/app.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
-import 'package:book_app/features/book/logic/provider/delete_book_provider.dart';
-import 'package:book_app/features/book/logic/provider/register_book_provider.dart';
-import 'package:book_app/features/book/logic/provider/show_books_provider.dart';
+import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
+import 'package:book_app/features/register/logic/providers/register_book_provider.dart';
+import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
