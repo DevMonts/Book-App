@@ -105,7 +105,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ? Text(
                     error!,
                     style: TextStyle(
-                      color: AppColors.wine,
+                      color: AppColors.red,
                     ),
                   )
                 : Container(),

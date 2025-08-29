@@ -14,7 +14,7 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
   @override
   void initState() {
     super.initState();
-    selectedColor = AppColors.larissaGreen;
+    selectedColor = AppColors.blackBook;
   }
 
   @override
