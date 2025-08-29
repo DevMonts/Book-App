@@ -1,3 +1,4 @@
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class RegisterBookProvider extends ChangeNotifier {
           'format': format,
           'synopsis': synopsis,
           'color':
-              '#${color.value.toRadixString(
+              '#${(color ?? AppColors.blackBook).value.toRadixString(
                 16,
               ).padLeft(
                 8,
