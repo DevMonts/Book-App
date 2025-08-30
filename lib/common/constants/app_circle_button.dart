@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppCircleButton extends StatelessWidget {
@@ -26,7 +27,7 @@ class AppCircleButton extends StatelessWidget {
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
-              backgroundColor: Colors.transparent,
+              backgroundColor: AppColors.transparent,
               elevation: 0,
             ),
             child: icon,

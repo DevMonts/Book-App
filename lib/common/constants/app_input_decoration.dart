@@ -9,7 +9,7 @@ class AppInputDecoration {
       ),
       borderSide: BorderSide(
         //width: 6
-        color: Colors.transparent,
+        color: AppColors.transparent,
       ),
     ),
 
@@ -19,13 +19,13 @@ class AppInputDecoration {
       ),
       borderSide: BorderSide(
         //width: 6
-        color: Colors.transparent,
+        color: AppColors.transparent,
       ),
     ),
     filled: true,
-    fillColor: AppColors.darkWood,
-    labelStyle: TextStyle(
-      color: AppColors.paper,
-    ),
+    // fillColor: AppColors.darkWood,
+    // labelStyle: TextStyle(
+    //   color: AppColors.paper,
+    // ),
   );
 }

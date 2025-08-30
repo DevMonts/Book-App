@@ -37,28 +37,13 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
           // mainAxisAlignment: MainAxisAlignment.center,
           // spacing: 10,
           children: [
-            // Text(
-            //   AppStrings.register,
-            //   style: TextStyle(
-            //     color: AppColors.larissaGreen,
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
             TextFormField(
               keyboardType: TextInputType.emailAddress,
               decoration: AppInputDecoration.inputDecoration.copyWith(
                 labelText: AppStrings.email,
-                // labelStyle: TextStyle(
-                //   color: AppColors.larissaGreen,
-                // ),
                 // border: OutlineInputBorder(),
               ),
               controller: emailController,
-              // style: TextStyle(
-              //   color: AppColors.larissaGreen,
-              // ),
             ),
             SizedBox(
               height: 10,
@@ -73,20 +58,12 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
                     return TextFormField(
                       decoration: AppInputDecoration.inputDecoration.copyWith(
                         labelText: AppStrings.password,
-                        labelStyle: TextStyle(
-                          color: AppColors
-                              . //larissaGreen
-                              paper,
-                        ),
                         //border: OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
                             passwordViewProvider.obscureText
                                 ? Icons.visibility_off
                                 : Icons.visibility,
-                            // color: passwordViewProvider.obscureText
-                            //     ? AppColors.larissaDarkGreenBook
-                            //     : AppColors.larissaGreen,
                           ),
                           onPressed: () {
                             Provider.of<PasswordViewProvider>(
@@ -98,11 +75,6 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
                       ),
                       obscureText: passwordViewProvider.obscureText,
                       controller: passwordController,
-                      // style: TextStyle(
-                      //   color: passwordViewProvider.obscureText
-                      //       ? AppColors.larissaDarkGreenBook
-                      //       : AppColors.larissaGreen,
-                      // ),
                     );
                   },
             ),
@@ -111,9 +83,7 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: AppColors
-                    . //larissaGreen
-                    darkWood,
+                backgroundColor: AppColors.pink,
                 minimumSize: const Size(
                   double.infinity,
                   50,
@@ -148,11 +118,6 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
               child: //Icon
               Text(
                 //Icons.send,
-                style: TextStyle(
-                  color: AppColors
-                      . //larissaGreen
-                      paper,
-                ),
                 AppStrings.register,
               ),
             ),

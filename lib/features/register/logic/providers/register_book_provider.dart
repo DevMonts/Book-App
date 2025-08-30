@@ -18,6 +18,7 @@ class RegisterBookProvider extends ChangeNotifier {
     required format,
     required color,
     required synopsis,
+    //TODO: review
   }) async {
     final userId = firebaseAuth.currentUser!.uid;
     await
@@ -41,8 +42,9 @@ class RegisterBookProvider extends ChangeNotifier {
           'gender': gender,
           'format': format,
           'synopsis': synopsis,
+          //TODO: review
           'color':
-              '#${(color ?? AppColors.blackBook).value.toRadixString(
+              '#${(color ?? AppColors.violetBlue).value.toRadixString(
                 16,
               ).padLeft(
                 8,

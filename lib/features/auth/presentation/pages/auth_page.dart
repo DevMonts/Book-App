@@ -19,14 +19,10 @@ class AuthPage extends StatelessWidget {
               AppStrings.title,
               style: TextStyle(
                 fontSize: 100,
-                color: AppColors.paper,
               ),
             ),
             Text(
               AppStrings.description,
-              style: TextStyle(
-                color: AppColors.paper,
-              ),
             ),
             SizedBox(
               height: 10,
@@ -35,7 +31,7 @@ class AuthPage extends StatelessWidget {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: AppColors.transparent,
                   elevation: 0,
                   isScrollControlled: true,
                   builder:

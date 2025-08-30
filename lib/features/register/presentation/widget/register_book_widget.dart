@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/register/logic/providers/register_book_provider.dart';
@@ -43,6 +42,8 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
     final genderController = TextEditingController();
     final formatController = TextEditingController();
     final synopsisController = TextEditingController();
+    //TODO: review
+
     return //AlertDialog(
     // titlePadding: EdgeInsets.all(
     //   40,
@@ -52,7 +53,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
     //TODO: Floating Book Cover
     // Expanded(
     //   child: TextField(
-    //     decoration: AppInputDecoration.inputDecoration.copyWith(
+    //     decoration: AppInputDecoration.inputDecoration(context,).copyWith(
     //       labelText: AppStrings.pages,
     //     ),
     //     keyboardType: TextInputType.number,
@@ -64,7 +65,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
     // ),
     // Expanded(
     //   child: TextField(
-    //     decoration: AppInputDecoration.inputDecoration.copyWith(
+    //     decoration: AppInputDecoration.inputDecoration(context,).copyWith(
     //       labelText: AppStrings.publicationDate,
     //     ),
     //     keyboardType: TextInputType.datetime,
@@ -230,9 +231,6 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                       );
                     }
                   },
-                  style: TextStyle(
-                    color: AppColors.paper,
-                  ),
                 ),
 
                 SizedBox(
@@ -245,7 +243,9 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: (selectedColor != null)
                         ? selectedColor
-                        : AppColors.darkWood,
+                        : Theme.of(
+                            context,
+                          ).scaffoldBackgroundColor,
                     minimumSize: const Size(
                       double.infinity,
                       //100
@@ -278,7 +278,6 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                   },
                   child: Icon(
                     Icons.add,
-                    color: AppColors.paper,
                   ),
                 ),
               ],

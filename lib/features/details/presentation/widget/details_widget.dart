@@ -16,6 +16,7 @@ class DetailsWidget extends StatefulWidget {
   final String format;
   final String color;
   final String synopsis;
+  //TODO: review
   //TODO: book size
   //TODO: book icon
   final Color bookColor;
@@ -31,6 +32,7 @@ class DetailsWidget extends StatefulWidget {
     required this.format,
     required this.color,
     required this.synopsis,
+    //TODO: review
     //TODO: book size
     //TODO: book icon
     required this.bookColor,
@@ -70,9 +72,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -85,9 +84,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -100,9 +96,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -115,9 +108,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -130,9 +120,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -145,9 +132,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -160,9 +144,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         fillColor: widget.bookColor,
                       ),
                       readOnly: true,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
 
                     SizedBox(
@@ -177,21 +158,18 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.zero,
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: AppColors.transparent,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.zero,
                             borderSide: BorderSide(
-                              color: Colors.transparent,
+                              color: AppColors.transparent,
                             ),
                           ),
                         ),
                         readOnly: true,
                         maxLines: 10,
-                        style: TextStyle(
-                          color: AppColors.paper,
-                        ),
                       ),
                     ),
 
@@ -199,6 +177,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     //   height: //20
                     //       10,
                     // ),
+
                     //TODO: edit button
                     TextButton(
                       style: TextButton.styleFrom(
@@ -237,21 +216,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                             deleteBookProvider.isDeleteConfirmed
                                 ? AppStrings.delete
                                 : AppStrings.doubleClickToDelete,
-                            style: TextStyle(
-                              color: AppColors.paper,
-                            ),
                           ),
                     ),
-
-                    // IconButton(
-                    //   onPressed: () {
-                    //     Navigator.of(context).pop();
-                    //   },
-                    //   icon: Icon(
-                    //     Icons.sensor_door,
-                    //     color: AppColors.middleWood,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

@@ -14,7 +14,7 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
   @override
   void initState() {
     super.initState();
-    selectedColor = AppColors.blackBook;
+    selectedColor = AppColors.violetBlue;
   }
 
   @override
@@ -37,7 +37,6 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
           ),
         ],
       ),
-      backgroundColor: AppColors.darkWood,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.zero,
       ),
@@ -52,7 +51,6 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
           },
           icon: Icon(
             Icons.draw,
-            color: AppColors.paper,
           ),
         ),
       ],

@@ -16,6 +16,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Book App',
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.onGenerateRoute,
       initialRoute: isLogged ? '/bookcase' : '/',
     );

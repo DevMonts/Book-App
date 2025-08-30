@@ -40,87 +40,6 @@ class _BookcasePageState extends State<BookcasePage> {
     //   listen: false,
     // );
     return Scaffold(
-      // appBar: AppBar(
-      //   title: StreamBuilder<QuerySnapshot>(
-      //     stream: showBooksProvider.showBooksFromFirestore(),
-      //     builder:
-      //         (
-      //           context,
-      //           snapshot,
-      //         ) {
-      //           if (snapshot.connectionState == ConnectionState.waiting) {
-      //             return const Center(
-      //               child: CircularProgressIndicator(),
-      //             );
-      //           }
-      //           if (!snapshot.hasData ||
-      //               snapshot
-      //                   .data!
-      //                   .docs
-      //                   .isEmpty // ||
-      //           //snapshot.data!.docs.length == 24
-      //           ) {
-      //             return Text(
-      //               '',
-      //             );
-      //           }
-      //           if (snapshot.hasData) {
-      //             // final booksCount = snapshot.data!.docs.length;
-      //             // return Text(
-      //             //   '${AppStrings.bookcase} ($booksCount)',
-      //             //   style: TextStyle(
-      //             //     color: AppColors.larissaGreen,
-      //             //   ),
-      //             // );
-      //             if (snapshot.data!.docs.length == 1) {
-      //               return Center(
-      //                 child: Text(
-      //                   AppStrings.oneBook,
-      //                   style: TextStyle(
-      //                     fontSize: 13,
-      //                     color: AppColors.larissaGreen,
-      //                   ),
-      //                 ),
-      //               );
-      //             }
-      //           }
-      //           return Center(
-      //             child: Text(
-      //               '${snapshot.data!.docs.length} livros',
-      //               style: TextStyle(
-      //                 color: AppColors.larissaGreen,
-      //               ),
-      //             ),
-      //           );
-      //         },
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {
-      //         Navigator.of(
-      //           context,
-      //         ).pushNamed(
-      //           '/bookList',
-      //         );
-      //       },
-      //       icon: Icon(
-      //         Icons.density_small,
-      //       ),
-      //     ),
-      //     IconButton(
-      //       onPressed: () {
-      //         showDialog(
-      //           context: context,
-      //           builder: (BuildContext context) {
-      //             return const RegisterBookDialog();
-      //           },
-      //         );
-      //       },
-      //       icon: Icon(Icons.add, color: AppColors.larissaGreen),
-      //     ),
-      //   ],
-      //   backgroundColor: AppTheme.lightTheme.scaffoldBackgroundColor,
-      // ),
       body: StreamBuilder<QuerySnapshot>(
         stream: showBooksProvider.showBooksFromFirestore(),
         builder:
@@ -139,18 +58,10 @@ class _BookcasePageState extends State<BookcasePage> {
                     10,
                   ),
                   child: Center(
-                    // Column(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Icon(
-                    //       Icons.north_east,
-                    //       color: AppColors.larissaGreen,
-                    //     ),
                     child: Text(
                       AppStrings.empty,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        //   color: AppColors.larissaGreen,
                         fontSize: 30,
                       ),
                     ),
@@ -169,7 +80,7 @@ class _BookcasePageState extends State<BookcasePage> {
                     Stack(
                       children: [
                         AppTheme.bookcaseBg(
-                          //context,
+                          context,
                           (books!.length / 6).ceil(),
                         ),
                         Center(
@@ -193,7 +104,6 @@ class _BookcasePageState extends State<BookcasePage> {
                                             colorConverter(
                                               bookHexColor,
                                             );
-                                        //TODO: randomize sizes
                                         return RotatedBox(
                                           quarterTurns: 3,
                                           child: Container(
@@ -222,9 +132,6 @@ class _BookcasePageState extends State<BookcasePage> {
                                                       book['title'],
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                      ),
                                                     ),
                                                     onPressed: () {
                                                       //TODO: Book Animation
@@ -267,7 +174,8 @@ class _BookcasePageState extends State<BookcasePage> {
                                                               );
                                                             },
                                                         backgroundColor:
-                                                            Colors.transparent,
+                                                            AppColors
+                                                                .transparent,
                                                         elevation: 0,
                                                         isScrollControlled:
                                                             true,
@@ -275,19 +183,10 @@ class _BookcasePageState extends State<BookcasePage> {
                                                     },
                                                   ),
                                                 ),
-                                                // IconButton(
-                                                //   onPressed: () {
                                                 //     //TODO: favorite books
-                                                //   },
-                                                //   icon: Icon(
-                                                //     Icons.favorite,
-                                                //     color: AppColors.wine,
-                                                //     size: 10,
-                                                //   ),
-                                                // ),
                                                 Container(
                                                   decoration: BoxDecoration(
-                                                    color: AppColors.paper,
+                                                    color: AppColors.brown01,
                                                     borderRadius:
                                                         BorderRadius.only(
                                                           topLeft:
@@ -326,11 +225,11 @@ class _BookcasePageState extends State<BookcasePage> {
                                 ),
                                 Divider(
                                   thickness: 100,
-                                  color: Colors.transparent,
+                                  color: AppColors.transparent,
                                 ),
                                 Divider(
                                   thickness: 100,
-                                  color: Colors.transparent,
+                                  color: AppColors.transparent,
                                 ),
                               ],
                             ],
@@ -380,7 +279,7 @@ class _BookcasePageState extends State<BookcasePage> {
                           child: const RegisterBookWidget(),
                         );
                       },
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: AppColors.transparent,
                   elevation: 0,
                   isScrollControlled: true,
                 );
@@ -391,8 +290,9 @@ class _BookcasePageState extends State<BookcasePage> {
             ),
             label: '',
           ),
+          //TODO: AI
         ],
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         elevation: 0,
       ),
     );

@@ -44,15 +44,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               keyboardType: TextInputType.emailAddress,
               decoration: AppInputDecoration.inputDecoration.copyWith(
                 labelText: AppStrings.email,
-                // labelStyle: TextStyle(
-                //   color: AppColors.paper,
-                // ),
                 //border: const OutlineInputBorder(),
               ),
               controller: emailController,
-              // style: TextStyle(
-              //   color: AppColors.paper,
-              // ),
             ),
             SizedBox(
               height: 10,
@@ -67,18 +61,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                     return TextFormField(
                       decoration: AppInputDecoration.inputDecoration.copyWith(
                         labelText: AppStrings.password,
-                        labelStyle: TextStyle(
-                          color: AppColors.paper,
-                        ),
                         //border: OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
                             passwordViewProvider.obscureText
                                 ? Icons.visibility_off
                                 : Icons.visibility,
-                            // color: passwordViewProvider.obscureText
-                            //     ? AppColors.larissaGreen
-                            //     : AppColors.paper,
                           ),
                           onPressed: () {
                             Provider.of<PasswordViewProvider>(
@@ -90,11 +78,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                       obscureText: passwordViewProvider.obscureText,
                       controller: passwordController,
-                      // style: TextStyle(
-                      //   color: passwordViewProvider.obscureText
-                      //       ? AppColors.larissaGreen
-                      //       : AppColors.paper,
-                      // ),
                     );
                   },
             ),
@@ -104,9 +87,6 @@ class _LoginWidgetState extends State<LoginWidget> {
             (error != null)
                 ? Text(
                     error!,
-                    style: TextStyle(
-                      color: AppColors.red,
-                    ),
                   )
                 : Container(),
             Row(
@@ -118,7 +98,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: //Icon
                   TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: AppColors.darkWood,
+                      backgroundColor: AppColors.pink,
                       minimumSize: const Size(
                         double.infinity,
                         50,
@@ -140,7 +120,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ) {
                               return RegisterUserWidget();
                             },
-                        backgroundColor: Colors.transparent,
+
+                        backgroundColor: AppColors.transparent,
                         elevation: 0,
                         isScrollControlled: true,
                       );
@@ -149,9 +130,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                     Text(
                       // Icons.add,
                       AppStrings.register,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
                   ),
                 ),
@@ -162,7 +140,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: //Icon
                   TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: AppColors.darkWood,
+                      backgroundColor: AppColors.pink,
                       minimumSize: const Size(
                         double.infinity,
                         50,
@@ -211,9 +189,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                     Text(
                       // Icons.send,
                       AppStrings.login,
-                      style: TextStyle(
-                        color: AppColors.paper,
-                      ),
                     ),
                   ),
                 ),
