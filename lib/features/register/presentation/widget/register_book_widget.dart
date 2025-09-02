@@ -42,7 +42,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
     final genderController = TextEditingController();
     final formatController = TextEditingController();
     final synopsisController = TextEditingController();
-    //TODO: review
+    final reviewController = TextEditingController();
 
     return //AlertDialog(
     // titlePadding: EdgeInsets.all(
@@ -108,8 +108,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
 
                 SizedBox(
-                  height: //40
-                      10,
+                  height: 10,
                 ),
 
                 TextFormField(
@@ -122,8 +121,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
 
                 SizedBox(
-                  height: //40
-                      10,
+                  height: 10,
                 ),
                 TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -135,8 +133,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
 
                 SizedBox(
-                  height: //40
-                      10,
+                  height: 10,
                 ),
 
                 TextFormField(
@@ -148,8 +145,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
 
                 SizedBox(
-                  height: //40
-                      10,
+                  height: 10,
                 ),
 
                 TextFormField(
@@ -161,8 +157,7 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
 
                 SizedBox(
-                  height: //40
-                      10,
+                  height: 10,
                 ),
 
                 TextFormField(
@@ -174,8 +169,23 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                 ),
 
                 SizedBox(
-                  height: //60
-                      10,
+                  height: 10,
+                ),
+
+                SizedBox(
+                  width: 500,
+                  child: TextFormField(
+                    decoration: AppInputDecoration.inputDecoration.copyWith(
+                      fillColor: selectedColor,
+                      labelText: AppStrings.review,
+                    ),
+                    maxLines: 3,
+                    controller: reviewController,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10,
                 ),
 
                 SizedBox(
@@ -262,14 +272,15 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                           listen: false,
                         );
                     await registerBookProvider.sendBookToFirestore(
-                      currentPage: currentPageController.text.trim(),
-                      pages: pagesController.text.trim(),
-                      //publicationDate: publicationDateController.text.trim(),
-                      title: titleController.text.trim(),
-                      author: authorController.text.trim(),
-                      gender: genderController.text.trim(),
-                      format: formatController.text.trim(),
-                      synopsis: synopsisController.text.trim(),
+                      currentPage: currentPageController.text,
+                      pages: pagesController.text,
+                      //publicationDate: publicationDateController.text,
+                      title: titleController.text,
+                      author: authorController.text,
+                      gender: genderController.text,
+                      format: formatController.text,
+                      synopsis: synopsisController.text,
+                      review: reviewController.text,
                       color: selectedColor,
                     );
                     Navigator.of(

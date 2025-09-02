@@ -40,6 +40,11 @@ class _BookcasePageState extends State<BookcasePage> {
     //   listen: false,
     // );
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(
+          context,
+        ).scaffoldBackgroundColor,
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: showBooksProvider.showBooksFromFirestore(),
         builder:
@@ -145,6 +150,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                                         Navigator.push(
                                                           context,
                                                           PageRouteBuilder(
+                                                            opaque: false,
                                                             pageBuilder:
                                                                 (
                                                                   _,
@@ -154,27 +160,37 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                   return FadeTransition(
                                                                     opacity:
                                                                         animation,
-                                                                    child: DetailsPage(
-                                                                      bookId:
-                                                                          book.id,
-                                                                      title:
-                                                                          book['title'],
-                                                                      author:
-                                                                          book['author'],
-                                                                      pages:
-                                                                          book['pages'],
-                                                                      currentPage:
-                                                                          book['currentPage'],
-                                                                      gender:
-                                                                          book['gender'],
-                                                                      format:
-                                                                          book['format'],
-                                                                      synopsis:
-                                                                          book['synopsis'],
-                                                                      // color:
-                                                                      //     book['color'],
-                                                                      bookColor:
-                                                                          bookColor,
+                                                                    child: BackdropFilter(
+                                                                      filter: ImageFilter.blur(
+                                                                        sigmaX:
+                                                                            5,
+                                                                        sigmaY:
+                                                                            5,
+                                                                      ),
+                                                                      child: DetailsPage(
+                                                                        bookId:
+                                                                            book.id,
+                                                                        title:
+                                                                            book['title'],
+                                                                        author:
+                                                                            book['author'],
+                                                                        pages:
+                                                                            book['pages'],
+                                                                        currentPage:
+                                                                            book['currentPage'],
+                                                                        gender:
+                                                                            book['gender'],
+                                                                        format:
+                                                                            book['format'],
+                                                                        synopsis:
+                                                                            book['synopsis'],
+                                                                        review:
+                                                                            book['review'],
+                                                                        // color:
+                                                                        //     book['color'],
+                                                                        bookColor:
+                                                                            bookColor,
+                                                                      ),
                                                                     ),
                                                                   );
                                                                 },
@@ -290,6 +306,7 @@ class _BookcasePageState extends State<BookcasePage> {
             ),
             label: '',
           ),
+          //TODO: search
           //TODO: AI
         ],
         backgroundColor: AppColors.transparent,
