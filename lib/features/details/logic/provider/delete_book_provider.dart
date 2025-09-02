@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class DeleteBookProvider extends ChangeNotifier {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  bool isDeleteConfirmed = false; //TODO: fix confirmation
+  bool isDeleteConfirmed = false;
   Future<void> deleteBookFromFirestore({
     required String bookId,
     required Color bookColor,
@@ -28,6 +28,7 @@ class DeleteBookProvider extends ChangeNotifier {
           )
           .delete();
       isDeleteConfirmed = false;
+      notifyListeners();
     } else {
       // ScaffoldMessenger.of(context).showSnackBar(
       //   const SnackBar(
@@ -36,7 +37,7 @@ class DeleteBookProvider extends ChangeNotifier {
       //     ),
       //   ),
       // );
-      showModalBottomSheet(
+      final confirmed = await showModalBottomSheet(
         backgroundColor: AppColors.transparent,
         context: context,
         builder:
@@ -60,12 +61,27 @@ class DeleteBookProvider extends ChangeNotifier {
                   style: TextButton.styleFrom(
                     backgroundColor: AppColors.transparent,
                   ),
-                  onPressed: () {
-                    deleteBookFromFirestore(
-                      bookId: bookId,
-                      context: context,
-                      bookColor: bookColor,
-                    );
+                  onPressed: () async {
+                    final userId = firebaseAuth.currentUser!.uid;
+                    await FirebaseFirestore.instance
+                        .collection(
+                          'users',
+                        )
+                        .doc(
+                          userId,
+                        )
+                        .collection(
+                          'books',
+                        )
+                        .doc(
+                          bookId,
+                        )
+                        .delete();
+                    // deleteBookFromFirestore(
+                    //   bookId: bookId,
+                    //   context: context,
+                    //   bookColor: bookColor,
+                    // );
                     Navigator.pushNamed(
                       context,
                       '/bookcase',
@@ -80,8 +96,18 @@ class DeleteBookProvider extends ChangeNotifier {
               );
             },
       );
-      isDeleteConfirmed = true;
-      notifyListeners();
+      if (confirmed == true) {
+        isDeleteConfirmed = true;
+        notifyListeners();
+        await deleteBookFromFirestore(
+          bookId: bookId,
+          bookColor: bookColor,
+          context: context,
+        );
+      } else {
+        isDeleteConfirmed = false;
+        notifyListeners();
+      }
     }
   }
 }

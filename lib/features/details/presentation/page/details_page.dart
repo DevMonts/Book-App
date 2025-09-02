@@ -57,14 +57,13 @@ class DetailsPage extends StatelessWidget {
                 bookId: bookId,
                 bookColor: bookColor,
               );
-              if (!Provider.of<DeleteBookProvider>(
+              // if (!Provider.of<DeleteBookProvider>(
+              //   context,
+              //   listen: false,
+              // ).isDeleteConfirmed) {
+              Navigator.of(
                 context,
-                listen: false,
-              ).isDeleteConfirmed) {
-                Navigator.of(
-                  context,
-                ).pop();
-              }
+              ).pop();
             },
             child: Text(
               AppStrings.delete,
