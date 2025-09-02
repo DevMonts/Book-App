@@ -58,9 +58,11 @@ class DetailsPage extends StatelessWidget {
                   //TODO: fix text formatting on animate
                   tag: bookId,
                   child: Container(
-                    margin: const EdgeInsets.all(
-                      10,
-                    ),
+                    // margin: const EdgeInsets.all(
+                    //   10,
+                    // ),
+                    width: 300,
+                    height: 200,
                     color: bookColor,
                     child: Padding(
                       padding: const EdgeInsets.only(
