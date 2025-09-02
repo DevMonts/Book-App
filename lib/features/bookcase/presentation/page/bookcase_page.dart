@@ -82,7 +82,10 @@ class _BookcasePageState extends State<BookcasePage> {
                       children: [
                         AppTheme.bookcaseBg(
                           context,
-                          (books!.length / 6).ceil(),
+                          (books //!
+                                      .length /
+                                  6)
+                              .ceil(),
                         ),
                         Center(
                           child: Column(
