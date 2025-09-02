@@ -6,7 +6,7 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/common/utils/color_converter.dart';
 import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
-import 'package:book_app/features/details/presentation/widget/details_widget.dart';
+import 'package:book_app/features/details/presentation/page/details_page.dart';
 import 'package:book_app/features/register/presentation/widget/register_book_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -65,12 +65,13 @@ class _BookcasePageState extends State<BookcasePage> {
                         fontSize: 30,
                       ),
                     ),
-                    //   ],
-                    // ),
                   ),
                 );
               }
-              final books = snapshot.data?.docs;
+              final books = snapshot
+                  .data //?
+                  !
+                  .docs;
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -104,113 +105,109 @@ class _BookcasePageState extends State<BookcasePage> {
                                             colorConverter(
                                               bookHexColor,
                                             );
-                                        return RotatedBox(
-                                          quarterTurns: 3,
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            width: 150,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              color: bookColor,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(
-                                                  15,
-                                                ),
-                                                bottomLeft: Radius.circular(
-                                                  15,
-                                                ),
-                                              ),
-                                            ),
-                                            margin: EdgeInsetsGeometry.all(
-                                              5,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Expanded(
-                                                  child: TextButton(
-                                                    child: Text(
-                                                      book['title'],
-                                                      textAlign:
-                                                          TextAlign.center,
+                                        return Hero(
+                                          tag: book.id,
+                                          child: RotatedBox(
+                                            quarterTurns: 3,
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              width: 150,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color: bookColor,
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                      topLeft: Radius.circular(
+                                                        15,
+                                                      ),
+                                                      bottomLeft:
+                                                          Radius.circular(
+                                                            15,
+                                                          ),
                                                     ),
-                                                    onPressed: () {
-                                                      //TODO: Book Animation
-                                                      showModalBottomSheet(
-                                                        context: context,
-                                                        builder:
-                                                            (
-                                                              context,
-                                                            ) {
-                                                              return BackdropFilter(
-                                                                filter:
-                                                                    ImageFilter.blur(
-                                                                      sigmaX: 5,
-                                                                      sigmaY: 5,
-                                                                    ),
-                                                                child: DetailsWidget(
-                                                                  bookId:
-                                                                      book.id,
-                                                                  title:
-                                                                      book['title'],
-                                                                  author:
-                                                                      book['author'],
-                                                                  pages:
-                                                                      book['pages'],
-                                                                  currentPage:
-                                                                      book['currentPage'],
-                                                                  // publicationDate:
-                                                                  //     book['publicationDate'],
-                                                                  gender:
-                                                                      book['gender'],
-                                                                  format:
-                                                                      book['format'],
-                                                                  synopsis:
-                                                                      book['synopsis'],
-                                                                  color:
-                                                                      book['color'],
-                                                                  bookColor:
-                                                                      bookColor,
-                                                                ),
-                                                              );
-                                                            },
-                                                        backgroundColor:
-                                                            AppColors
-                                                                .transparent,
-                                                        elevation: 0,
-                                                        isScrollControlled:
-                                                            true,
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                                //     //TODO: favorite books
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: AppColors.brown01,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                10,
-                                                              ),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                10,
-                                                              ),
-                                                        ),
-                                                    border: Border(
-                                                      right: BorderSide(
-                                                        color: Theme.of(
+                                              ),
+                                              margin: const EdgeInsets.all(
+                                                5,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: TextButton(
+                                                      child: Text(
+                                                        book['title'],
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.push(
                                                           context,
-                                                        ).scaffoldBackgroundColor,
-                                                        width: 7,
+                                                          PageRouteBuilder(
+                                                            pageBuilder:
+                                                                (
+                                                                  _,
+                                                                  animation,
+                                                                  __,
+                                                                ) {
+                                                                  return FadeTransition(
+                                                                    opacity:
+                                                                        animation,
+                                                                    child: DetailsPage(
+                                                                      bookId:
+                                                                          book.id,
+                                                                      title:
+                                                                          book['title'],
+                                                                      author:
+                                                                          book['author'],
+                                                                      pages:
+                                                                          book['pages'],
+                                                                      currentPage:
+                                                                          book['currentPage'],
+                                                                      gender:
+                                                                          book['gender'],
+                                                                      format:
+                                                                          book['format'],
+                                                                      synopsis:
+                                                                          book['synopsis'],
+                                                                      // color:
+                                                                      //     book['color'],
+                                                                      bookColor:
+                                                                          bookColor,
+                                                                    ),
+                                                                  );
+                                                                },
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color: AppColors.brown02,
+                                                      borderRadius:
+                                                          const BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                  10,
+                                                                ),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                  10,
+                                                                ),
+                                                          ),
+                                                      border: Border(
+                                                        right: BorderSide(
+                                                          color: Theme.of(
+                                                            context,
+                                                          ).scaffoldBackgroundColor,
+                                                          width: 7,
+                                                        ),
                                                       ),
                                                     ),
+                                                    width: 40,
+                                                    height: 44,
                                                   ),
-                                                  width: 40,
-                                                  height: 44,
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         );

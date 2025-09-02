@@ -56,6 +56,7 @@ class AppStrings {
   static const String synopsis = 'Sinopse';
   static const String color = 'Cor';
 
-  static const String deleteConfirmation =
-      'Clique novamente na lixeira novamente pra confirmar a exclusão';
+  static const String 
+  deleteConfirmation =
+      'Clique na lixeira novamente pra confirmar a exclusão';
 }

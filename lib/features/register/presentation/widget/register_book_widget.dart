@@ -262,14 +262,14 @@ class _RegisterBookWidgetState extends State<RegisterBookWidget> {
                           listen: false,
                         );
                     await registerBookProvider.sendBookToFirestore(
-                      currentPage: currentPageController.text,
-                      pages: pagesController.text,
-                      //publicationDate: publicationDateController.text,
-                      title: titleController.text,
-                      author: authorController.text,
-                      gender: genderController.text,
-                      format: formatController.text,
-                      synopsis: synopsisController.text,
+                      currentPage: currentPageController.text.trim(),
+                      pages: pagesController.text.trim(),
+                      //publicationDate: publicationDateController.text.trim(),
+                      title: titleController.text.trim(),
+                      author: authorController.text.trim(),
+                      gender: genderController.text.trim(),
+                      format: formatController.text.trim(),
+                      synopsis: synopsisController.text.trim(),
                       color: selectedColor,
                     );
                     Navigator.of(

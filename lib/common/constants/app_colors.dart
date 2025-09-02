@@ -19,5 +19,5 @@ class AppColors {
   static Color brown12 = const Color(0xFF493A33);
   static Color brown13 = const Color(0xFF462D21);
   static Color brown14 = const Color(0xFF432806);
-  static Color blackBook = const Color(0xFF292B22);
+  static Color black = Colors.black;
 }
