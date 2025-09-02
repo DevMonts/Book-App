@@ -130,6 +130,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                     Text(
                       // Icons.add,
                       AppStrings.register,
+                      style: TextStyle(
+                        color: AppColors.violetBlue,
+                      ),
                     ),
                   ),
                 ),
@@ -189,6 +192,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                     Text(
                       // Icons.send,
                       AppStrings.login,
+                      style: TextStyle(
+                        color: AppColors.violetBlue,
+                      ),
                     ),
                   ),
                 ),

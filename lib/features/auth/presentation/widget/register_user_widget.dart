@@ -119,6 +119,9 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
               Text(
                 //Icons.send,
                 AppStrings.register,
+                style: TextStyle(
+                  color: AppColors.violetBlue,
+                ),
               ),
             ),
           ],
