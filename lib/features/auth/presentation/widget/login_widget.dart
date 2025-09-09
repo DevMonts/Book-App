@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
@@ -25,12 +24,13 @@ class _LoginWidgetState extends State<LoginWidget> {
     //child:
     Padding(
       padding:
-          EdgeInsets. //all
-          only(
-            //50
-            bottom: MediaQuery.of(
-              context,
-            ).viewInsets.bottom,
+          EdgeInsets.all
+          //only
+        (
+            50
+            // bottom: MediaQuery.of(
+            //   context,
+            // ).viewInsets.bottom,
           ),
       child: SingleChildScrollView(
         child: Column(
@@ -94,109 +94,116 @@ class _LoginWidgetState extends State<LoginWidget> {
                   . //center
                   spaceAround,
               children: [
+                SizedBox(
+                  width: 10,
+                ),
                 Expanded(
                   child: //Icon
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: AppColors.pink,
-                      minimumSize: const Size(
-                        double.infinity,
-                        50,
+                      //Text
+                      ElevatedButton(
+                        // style: TextButton.styleFrom(
+                        //   backgroundColor: AppColors.pink,
+                        //   minimumSize: const Size(
+                        //     double.infinity,
+                        //     50,
+                        //   ),
+                        //   shape: RoundedRectangleBorder(
+                        //     borderRadius: BorderRadius.zero,
+                        //   ),
+                        // ),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            // Navigator.pushNamed(
+                            //   context,
+                            //   '/register',
+                            // );
+                            context: context,
+                            builder:
+                                (
+                                  context,
+                                ) {
+                                  return RegisterUserWidget();
+                                },
+                            //backgroundColor: AppColors.transparent,
+                            //elevation: 0,
+                            isScrollControlled: true,
+                          );
+                        },
+                        child: //Icon
+                        Text(
+                          // Icons.add,
+                          AppStrings.register,
+                          // style: TextStyle(
+                          //   color: AppColors.violetBlue,
+                          // ),
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                    onPressed: () {
-                      showModalBottomSheet(
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   '/register',
-                        // );
-                        context: context,
-                        builder:
-                            (
-                              context,
-                            ) {
-                              return RegisterUserWidget();
-                            },
-
-                        backgroundColor: AppColors.transparent,
-                        elevation: 0,
-                        isScrollControlled: true,
-                      );
-                    },
-                    child: //Icon
-                    Text(
-                      // Icons.add,
-                      AppStrings.register,
-                      style: TextStyle(
-                        color: AppColors.violetBlue,
-                      ),
-                    ),
-                  ),
                 ),
                 SizedBox(
                   width: 1,
                 ),
                 Expanded(
                   child: //Icon
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: AppColors.pink,
-                      minimumSize: const Size(
-                        double.infinity,
-                        50,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                    onPressed: () async {
-                      final authProvider = Provider.of<AuthProvider>(
-                        context,
-                        listen: false,
-                      );
-                      try {
-                        await authProvider.loginUser(
-                          context,
-                          emailController.text.trim(),
-                          passwordController.text.trim(),
-                        );
-                      } catch (e) {
-                        if (!mounted) return;
-                        // ScaffoldMessenger.of(
-                        //   context,
-                        // ).showSnackBar(
-                        //   SnackBar(
-                        //     content: Text(
-                        setState(() {
-                          error = e.toString(); //,
-                          //     ),
-                          //   ),
-                          // );
-                        });
-                        Future.delayed(
-                          const Duration(
-                            seconds: 3,
-                          ),
-                          () {
+                      //Text
+                      ElevatedButton(
+                        // style: TextButton.styleFrom(
+                        //   backgroundColor: AppColors.pink,
+                        //   minimumSize: const Size(
+                        //     double.infinity,
+                        //     50,
+                        //   ),
+                        //   shape: RoundedRectangleBorder(
+                        //     borderRadius: BorderRadius.zero,
+                        //   ),
+                        // ),
+                        onPressed: () async {
+                          final authProvider = Provider.of<AuthProvider>(
+                            context,
+                            listen: false,
+                          );
+                          try {
+                            await authProvider.loginUser(
+                              context,
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                            );
+                          } catch (e) {
+                            if (!mounted) return;
+                            // ScaffoldMessenger.of(
+                            //   context,
+                            // ).showSnackBar(
+                            //   SnackBar(
+                            //     content: Text(
                             setState(() {
-                              error = null;
+                              error = e.toString(); //,
+                              //     ),
+                              //   ),
+                              // );
                             });
-                          },
-                        );
-                      }
-                    },
-                    child: //Icon
-                    Text(
-                      // Icons.send,
-                      AppStrings.login,
-                      style: TextStyle(
-                        color: AppColors.violetBlue,
+                            Future.delayed(
+                              const Duration(
+                                seconds: 3,
+                              ),
+                              () {
+                                setState(() {
+                                  error = null;
+                                });
+                              },
+                            );
+                          }
+                        },
+                        child: //Icon
+                        Text(
+                          // Icons.send,
+                          AppStrings.login,
+                          // style: TextStyle(
+                          //   color: AppColors.violetBlue,
+                          // ),
+                        ),
                       ),
-                    ),
-                  ),
+                ),
+                SizedBox(
+                  width: 10,
                 ),
               ],
             ),

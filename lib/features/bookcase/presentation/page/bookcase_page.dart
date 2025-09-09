@@ -1,13 +1,13 @@
 import 'dart:ui';
 
-import 'package:book_app/common/constants/app_circle_button.dart';
+import 'package:book_app/common/constants/app_button.dart';
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/common/utils/color_converter.dart';
+import 'package:book_app/common/utils/icons_converter.dart';
 import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
 import 'package:book_app/features/details/presentation/page/details_page.dart';
-import 'package:book_app/features/register/presentation/widget/register_book_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,11 +40,11 @@ class _BookcasePageState extends State<BookcasePage> {
     //   listen: false,
     // );
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(
-          context,
-        ).scaffoldBackgroundColor,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(
+      //     context,
+      //   ).scaffoldBackgroundColor,
+      // ),
       body: StreamBuilder<QuerySnapshot>(
         stream: showBooksProvider.showBooksFromFirestore(),
         builder:
@@ -89,7 +89,7 @@ class _BookcasePageState extends State<BookcasePage> {
                           context,
                           (books //!
                                       .length /
-                                  6)
+                                  5)
                               .ceil(),
                         ),
                         Center(
@@ -100,7 +100,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                 i <
                                     books //!
                                         .length;
-                                i += 6,
+                                i += 5,
                               ) ...[
                                 Wrap(
                                   children: books
@@ -116,19 +116,19 @@ class _BookcasePageState extends State<BookcasePage> {
                                         return Hero(
                                           tag: book.id,
                                           child: RotatedBox(
-                                            quarterTurns: 3,
+                                            quarterTurns: 1,
                                             child: Container(
                                               alignment: Alignment.center,
-                                              width: 150,
-                                              height: 50,
+                                              width: 200,
+                                              height: 60,
                                               decoration: BoxDecoration(
                                                 color: bookColor,
                                                 borderRadius:
                                                     const BorderRadius.only(
-                                                      topLeft: Radius.circular(
+                                                      topRight: Radius.circular(
                                                         15,
                                                       ),
-                                                      bottomLeft:
+                                                      bottomRight:
                                                           Radius.circular(
                                                             15,
                                                           ),
@@ -139,12 +139,63 @@ class _BookcasePageState extends State<BookcasePage> {
                                               ),
                                               child: Row(
                                                 children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color: AppColors.brown02,
+                                                      borderRadius:
+                                                          const BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                  10,
+                                                                ),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                  10,
+                                                                ),
+                                                          ),
+                                                      border: Border(
+                                                        left: BorderSide(
+                                                          color: Theme.of(
+                                                            context,
+                                                          ).scaffoldBackgroundColor,
+                                                          width: 7,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    width: 50,
+                                                    height: 50,
+                                                  ),
                                                   Expanded(
                                                     child: TextButton(
-                                                      child: Text(
-                                                        book['title'],
-                                                        textAlign:
-                                                            TextAlign.center,
+                                                      child: Row(
+                                                        children: [
+                                                          RotatedBox(
+                                                            quarterTurns: 3,
+                                                            child: Icon(
+                                                              IconsConverter
+                                                                  .getIconFromString(
+                                                                book['icon'],
+                                                                //TODO: icon color
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          VerticalDivider(
+                                                            color:
+                                                                AppColors.black,
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              book['title'],
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
+                                                          ),
+                                                          VerticalDivider(
+                                                            color:
+                                                                AppColors.black,
+                                                          ),
+                                                        ],
                                                       ),
                                                       onPressed: () {
                                                         Navigator.push(
@@ -199,32 +250,6 @@ class _BookcasePageState extends State<BookcasePage> {
                                                       },
                                                     ),
                                                   ),
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      color: AppColors.brown02,
-                                                      borderRadius:
-                                                          const BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                  10,
-                                                                ),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                  10,
-                                                                ),
-                                                          ),
-                                                      border: Border(
-                                                        right: BorderSide(
-                                                          color: Theme.of(
-                                                            context,
-                                                          ).scaffoldBackgroundColor,
-                                                          width: 7,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    width: 40,
-                                                    height: 44,
-                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -234,9 +259,9 @@ class _BookcasePageState extends State<BookcasePage> {
                                       .toList()
                                       .sublist(
                                         i,
-                                        (i + 6 > books.length)
+                                        (i + 5 > books.length)
                                             ? books.length
-                                            : i + 6,
+                                            : i + 5,
                                       ),
                                 ),
                                 Divider(
@@ -259,59 +284,66 @@ class _BookcasePageState extends State<BookcasePage> {
             },
       ),
       extendBody: true,
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: AppCircleButton(
-              onPressed: () {
-                Navigator.of(
-                  context,
-                ).pushNamed(
-                  '/login',
-                );
-              },
-              icon: Icon(
-                Icons.logout,
+      bottomNavigationBar:
+          //TODO: refactor
+          BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: AppButton(
+                  onPressed: () {
+                    Navigator.of(
+                      context,
+                    ).pushNamed(
+                      '/login',
+                    );
+                  },
+                  icon: Icon(
+                    Icons.logout,
+                  ),
+                ),
+                label: '',
               ),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: AppCircleButton(
-              onPressed: () {
-                showModalBottomSheet //Dialog
-                (
-                  context: context,
+              BottomNavigationBarItem(
+                icon: AppButton(
+                  onPressed: () {
+                    // showModalBottomSheet //Dialog
+                    Navigator.of(
+                      context,
+                    ).pushNamed(
+                      '/register',
+                    );
+                    // (
+                    //   context: context,
 
-                  builder:
-                      (
-                        context,
-                      ) {
-                        return BackdropFilter(
-                          filter: ImageFilter.blur(
-                            sigmaX: 5,
-                            sigmaY: 5,
-                          ),
-                          child: const RegisterBookWidget(),
-                        );
-                      },
-                  backgroundColor: AppColors.transparent,
-                  elevation: 0,
-                  isScrollControlled: true,
-                );
-              },
-              icon: Icon(
-                Icons.add,
+                    //   builder:
+                    //       (
+                    //         context,
+                    //       ) {
+                    //         return BackdropFilter(
+                    //           filter: ImageFilter.blur(
+                    //             sigmaX: 5,
+                    //             sigmaY: 5,
+                    //           ),
+                    //           child: const RegisterBookWidget(),
+                    //         );
+                    //       },
+                    //   backgroundColor: AppColors.transparent,
+                    //   elevation: 0,
+                    //   isScrollControlled: true,
+                    // );
+                  },
+                  icon: Icon(
+                    Icons.add,
+                  ),
+                ),
+                label: '',
               ),
-            ),
-            label: '',
+              //TODO: search
+              //TODO: AI
+            ],
+            backgroundColor: AppColors.transparent,
+            elevation: 0,
           ),
-          //TODO: search
-          //TODO: AI
-        ],
-        backgroundColor: AppColors.transparent,
-        elevation: 0,
-      ),
     );
   }
 }

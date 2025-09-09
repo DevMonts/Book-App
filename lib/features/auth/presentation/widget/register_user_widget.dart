@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_input_decoration.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
@@ -25,12 +24,13 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
     //body:
     Padding(
       padding:
-          EdgeInsets. //all
-          only(
-            //50
-            bottom: MediaQuery.of(
-              context,
-            ).viewInsets.bottom,
+          EdgeInsets.all
+          //only
+          (
+            50,
+            // bottom: MediaQuery.of(
+            //   context,
+            // ).viewInsets.bottom,
           ),
       child: SingleChildScrollView(
         child: Column(
@@ -81,17 +81,18 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
             SizedBox(
               height: 10,
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: AppColors.pink,
-                minimumSize: const Size(
-                  double.infinity,
-                  50,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.zero,
-                ),
-              ),
+            //Text
+            ElevatedButton(
+              // style: TextButton.styleFrom(
+              //   backgroundColor: AppColors.pink,
+              //   minimumSize: const Size(
+              //     double.infinity,
+              //     50,
+              //   ),
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.zero,
+              //   ),
+              // ),
               onPressed: () {
                 final email = emailController.text.trim();
                 final password = passwordController.text.trim();
@@ -119,9 +120,9 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
               Text(
                 //Icons.send,
                 AppStrings.register,
-                style: TextStyle(
-                  color: AppColors.violetBlue,
-                ),
+                // style: TextStyle(
+                //   color: AppColors.violetBlue,
+                // ),
               ),
             ),
           ],

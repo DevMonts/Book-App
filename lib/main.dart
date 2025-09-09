@@ -1,4 +1,5 @@
 import 'package:book_app/app.dart';
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
@@ -6,9 +7,15 @@ import 'package:book_app/features/register/logic/providers/register_book_provide
 import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: AppColors.transparent,
+    ),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   AsyncSnapshot.waiting();
   await Firebase.initializeApp();

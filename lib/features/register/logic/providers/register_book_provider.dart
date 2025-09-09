@@ -19,6 +19,7 @@ class RegisterBookProvider extends ChangeNotifier {
     required color,
     required synopsis,
     required review,
+    required icon,
   }) async {
     final userId = firebaseAuth.currentUser!.uid;
     await
@@ -33,7 +34,6 @@ class RegisterBookProvider extends ChangeNotifier {
         )
         .add({
           //TODO: book size
-          //TODO: book icon
           'currentPage': currentPage,
           'pages': pages,
           //'publicationDate': publicationDate,
@@ -50,6 +50,7 @@ class RegisterBookProvider extends ChangeNotifier {
                 8,
                 '0',
               ).toUpperCase()}',
+          'icon': icon,
           'createdAt': FieldValue.serverTimestamp(),
         });
   }

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/presentation/widget/login_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO: redesign
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,35 +27,39 @@ class AuthPage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  backgroundColor: AppColors.transparent,
-                  elevation: 0,
-                  isScrollControlled: true,
-                  builder:
-                      (
-                        context,
-                      ) {
-                        return BackdropFilter(
-                          filter: ImageFilter.blur(
-                            sigmaX: 5,
-                            sigmaY: 5,
-                          ),
-                          child: const LoginWidget(),
-                        );
-                      },
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                shape: CircleBorder(),
-              ),
-              child: Icon(
-                Icons.play_arrow,
-              ),
-            ),
           ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 200,
+        ),
+        child: FloatingActionButton(
+          elevation: 0,
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              //backgroundColor: AppColors.transparent,
+              elevation: 0,
+              isScrollControlled: true,
+              builder:
+                  (
+                    context,
+                  ) {
+                    return BackdropFilter(
+                      filter: ImageFilter.blur(
+                        // sigmaX: 5,
+                        // sigmaY: 5,
+                      ),
+                      child: const LoginWidget(),
+                    );
+                  },
+            );
+          },
+          child: Icon(
+            Icons.play_arrow,
+          ),
         ),
       ),
     );

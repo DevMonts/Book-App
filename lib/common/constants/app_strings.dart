@@ -56,6 +56,7 @@ class AppStrings {
   static const String synopsis = 'Sinopse';
   static const String review = 'Resenha';
   static const String color = 'Cor';
+  static const String icon = 'Ícone';
 
   static const String deleteConfirmation = 'Confirmar exclusão';
 

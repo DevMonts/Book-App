@@ -1,0 +1,3 @@
+class FieldModel {
+  //TODO: fields
+}
