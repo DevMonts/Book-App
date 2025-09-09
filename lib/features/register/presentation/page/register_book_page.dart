@@ -17,6 +17,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   Color? selectedColor;
   String? selectedIcon;
   late TextEditingController colorController;
+  late TextEditingController titleController;
 
   @override
   void initState() {
@@ -24,11 +25,13 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
     colorController = TextEditingController(
       text: AppStrings.color,
     );
+    titleController = TextEditingController();
   }
 
   @override
   void dispose() {
     colorController.dispose();
+    titleController.dispose();
     super.dispose();
   }
 
@@ -38,7 +41,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
     final currentPageController = TextEditingController();
     final pagesController = TextEditingController();
     //final publicationDateController = TextEditingController();
-    final titleController = TextEditingController();
+    //final titleController = TextEditingController();
     final authorController = TextEditingController();
     final genderController = TextEditingController();
     final formatController = TextEditingController();
