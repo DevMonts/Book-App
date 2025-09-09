@@ -225,6 +225,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                                       Colors.grey,
                                       Colors.yellow,
                                       Colors.white,
+                                      Colors.white,
                                       Colors.orange,
                                       Colors.brown,
                                       Colors.grey,
