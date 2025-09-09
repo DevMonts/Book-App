@@ -24,13 +24,14 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
     //body:
     Padding(
       padding:
-          EdgeInsets.all
-          //only
-          (
-            50,
-            // bottom: MediaQuery.of(
-            //   context,
-            // ).viewInsets.bottom,
+          EdgeInsets. //all
+          only(
+            right: 50,
+            left: 50,
+            top: 50,
+            bottom: MediaQuery.of(
+              context,
+            ).viewInsets.bottom,
           ),
       child: SingleChildScrollView(
         child: Column(
