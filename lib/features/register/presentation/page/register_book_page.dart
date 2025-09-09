@@ -235,7 +235,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                                       Colors.yellow,
                                       Colors.grey,
                                       Colors.red,
-                                      Colors.white,
                                       Colors.red,
                                       Colors.orange,
                                       Colors.pink,
@@ -378,7 +377,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
             synopsis: synopsisController.text,
             review: reviewController.text,
             color: selectedColor,
-            icon: selectedIcon,
+            icon: (selectedIcon != null) ? selectedIcon : '',
           );
           Navigator.of(
             context,
