@@ -5,6 +5,7 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/register/logic/providers/register_book_provider.dart';
 import 'package:book_app/features/details/presentation/widget/select_color_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class RegisterBookPage extends StatefulWidget {
@@ -18,6 +19,8 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   String? selectedIcon;
   late TextEditingController colorController;
   late TextEditingController titleController;
+  late TextEditingController currentPageController = TextEditingController();
+  late TextEditingController pagesController = TextEditingController();
 
   @override
   void initState() {
@@ -26,20 +29,29 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
       text: AppStrings.color,
     );
     titleController = TextEditingController();
+    currentPageController = TextEditingController(
+      text: '1',
+    );
+    pagesController = TextEditingController(
+      text: '1',
+    );
   }
 
   @override
   void dispose() {
     colorController.dispose();
     titleController.dispose();
+    currentPageController.dispose();
+    pagesController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     //TODO: book size
-    final currentPageController = TextEditingController();
-    final pagesController = TextEditingController();
+
+    // final currentPageController = TextEditingController();
+    // final pagesController = TextEditingController();
     //final publicationDateController = TextEditingController();
     //final titleController = TextEditingController();
     final authorController = TextEditingController();
@@ -113,6 +125,13 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         'icon': Icons.sunny,
       }, //sun
     ];
+    final remainPages =
+        int.parse(
+          pagesController.text,
+        ) -
+        int.parse(
+          currentPageController.text,
+        );
 
     return Scaffold(
       appBar: PreferredSize(
@@ -246,6 +265,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                                     ).primaryColor,
                             ),
                           ),
+                          //TODO: deselect
                         );
                       },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -253,29 +273,69 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
 
-              TextFormField(
-                decoration: AppInputDecoration.inputDecoration.copyWith(
-                  fillColor: selectedColor,
-                  labelText: AppStrings.pages,
-                ),
-                keyboardType: TextInputType.number,
-                controller: pagesController,
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                decoration: AppInputDecoration.inputDecoration.copyWith(
-                  fillColor: selectedColor,
-                  labelText: AppStrings.currentPage,
-                ),
-                keyboardType: TextInputType.number,
-                controller: currentPageController,
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 100,
+                        width: 50,
+                        child: CupertinoPicker(
+                          itemExtent: 30,
+                          onSelectedItemChanged: (index) {
+                            final currentPage = (index + 1).toString();
+                            setState(() {
+                              currentPageController.text = currentPage;
+                            });
+                          },
+                          children: List<Widget>.generate(
+                            2000,
+                            (index) => Center(
+                              child: Text(
+                                '${index + 1}',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '/',
+                        style: TextStyle(
+                          fontSize: 40,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 100,
+                        width: 50,
+                        child: CupertinoPicker(
+                          itemExtent: 30,
+                          onSelectedItemChanged: (index) {
+                            final pages = (index + 1).toString();
+                            setState(() {
+                              pagesController.text = pages;
+                            });
+                          },
+                          children: List<Widget>.generate(
+                            2000,
+                            (index) => Center(
+                              child: Text(
+                                '${index + 1}',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    '${currentPageController.text} página(s) lida(s) de ${pagesController.text} página(s) no total.',
+                  ),
+                  Text(
+                    'Restam $remainPages página(s) para terminar o livro.',
+                  ),
+                ],
               ),
 
               SizedBox(
@@ -307,6 +367,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               ),
 
               TextFormField(
+                //TODO: switch
                 decoration: AppInputDecoration.inputDecoration.copyWith(
                   fillColor: selectedColor,
                   labelText: AppStrings.format,
@@ -335,6 +396,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               ),
 
               SizedBox(
+                //TODO: remove synopsis
                 width: 500,
                 child: TextFormField(
                   decoration: AppInputDecoration.inputDecoration.copyWith(
@@ -344,10 +406,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   maxLines: 3,
                   controller: synopsisController,
                 ),
-              ),
-
-              SizedBox(
-                height: 10,
               ),
 
               SizedBox(
