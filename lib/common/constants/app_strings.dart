@@ -60,7 +60,7 @@ class AppStrings {
   static const String color = 'Cor';
   static const String icon = 'Ícone';
 
-  static const String deleteConfirmation = 'Confirmar exclusão';
+  static const String deleteConfirmation = 'Deletar livro?';
 
   static const String back = 'Voltar';
 }

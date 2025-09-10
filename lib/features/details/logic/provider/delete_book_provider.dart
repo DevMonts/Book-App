@@ -1,4 +1,4 @@
-import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/common/constants/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,69 +30,57 @@ class DeleteBookProvider extends ChangeNotifier {
       isDeleteConfirmed = false;
       notifyListeners();
     } else {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text(
-      //       AppStrings.deleteConfirmation,
-      //     ),
-      //   ),
-      // );
-      final confirmed = await showModalBottomSheet(
-        backgroundColor: AppColors.transparent,
+      final confirmed = await showDialog(
         context: context,
         builder:
             (
               context,
             ) {
-              return Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.transparent,
-                      bookColor,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
+              return AlertDialog(
+                title: Text(
+                  AppStrings.deleteConfirmation,
                 ),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: AppColors.transparent,
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                        false,
+                      );
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
                   ),
-                  onPressed: () async {
-                    final userId = firebaseAuth.currentUser!.uid;
-                    await FirebaseFirestore.instance
-                        .collection(
-                          'users',
-                        )
-                        .doc(
-                          userId,
-                        )
-                        .collection(
-                          'books',
-                        )
-                        .doc(
-                          bookId,
-                        )
-                        .delete();
-                    // deleteBookFromFirestore(
-                    //   bookId: bookId,
-                    //   context: context,
-                    //   bookColor: bookColor,
-                    // );
-                    Navigator.pushNamed(
-                      context,
-                      '/bookcase',
-                    );
-                  },
-                  child: Icon(
-                    Icons.delete,
-                    size: 50,
-                    color: AppColors.red,
+                  IconButton(
+                    onPressed: () async {
+                      final userId = firebaseAuth.currentUser!.uid;
+                      await FirebaseFirestore.instance
+                          .collection(
+                            'users',
+                          )
+                          .doc(
+                            userId,
+                          )
+                          .collection(
+                            'books',
+                          )
+                          .doc(
+                            bookId,
+                          )
+                          .delete();
+                      Navigator.pushNamed(
+                        context,
+                        '/bookcase',
+                      );
+                    },
+                    icon: Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
                   ),
-                ),
+                ],
               );
             },
       );
