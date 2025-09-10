@@ -21,6 +21,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   late TextEditingController titleController;
   late TextEditingController currentPageController = TextEditingController();
   late TextEditingController pagesController = TextEditingController();
+  bool isEbook = false;
 
   @override
   void initState() {
@@ -40,7 +41,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   @override
   void dispose() {
     colorController.dispose();
-    titleController.dispose();
+    //titleController.dispose();
     currentPageController.dispose();
     pagesController.dispose();
     super.dispose();
@@ -56,8 +57,8 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
     //final titleController = TextEditingController();
     final authorController = TextEditingController();
     final genderController = TextEditingController();
-    final formatController = TextEditingController();
-    final synopsisController = TextEditingController();
+    //final formatController = TextEditingController();
+    //final synopsisController = TextEditingController();
     final reviewController = TextEditingController();
     final List<Map<String, dynamic>> iconsList = [
       {
@@ -132,84 +133,83 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         int.parse(
           currentPageController.text,
         );
-
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
-          kToolbarHeight + 10,
-        ),
-        child: Column(
+      appBar: AppBar(
+        backgroundColor: Theme.of(
+          context,
+        ).scaffoldBackgroundColor,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(
-              height: 10,
+            Icon(
+              Icons.book,
             ),
-            AppBar(
-              backgroundColor: Theme.of(
-                context,
-              ).scaffoldBackgroundColor,
-              title: TextFormField(
-                //TODO: required field
-                decoration: AppInputDecoration.inputDecoration.copyWith(
-                  labelText: AppStrings.title,
-                ),
-                controller: titleController,
-              ),
-              actions: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: selectedColor,
-                    minimumSize: Size(
-                      0,
-                      50,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
-                  ),
-                  onPressed: () async {
-                    final pickedColor = await showDialog<Color>(
-                      context: context,
-                      builder:
-                          (
-                            context,
-                          ) {
-                            return BackdropFilter(
-                              filter: ImageFilter.blur(
-                                sigmaX: 5,
-                                sigmaY: 5,
-                              ),
-                              child: SelectColorDialog(),
-                            );
-                          },
-                    );
-                    if (pickedColor != null) {
-                      setState(
-                        () {
-                          selectedColor = pickedColor;
-                          colorController.text =
-                              '#${pickedColor.value.toRadixString(
-                                16,
-                              ).padLeft(
-                                8,
-                                '0',
-                              ).toUpperCase()}';
-                        },
-                      );
-                    }
+            Switch(
+              value: isEbook,
+              onChanged: (value) {
+                setState(
+                  () {
+                    isEbook = value;
                   },
-                  child: Text(
-                    AppStrings.color,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
+                );
+              },
+            ),
+            Icon(
+              Icons.tablet_android,
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            // style: ElevatedButton.styleFrom(
+            //   backgroundColor: selectedColor,
+            //   minimumSize: Size(
+            //     0,
+            //     50,
+            //   ),
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(
+            //       10,
+            //     ),
+            //   ),
+            // ),
+            onPressed: () async {
+              final pickedColor = await showDialog<Color>(
+                context: context,
+                builder:
+                    (
+                      context,
+                    ) {
+                      return BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 5,
+                          sigmaY: 5,
+                        ),
+                        child: SelectColorDialog(),
+                      );
+                    },
+              );
+              if (pickedColor != null) {
+                setState(
+                  () {
+                    selectedColor = pickedColor;
+                    colorController.text =
+                        '#${pickedColor.value.toRadixString(
+                          16,
+                        ).padLeft(
+                          8,
+                          '0',
+                        ).toUpperCase()}';
+                  },
+                );
+              }
+            },
+            icon: Icon(
+              Icons.palette,
+              color: selectedColor,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(
@@ -218,6 +218,13 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              TextFormField(
+                //TODO: required field
+                decoration: AppInputDecoration.inputDecoration.copyWith(
+                  labelText: AppStrings.title,
+                ),
+                controller: titleController,
+              ),
               SizedBox(
                 height: 100,
                 child: GridView.builder(
@@ -235,35 +242,30 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                               },
                             );
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(
-                              10,
-                            ),
-                            child: Icon(
-                              iconsList[index]['icon'],
-                              color: selectedIcon == iconsList[index]['string']
-                                  ? [
-                                      Colors.cyanAccent,
-                                      Colors.grey,
-                                      Colors.yellow,
-                                      Colors.white,
-                                      Colors.white,
-                                      Colors.orange,
-                                      Colors.brown,
-                                      Colors.grey,
-                                      Colors.yellow,
-                                      Colors.grey,
-                                      Colors.red,
-                                      Colors.red,
-                                      Colors.orange,
-                                      Colors.pink,
-                                      Colors.yellow,
-                                      Colors.yellow,
-                                    ][index]
-                                  : Theme.of(
-                                      context,
-                                    ).primaryColor,
-                            ),
+                          child: Icon(
+                            iconsList[index]['icon'],
+                            color: selectedIcon == iconsList[index]['string']
+                                ? [
+                                    Colors.cyanAccent,
+                                    Colors.grey,
+                                    Colors.yellow,
+                                    Colors.white,
+                                    Colors.white,
+                                    Colors.orange,
+                                    Colors.brown,
+                                    Colors.grey,
+                                    Colors.yellow,
+                                    Colors.grey,
+                                    Colors.red,
+                                    Colors.red,
+                                    Colors.orange,
+                                    Colors.pink,
+                                    Colors.yellow,
+                                    Colors.yellow,
+                                  ][index]
+                                : Theme.of(
+                                    context,
+                                  ).primaryColor,
                           ),
                           //TODO: deselect
                         );
@@ -273,151 +275,120 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   ),
                 ),
               ),
-
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        width: 50,
-                        child: CupertinoPicker(
-                          itemExtent: 30,
-                          onSelectedItemChanged: (index) {
-                            final currentPage = (index + 1).toString();
-                            setState(() {
-                              currentPageController.text = currentPage;
-                            });
-                          },
-                          children: List<Widget>.generate(
-                            2000,
-                            (index) => Center(
-                              child: Text(
-                                '${index + 1}',
-                              ),
-                            ),
+                  SizedBox(
+                    height: 100,
+                    width: 50,
+                    child: CupertinoPicker(
+                      itemExtent: 30,
+                      onSelectedItemChanged: (index) {
+                        final currentPage = (index + 1).toString();
+                        setState(() {
+                          currentPageController.text = currentPage;
+                        });
+                      },
+                      children: List<Widget>.generate(
+                        2000,
+                        (index) => Center(
+                          child: Text(
+                            '${index + 1}',
                           ),
                         ),
                       ),
-                      Text(
-                        '/',
-                        style: TextStyle(
-                          fontSize: 40,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 100,
-                        width: 50,
-                        child: CupertinoPicker(
-                          itemExtent: 30,
-                          onSelectedItemChanged: (index) {
-                            final pages = (index + 1).toString();
-                            setState(() {
-                              pagesController.text = pages;
-                            });
-                          },
-                          children: List<Widget>.generate(
-                            2000,
-                            (index) => Center(
-                              child: Text(
-                                '${index + 1}',
-                              ),
-                            ),
+                    ),
+                  ),
+                  Text(
+                    '/',
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    width: 50,
+                    child: CupertinoPicker(
+                      itemExtent: 30,
+                      onSelectedItemChanged: (index) {
+                        final pages = (index + 1).toString();
+                        setState(() {
+                          pagesController.text = pages;
+                        });
+                      },
+                      children: List<Widget>.generate(
+                        2000,
+                        (index) => Center(
+                          child: Text(
+                            '${index + 1}',
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  Text(
-                    '${currentPageController.text} página(s) lida(s) de ${pagesController.text} página(s) no total.',
-                  ),
-                  Text(
-                    'Restam $remainPages página(s) para terminar o livro.',
+                    ),
                   ),
                 ],
               ),
-
-              SizedBox(
-                height: 10,
+              Text(
+                '${currentPageController.text} página(s) lida(s) de ${pagesController.text} página(s) no total.',
+                textAlign: TextAlign.center,
               ),
-
-              TextFormField(
-                decoration: AppInputDecoration.inputDecoration.copyWith(
-                  fillColor: selectedColor,
-                  labelText: AppStrings.author,
-                ),
-                controller: authorController,
+              Text(
+                'Restam $remainPages página(s) para terminar o livro.',
+                textAlign: TextAlign.center,
               ),
-
-              SizedBox(
-                height: 10,
-              ),
-
-              TextFormField(
-                decoration: AppInputDecoration.inputDecoration.copyWith(
-                  fillColor: selectedColor,
-                  labelText: AppStrings.gender,
-                ),
-                controller: genderController,
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
-
-              TextFormField(
-                //TODO: switch
-                decoration: AppInputDecoration.inputDecoration.copyWith(
-                  fillColor: selectedColor,
-                  labelText: AppStrings.format,
-                ),
-                controller: formatController,
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
-
-              SizedBox(
-                width: 500,
-                child: TextFormField(
-                  decoration: AppInputDecoration.inputDecoration.copyWith(
-                    fillColor: selectedColor,
-                    labelText: AppStrings.review,
+              Row(
+                children: [
+                  Flexible(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        right: 5,
+                        bottom: 10,
+                      ),
+                      child: TextFormField(
+                        decoration: AppInputDecoration.inputDecoration.copyWith(
+                          fillColor: selectedColor,
+                          labelText: AppStrings.author,
+                        ),
+                        controller: authorController,
+                      ),
+                    ),
                   ),
-                  maxLines: 3,
-                  controller: reviewController,
-                ),
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
-
-              SizedBox(
-                //TODO: remove synopsis
-                width: 500,
-                child: TextFormField(
-                  decoration: AppInputDecoration.inputDecoration.copyWith(
-                    fillColor: selectedColor,
-                    labelText: AppStrings.synopsis,
+                  Flexible(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        left: 5,
+                        bottom: 10,
+                      ),
+                      child: TextFormField(
+                        decoration: AppInputDecoration.inputDecoration.copyWith(
+                          fillColor: selectedColor,
+                          labelText: AppStrings.gender,
+                        ),
+                        controller: genderController,
+                      ),
+                    ),
                   ),
-                  maxLines: 3,
-                  controller: synopsisController,
+                ],
+              ),
+              TextFormField(
+                decoration: AppInputDecoration.inputDecoration.copyWith(
+                  fillColor: selectedColor,
+                  labelText: AppStrings.review,
                 ),
+                maxLines: 10,
+                controller: reviewController,
               ),
-
-              SizedBox(
-                height: 10,
-              ),
-
               //TODO: Use use books registered by other users
               //TODO: change to avaliation with stars
             ],
           ),
         ),
       ),
+
       floatingActionButton: AppButton(
         onPressed: () async {
           final registerBookProvider = Provider.of<RegisterBookProvider>(
@@ -431,8 +402,11 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
             title: titleController.text,
             author: authorController.text,
             gender: genderController.text,
-            format: formatController.text,
-            synopsis: synopsisController.text,
+            format: //formatController.text,
+            isEbook
+                ? AppStrings.ebook
+                : AppStrings.physical,
+            //synopsis: synopsisController.text,
             review: reviewController.text,
             color: selectedColor,
             icon: (selectedIcon != null) ? selectedIcon : '',

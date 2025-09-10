@@ -303,8 +303,8 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                             book['gender'],
                                                                         format:
                                                                             book['format'],
-                                                                        synopsis:
-                                                                            book['synopsis'],
+                                                                        // synopsis:
+                                                                        //     book['synopsis'],
                                                                         review:
                                                                             book['review'],
                                                                         // color:

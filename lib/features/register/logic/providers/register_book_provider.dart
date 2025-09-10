@@ -17,7 +17,7 @@ class RegisterBookProvider extends ChangeNotifier {
     required gender,
     required format,
     required color,
-    required synopsis,
+    //required synopsis,
     required review,
     required icon,
   }) async {
@@ -41,7 +41,7 @@ class RegisterBookProvider extends ChangeNotifier {
           'author': author,
           'gender': gender,
           'format': format,
-          'synopsis': synopsis,
+          //'synopsis': synopsis,
           'review': review,
           'color':
               '#${(color ?? AppColors.violetBlue).value.toRadixString(

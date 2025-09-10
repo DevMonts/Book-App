@@ -52,7 +52,9 @@ class AppStrings {
   static const String title = 'Título';
   static const String author = 'Autor(a)';
   static const String gender = 'Gênero';
-  static const String format = 'Físico ou Ebook?';
+  //static const String format = 'Físico ou Ebook?';
+  static const String ebook = 'ebook';
+  static const String physical = 'físico';
   static const String synopsis = 'Sinopse';
   static const String review = 'Resenha';
   static const String color = 'Cor';

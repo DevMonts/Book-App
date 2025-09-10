@@ -1,5 +1,4 @@
 import 'package:book_app/features/details/presentation/page/review_page.dart';
-import 'package:book_app/features/details/presentation/page/synopsis_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:book_app/common/constants/app_colors.dart';
@@ -15,7 +14,7 @@ class DetailsPage extends StatelessWidget {
   //final String publicationDate;
   final String gender;
   final String format;
-  final String synopsis;
+  //final String synopsis;
   final String review;
   //TODO: book size
   //TODO: book icon
@@ -30,7 +29,7 @@ class DetailsPage extends StatelessWidget {
     //required this.publicationDate,
     required this.gender,
     required this.format,
-    required this.synopsis,
+    //required this.synopsis,
     required this.review,
     //TODO: book size
     //TODO: book icon
@@ -72,24 +71,24 @@ class DetailsPage extends StatelessWidget {
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (
-                        context,
-                      ) => SynopsisPage(
-                        synopsis: synopsis,
-                      ),
-                ),
-              );
-            },
-            child: Text(
-              AppStrings.synopsis,
-            ),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder:
+          //             (
+          //               context,
+          //             ) => SynopsisPage(
+          //               synopsis: synopsis,
+          //             ),
+          //       ),
+          //     );
+          //   },
+          //   child: Text(
+          //     AppStrings.synopsis,
+          //   ),
+          // ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
