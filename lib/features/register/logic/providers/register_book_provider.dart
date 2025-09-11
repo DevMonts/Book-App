@@ -8,7 +8,6 @@ class RegisterBookProvider extends ChangeNotifier {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   Future<void> sendBookToFirestore({
     //TODO: book size
-    //TODO: book icon
     required currentPage,
     required pages,
     //required publicationDate,

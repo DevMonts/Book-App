@@ -37,7 +37,7 @@ class AppTheme {
     return Column(
       children: [
         SizedBox(
-          height: 110,
+          height: 100,
         ),
         Column(
           children: List.generate(
@@ -48,27 +48,27 @@ class AppTheme {
               return Column(
                 children: [
                   Container(
-                    color: Colors.black,
-                    height: 3,
-                  ),
-                  Container(
-                    color: AppColors.brown13,
+                    color:
+                        Theme.of(
+                              context,
+                            ).brightness ==
+                            Brightness.light
+                        ? AppColors.brown06
+                        : AppColors.brown13,
                     height: 110,
                   ),
                   Container(
-                    color: Colors.black,
-                    height: 3,
-                  ),
-                  Container(
-                    color: AppColors.brown13,
-                    height: 10,
-                  ),
-                  Container(
-                    color: Colors.black,
-                    height: 3,
+                    color:
+                        Theme.of(
+                              context,
+                            ).brightness ==
+                            Brightness.light
+                        ? AppColors.brown07
+                        : AppColors.brown13,
+                    height: 20,
                   ),
                   SizedBox(
-                    height: 115,
+                    height: 112,
                   ),
                 ],
               );
