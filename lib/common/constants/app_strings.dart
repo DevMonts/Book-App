@@ -50,6 +50,7 @@ class AppStrings {
   static const String currentPage = 'Página atual';
   static const String publicationDate = 'Publicação';
   static const String title = 'Título';
+  static const String requiredTitle = 'Preencha o título';
   static const String author = 'Autor(a)';
   static const String gender = 'Gênero';
   //static const String format = 'Físico ou Ebook?';

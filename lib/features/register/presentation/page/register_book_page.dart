@@ -219,7 +219,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
           child: Column(
             children: [
               TextFormField(
-                //TODO: required field
                 decoration: AppInputDecoration.inputDecoration.copyWith(
                   labelText: AppStrings.title,
                 ),
@@ -391,29 +390,41 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
 
       floatingActionButton: AppButton(
         onPressed: () async {
-          final registerBookProvider = Provider.of<RegisterBookProvider>(
-            context,
-            listen: false,
-          );
-          await registerBookProvider.sendBookToFirestore(
-            currentPage: currentPageController.text,
-            pages: pagesController.text,
-            //publicationDate: publicationDateController.text,
-            title: titleController.text,
-            author: authorController.text,
-            gender: genderController.text,
-            format: //formatController.text,
-            isEbook
-                ? AppStrings.ebook
-                : AppStrings.physical,
-            //synopsis: synopsisController.text,
-            review: reviewController.text,
-            color: selectedColor,
-            icon: (selectedIcon != null) ? selectedIcon : '',
-          );
-          Navigator.of(
-            context,
-          ).pop();
+          if (titleController.text.isEmpty) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(
+              SnackBar(
+                content: Text(
+                  AppStrings.requiredTitle,
+                ),
+              ),
+            );
+          } else {
+            final registerBookProvider = Provider.of<RegisterBookProvider>(
+              context,
+              listen: false,
+            );
+            await registerBookProvider.sendBookToFirestore(
+              currentPage: currentPageController.text,
+              pages: pagesController.text,
+              //publicationDate: publicationDateController.text,
+              title: titleController.text,
+              author: authorController.text,
+              gender: genderController.text,
+              format: //formatController.text,
+              isEbook
+                  ? AppStrings.ebook
+                  : AppStrings.physical,
+              //synopsis: synopsisController.text,
+              review: reviewController.text,
+              color: selectedColor,
+              icon: (selectedIcon != null) ? selectedIcon : '',
+            );
+            Navigator.of(
+              context,
+            ).pop();
+          }
         },
         icon: Icon(
           Icons.add,
