@@ -23,7 +23,7 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ColorPicker(
+          SlidePicker(
             pickerColor: selectedColor,
             onColorChanged:
                 (
@@ -34,13 +34,34 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
                   });
                 },
             enableAlpha: false,
+            displayThumbColor: true,
+            indicatorBorderRadius: BorderRadius.all(
+              Radius.circular(
+                20,
+              ),
+            ),
           ),
         ],
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.zero,
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            20,
+          ),
+        ),
       ),
       actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).pop();
+          },
+          icon: Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        ),
         IconButton(
           onPressed: () {
             Navigator.of(
@@ -50,7 +71,8 @@ class _SelectColorDialogState extends State<SelectColorDialog> {
             );
           },
           icon: Icon(
-            Icons.draw,
+            Icons.check,
+            color: Colors.green,
           ),
         ),
       ],
