@@ -6,7 +6,7 @@ Color colorConverter(
   String hexColor,
 ) {
   if (hexColor.isEmpty) {
-    return AppColors.violetBlue;
+    return AppColors.brown07;
   }
   hexColor = hexColor.replaceAll(
     '#',

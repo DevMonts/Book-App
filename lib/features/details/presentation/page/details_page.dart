@@ -51,12 +51,12 @@ class DetailsPage extends StatelessWidget {
             },
             icon: Icon(
               Icons.delete,
-              color: AppColors.red,
+              color: Colors.red,
             ),
           ),
         ],
       ),
-      backgroundColor: AppColors.transparent,
+      backgroundColor: Colors.transparent,
       body: Stack(
         children: [
           Positioned.fill(
@@ -96,7 +96,7 @@ class DetailsPage extends StatelessWidget {
                                         '${title.isEmpty ? '' : '$title '}${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender, '}'
                                         '${pages.isEmpty ? ' ' : 'Contem $pages páginas '}${currentPage.isEmpty ? '' : 'e foi lido até a página $currentPage '}${format.isEmpty ? '' : 'no formato $format'}.',
                                         style: TextStyle(
-                                          color: AppColors.black,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
@@ -107,7 +107,7 @@ class DetailsPage extends StatelessWidget {
                                       child: Text(
                                         review,
                                         style: TextStyle(
-                                          color: AppColors.black,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),

@@ -1,5 +1,4 @@
 import 'package:book_app/app.dart';
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
@@ -13,7 +12,7 @@ import 'package:provider/provider.dart';
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: AppColors.transparent,
+      statusBarColor: Colors.transparent,
     ),
   );
   WidgetsFlutterBinding.ensureInitialized();

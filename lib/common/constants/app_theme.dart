@@ -9,7 +9,7 @@ class AppTheme {
       onPrimary: AppColors.brown03,
       secondary: AppColors.brown03,
       onSecondary: AppColors.brown10,
-      error: AppColors.red,
+      error: Colors.red,
       onError: AppColors.brown08,
       surface: AppColors.brown07,
       onSurface: AppColors.brown14,
@@ -23,7 +23,7 @@ class AppTheme {
       onPrimary: AppColors.brown14,
       secondary: AppColors.brown14,
       onSecondary: AppColors.brown09,
-      error: AppColors.red,
+      error: Colors.red,
       onError: AppColors.brown08,
       surface: AppColors.brown11,
       onSurface: AppColors.brown03,
@@ -48,7 +48,7 @@ class AppTheme {
               return Column(
                 children: [
                   Container(
-                    color: AppColors.black,
+                    color: Colors.black,
                     height: 3,
                   ),
                   Container(
@@ -56,7 +56,7 @@ class AppTheme {
                     height: 110,
                   ),
                   Container(
-                    color: AppColors.black,
+                    color: Colors.black,
                     height: 3,
                   ),
                   Container(
@@ -64,7 +64,7 @@ class AppTheme {
                     height: 10,
                   ),
                   Container(
-                    color: AppColors.black,
+                    color: Colors.black,
                     height: 3,
                   ),
                   SizedBox(

@@ -44,7 +44,7 @@ class RegisterBookProvider extends ChangeNotifier {
           //'synopsis': synopsis,
           'review': review,
           'color':
-              '#${(color ?? AppColors.violetBlue).value.toRadixString(
+              '#${(color ?? AppColors.brown07).value.toRadixString(
                 16,
               ).padLeft(
                 8,

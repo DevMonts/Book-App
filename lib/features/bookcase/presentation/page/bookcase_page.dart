@@ -250,8 +250,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                                             ),
                                                           ),
                                                           VerticalDivider(
-                                                            color:
-                                                                AppColors.black,
+                                                            color: Colors.black,
                                                           ),
                                                           Expanded(
                                                             child: Text(
@@ -262,8 +261,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                                             ),
                                                           ),
                                                           VerticalDivider(
-                                                            color:
-                                                                AppColors.black,
+                                                            color: Colors.black,
                                                           ),
                                                         ],
                                                       ),
@@ -336,11 +334,11 @@ class _BookcasePageState extends State<BookcasePage> {
                                 ),
                                 Divider(
                                   thickness: 100,
-                                  color: AppColors.transparent,
+                                  color: Colors.transparent,
                                 ),
                                 Divider(
                                   thickness: 100,
-                                  color: AppColors.transparent,
+                                  color: Colors.transparent,
                                 ),
                               ],
                             ],
@@ -411,7 +409,7 @@ class _BookcasePageState extends State<BookcasePage> {
               //TODO: search
               //TODO: AI
             ],
-            backgroundColor: AppColors.transparent,
+            backgroundColor: Colors.transparent,
             elevation: 0,
           ),
     );
