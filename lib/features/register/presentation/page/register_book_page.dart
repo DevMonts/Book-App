@@ -237,7 +237,12 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                           onTap: () {
                             setState(
                               () {
-                                selectedIcon = iconsList[index]['string'];
+                                if (selectedIcon ==
+                                    iconsList[index]['string']) {
+                                  selectedIcon = null;
+                                } else {
+                                  selectedIcon = iconsList[index]['string'];
+                                }
                               },
                             );
                           },
@@ -266,7 +271,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                                     context,
                                   ).primaryColor,
                           ),
-                          //TODO: deselect
                         );
                       },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
