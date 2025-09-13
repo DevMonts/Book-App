@@ -14,5 +14,5 @@ class AppColors {
   static Color brown11 = const Color(0xFF523F38);
   static Color brown12 = const Color(0xFF493A33);
   static Color brown13 = const Color(0xFF462D21);
-  static Color brown14 = const Color(0xFF432806); //TODO: use this color
+  static Color brown14 = const Color(0xFF432806);
 }

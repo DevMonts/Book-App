@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:book_app/common/constants/app_button.dart';
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
@@ -82,9 +81,22 @@ class _BookcasePageState extends State<BookcasePage> {
                   .docs;
               return SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 50,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(
+                          context,
+                        ).pushNamed(
+                          '/login',
+                        );
+                      },
+                      icon: Icon(
+                        Icons.logout,
+                      ),
                     ),
                     Stack(
                       children: [
@@ -262,6 +274,7 @@ class _BookcasePageState extends State<BookcasePage> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
+                                                              //TODO: title color
                                                             ),
                                                           ),
                                                           VerticalDivider(
@@ -355,66 +368,21 @@ class _BookcasePageState extends State<BookcasePage> {
             },
       ),
       extendBody: true,
-      bottomNavigationBar:
-          //TODO: refactor
-          BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: AppButton(
-                  onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pushNamed(
-                      '/login',
-                    );
-                  },
-                  icon: Icon(
-                    Icons.logout,
-                  ),
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: AppButton(
-                  onPressed: () {
-                    // showModalBottomSheet //Dialog
-                    Navigator.of(
-                      context,
-                    ).pushNamed(
-                      '/register',
-                    );
-                    // (
-                    //   context: context,
-
-                    //   builder:
-                    //       (
-                    //         context,
-                    //       ) {
-                    //         return BackdropFilter(
-                    //           filter: ImageFilter.blur(
-                    //             sigmaX: 5,
-                    //             sigmaY: 5,
-                    //           ),
-                    //           child: const RegisterBookWidget(),
-                    //         );
-                    //       },
-                    //   backgroundColor: AppColors.transparent,
-                    //   elevation: 0,
-                    //   isScrollControlled: true,
-                    // );
-                  },
-                  icon: Icon(
-                    Icons.add,
-                  ),
-                ),
-                label: '',
-              ),
-              //TODO: search
-              //TODO: AI
-            ],
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //TODO: open animation
+          Navigator.of(
+            context,
+          ).pushNamed(
+            '/register',
+          );
+        },
+        child: Icon(
+          Icons.add,
+        ),
+      ),
+      //TODO: search
+      //TODO: AI
     );
   }
 }
