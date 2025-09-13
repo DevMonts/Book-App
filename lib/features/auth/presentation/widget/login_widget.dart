@@ -1,4 +1,4 @@
-import 'package:book_app/common/constants/app_input_decoration.dart';
+import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:book_app/features/auth/presentation/widget/register_user_widget.dart';
@@ -41,13 +41,9 @@ class _LoginWidgetState extends State<LoginWidget> {
             // SizedBox(
             //   height: 50,
             // ),
-            TextFormField(
+            const AppTextFormField(
               keyboardType: TextInputType.emailAddress,
-              decoration: AppInputDecoration.inputDecoration.copyWith(
-                labelText: AppStrings.email,
-                //border: const OutlineInputBorder(),
-              ),
-              controller: emailController,
+              hintText: AppStrings.email,
             ),
             SizedBox(
               height: 10,
@@ -59,10 +55,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                     passwordViewProvider,
                     child,
                   ) {
-                    return TextFormField(
-                      decoration: AppInputDecoration.inputDecoration.copyWith(
-                        labelText: AppStrings.password,
-                        //border: OutlineInputBorder(),
+                    return AppTextFormField(
+                        hintText: AppStrings.password,
                         suffixIcon: IconButton(
                           icon: Icon(
                             passwordViewProvider.obscureText
@@ -76,7 +70,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ).changePasswordViewer();
                           },
                         ),
-                      ),
                       obscureText: passwordViewProvider.obscureText,
                       controller: passwordController,
                     );

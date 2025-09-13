@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final Icon icon;
+  final Widget icon;
   const AppButton({
     super.key,
     required this.onPressed,
@@ -11,17 +11,9 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    // ClipOval(
-    //   child: BackdropFilter(
-    //     filter: ImageFilter.blur(
-    //       sigmaX: 10,
-    //       sigmaY: 10,
-    //     ),
-    //     child:
-    SizedBox(
-      width: 60,
-      height: 60,
+    return SizedBox(
+      width: 67,
+      height: 67,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -30,12 +22,9 @@ class AppButton extends StatelessWidget {
               10,
             ),
           ),
-          //           backgroundColor: AppColors.transparent,
-          //           elevation: 0,
+          elevation: 0,
         ),
         child: icon,
-        //       ),
-        //     ),
       ),
     );
   }

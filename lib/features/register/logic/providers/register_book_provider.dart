@@ -3,54 +3,48 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+//TODO: change to repository
 class RegisterBookProvider extends ChangeNotifier {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   Future<void> sendBookToFirestore({
-    //TODO: book size
+    required title,
+    required numberOfStars,
+    required color,
+    required format,
+    required icon,
     required currentPage,
     required pages,
-    //required publicationDate,
-    required title,
     required author,
     required gender,
-    required format,
-    required color,
-    //required synopsis,
     required review,
-    required icon,
   }) async {
     final userId = firebaseAuth.currentUser!.uid;
-    await
-    //F
-    firebaseFirestore //.instance
+    await firebaseFirestore
         .collection(
           'users',
         )
-        .doc(userId)
+        .doc(
+          userId,
+        )
         .collection(
           'books',
         )
-        .add({
-          //TODO: book size
-          'currentPage': currentPage,
-          'pages': pages,
-          //'publicationDate': publicationDate,
-          'title': title,
-          'author': author,
-          'gender': gender,
-          'format': format,
-          //'synopsis': synopsis,
-          'review': review,
-          'color':
-              '#${(color ?? AppColors.brown07).value.toRadixString(
-                16,
-              ).padLeft(
-                8,
-                '0',
-              ).toUpperCase()}',
-          'icon': icon,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
+        .add(
+          {
+            'title': title,
+            'numberOfStars': numberOfStars,
+            'color':
+                '#${(color ?? AppColors.brown07).value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
+            'format': format,
+            'icon': icon,
+            'currentPage': currentPage,
+            'pages': pages,
+            'author': author,
+            'gender': gender,
+            'review': review,
+            'createdAt': FieldValue.serverTimestamp(),
+          },
+        );
   }
 }

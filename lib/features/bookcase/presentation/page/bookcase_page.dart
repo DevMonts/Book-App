@@ -12,6 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+//TODO: other bookcases
 class BookcasePage extends StatefulWidget {
   const BookcasePage({super.key});
 
@@ -40,6 +41,8 @@ class _BookcasePageState extends State<BookcasePage> {
     //   listen: false,
     // );
     return Scaffold(
+      //TODO: componentize bookcase
+
       // appBar: AppBar(
       //   backgroundColor: Theme.of(
       //     context,
@@ -250,7 +253,8 @@ class _BookcasePageState extends State<BookcasePage> {
                                                             ),
                                                           ),
                                                           VerticalDivider(
-                                                            color: Colors.black,
+                                                            color: AppColors
+                                                                .brown14,
                                                           ),
                                                           Expanded(
                                                             child: Text(
@@ -261,7 +265,8 @@ class _BookcasePageState extends State<BookcasePage> {
                                                             ),
                                                           ),
                                                           VerticalDivider(
-                                                            color: Colors.black,
+                                                            color: AppColors
+                                                                .brown14,
                                                           ),
                                                         ],
                                                       ),
@@ -301,14 +306,12 @@ class _BookcasePageState extends State<BookcasePage> {
                                                                             book['gender'],
                                                                         format:
                                                                             book['format'],
-                                                                        // synopsis:
-                                                                        //     book['synopsis'],
                                                                         review:
                                                                             book['review'],
-                                                                        // color:
-                                                                        //     book['color'],
                                                                         bookColor:
                                                                             bookColor,
+                                                                        numberOfStars:
+                                                                            book['numberOfStars'],
                                                                       ),
                                                                     ),
                                                                   );

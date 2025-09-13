@@ -49,7 +49,7 @@ class AppStrings {
   static const String pages = 'Páginas';
   static const String currentPage = 'Página atual';
   static const String publicationDate = 'Publicação';
-  static const String title = 'Título';
+  static const String title = 'TÍTULO';
   static const String requiredTitle = 'Preencha o título';
   static const String author = 'Autor(a)';
   static const String gender = 'Gênero';

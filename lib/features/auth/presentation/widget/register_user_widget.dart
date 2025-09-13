@@ -1,4 +1,4 @@
-import 'package:book_app/common/constants/app_input_decoration.dart';
+import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
@@ -38,12 +38,9 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
           // mainAxisAlignment: MainAxisAlignment.center,
           // spacing: 10,
           children: [
-            TextFormField(
+            AppTextFormField(
               keyboardType: TextInputType.emailAddress,
-              decoration: AppInputDecoration.inputDecoration.copyWith(
-                labelText: AppStrings.email,
-                // border: OutlineInputBorder(),
-              ),
+              hintText: AppStrings.email,
               controller: emailController,
             ),
             SizedBox(
@@ -56,23 +53,20 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
                     passwordViewProvider,
                     child,
                   ) {
-                    return TextFormField(
-                      decoration: AppInputDecoration.inputDecoration.copyWith(
-                        labelText: AppStrings.password,
-                        //border: OutlineInputBorder(),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            passwordViewProvider.obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                          onPressed: () {
-                            Provider.of<PasswordViewProvider>(
-                              context,
-                              listen: false,
-                            ).changePasswordViewer();
-                          },
+                    return AppTextFormField(
+                      hintText: AppStrings.password,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          passwordViewProvider.obscureText
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                         ),
+                        onPressed: () {
+                          Provider.of<PasswordViewProvider>(
+                            context,
+                            listen: false,
+                          ).changePasswordViewer();
+                        },
                       ),
                       obscureText: passwordViewProvider.obscureText,
                       controller: passwordController,

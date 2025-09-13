@@ -13,6 +13,7 @@ class DetailsPage extends StatelessWidget {
   final String format;
   final String review;
   final Color bookColor;
+  final int numberOfStars;
   const DetailsPage({
     super.key,
     required this.bookId,
@@ -24,6 +25,7 @@ class DetailsPage extends StatelessWidget {
     required this.format,
     required this.review,
     required this.bookColor,
+    required this.numberOfStars,
   });
 
   @override
@@ -34,7 +36,28 @@ class DetailsPage extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
+        //TODO: style AppBar
+        title: Text(
+          title,
+        ),
         actions: [
+          Container(
+            width: 120,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: numberOfStars,
+              itemBuilder:
+                  (
+                    context,
+                    index,
+                  ) {
+                    return Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                    );
+                  },
+            ),
+          ),
           IconButton(
             onPressed: () async {
               await Provider.of<DeleteBookProvider>(
@@ -94,9 +117,9 @@ class DetailsPage extends StatelessWidget {
                                     Expanded(
                                       child: Text(
                                         '${title.isEmpty ? '' : '$title '}${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender, '}'
-                                        '${pages.isEmpty ? ' ' : 'Contem $pages páginas '}${currentPage.isEmpty ? '' : 'e foi lido até a página $currentPage '}${format.isEmpty ? '' : 'no formato $format'}.',
+                                        '${pages.isEmpty ? ' ' : 'Contem $pages páginas '}${currentPage.isEmpty ? '' : 'e foi lido até a página $currentPage '}${format.isEmpty ? '' : 'no formato $format'}.', //TODO: remain pages
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: AppColors.brown14,
                                         ),
                                       ),
                                     ),
@@ -104,10 +127,11 @@ class DetailsPage extends StatelessWidget {
                                       color: AppColors.brown04,
                                     ),
                                     Expanded(
+                                      //TODO: text scroll
                                       child: Text(
                                         review,
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: AppColors.brown14,
                                         ),
                                       ),
                                     ),
