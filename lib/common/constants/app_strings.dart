@@ -1,3 +1,4 @@
+//TODO: delete app strings
 class AppStrings {
   //Splash Page
   static const String description = 'Simples, bonito e leve';

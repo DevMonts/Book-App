@@ -26,6 +26,16 @@ class ShowBooksProvider extends ChangeNotifier {
         .snapshots();
   }
 
+  Stream<QuerySnapshot> showReadingBooks() {
+    final userId = firebaseAuth.currentUser!.uid;
+    return firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('books')
+        .where('isRereading', isEqualTo: false)
+        .snapshots();
+  }
+
   Stream<QuerySnapshot> unfinishedBooks() {
     final userId = firebaseAuth.currentUser!.uid;
     return firebaseFirestore
@@ -43,6 +53,36 @@ class ShowBooksProvider extends ChangeNotifier {
         .doc(userId)
         .collection('books')
         .where('isFinished', isEqualTo: true)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> wishlistBooks() {
+    final userId = firebaseAuth.currentUser!.uid;
+    return firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('books')
+        .where('isInWishlist', isEqualTo: true)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> rereadingBooks() {
+    final userId = firebaseAuth.currentUser!.uid;
+    return firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('books')
+        .where('isRereading', isEqualTo: true)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> pausedBooks() {
+    final userId = firebaseAuth.currentUser!.uid;
+    return firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('books')
+        .where('isPaused', isEqualTo: true)
         .snapshots();
   }
 

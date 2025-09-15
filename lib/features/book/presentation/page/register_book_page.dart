@@ -5,6 +5,7 @@ import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
 import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
+import 'package:book_app/features/book/presentation/widget/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -20,7 +21,10 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   TextEditingController titleController = TextEditingController();
   int? numberOfStars = 3;
   Color? selectedColor;
+  bool isPaused = false;
+  bool isRereading = false;
   bool isEbook = false;
+  bool isInWishlist = false;
   String? selectedIcon;
   TextEditingController currentPageController = TextEditingController(
     text: '1',
@@ -85,7 +89,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
       {
         'string': 'electric_bolt',
         'icon': Icons.electric_bolt,
-      }, //ray
+      },
       {
         'string': 'explore',
         'icon': Icons.explore,
@@ -152,6 +156,67 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               SizedBox(
                 height: 20,
               ),
+              AppCard(
+                child: Column(
+                  children: [
+                    SwitchWidget(
+                      text1: 'LENDO',
+                      text2: 'PAUSADO',
+                      icon1: Icons.play_arrow,
+                      icon2: Icons.pause,
+                      value: isPaused,
+                      onChanged:
+                          (
+                            value,
+                          ) {
+                            setState(
+                              () {
+                                isPaused = value;
+                              },
+                            );
+                          },
+                    ),
+                    SwitchWidget(
+                      text1: 'LEITURA',
+                      text2: 'RELEITURA',
+                      icon1: Icons.auto_stories,
+                      icon2: Icons.replay,
+                      value: isRereading,
+                      onChanged:
+                          (
+                            value,
+                          ) {
+                            setState(
+                              () {
+                                isRereading = value;
+                              },
+                            );
+                          },
+                    ),
+                    SwitchWidget(
+                      text1: 'LIVRO',
+                      text2: 'EBOOK',
+                      icon1: Icons.book,
+                      icon2: Icons.tablet_android,
+                      value: isEbook,
+                      onChanged:
+                          (
+                            value,
+                          ) {
+                            setState(
+                              () {
+                                isEbook = value;
+                              },
+                            );
+                          },
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: 25,
+              ),
 
               Row(
                 children: [
@@ -161,7 +226,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                       child: AppCard(
                         child: Center(
                           child: RatingBar.builder(
-                            itemSize: 20,
+                            itemSize: 24,
                             updateOnDrag: true,
                             initialRating: 3,
                             minRating: 1,
@@ -187,6 +252,36 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                           ),
                         ),
                       ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: 24,
+                  ),
+
+                  AppCard(
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: isInWishlist,
+                          onChanged:
+                              (
+                                value,
+                              ) {
+                                setState(
+                                  () {
+                                    isInWishlist = value!;
+                                  },
+                                );
+                              },
+                        ),
+                        Text(
+                          'Wishlist',
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                      ],
                     ),
                   ),
 
@@ -229,42 +324,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                     icon: Icon(
                       Icons.palette,
                       color: selectedColor,
-                    ),
-                  ),
-
-                  SizedBox(
-                    width: 24,
-                  ),
-
-                  Expanded(
-                    child: AppCard(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.book,
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.onSurface,
-                          ),
-                          Switch(
-                            value: isEbook,
-                            onChanged: (value) {
-                              setState(
-                                () {
-                                  isEbook = value;
-                                },
-                              );
-                            },
-                          ),
-                          Icon(
-                            Icons.tablet_android,
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.primary,
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ],
@@ -428,8 +487,8 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               AppTextFormField(
                 controller: reviewController,
                 hintText: AppStrings.review,
-                maxLines: null,
-                height: 1000,
+                maxLines: 10,
+                height: 300,
               ),
             ],
           ),
@@ -459,7 +518,10 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 title: titleController.text,
                 numberOfStars: numberOfStars,
                 color: selectedColor,
-                format: isEbook ? AppStrings.ebook : AppStrings.physical,
+                format: isEbook ? 'ebook' : 'físico',
+                isPaused: isPaused,
+                isRereading: isRereading,
+                isInWishlist: isInWishlist,
                 icon: (selectedIcon != null) ? selectedIcon : '',
                 currentPage: int.parse(
                   currentPageController.text,

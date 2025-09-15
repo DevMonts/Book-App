@@ -29,7 +29,6 @@ class _BookcasePageState extends State<BookcasePage> {
       body: Row(
         children: [
           NavigationRail(
-            //TODO: others destinations
             //TODO: style destinations
             leading: IconButton(
               onPressed: () {
@@ -46,53 +45,95 @@ class _BookcasePageState extends State<BookcasePage> {
             extended: false,
             destinations: [
               NavigationRailDestination(
-                icon: Icon(Icons.all_inclusive),
-                label: Text('Todos'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.star),
-                label: Column(
-                  children: [
-                    Text('5'),
-                    Text('Estrelas'),
-                  ],
+                icon: Icon(
+                  Icons.all_inclusive,
                 ),
-              ),
-              // NavigationRailDestination(
-              //   icon: Icon(Icons.import_contacts),
-              //   label: Text('Lendo'),
-              // ),
-              NavigationRailDestination(
-                icon: Icon(Icons.playlist_remove),
-                label: Column(
-                  children: [
-                    Text('Não'),
-                    Text('Finalizados'),
-                  ],
+                label: Text(
+                  'Todos',
                 ),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.playlist_add_check),
-                label: Text('Finalizados'),
-              ),
-              // NavigationRailDestination(
-              //   icon: Icon(Icons.shopping_cart),
-              //   label: Text('Wishlist'),
-              // ),
-              // NavigationRailDestination(
-              //   icon: Icon(Icons.replay),
-              //   label: Text('Relendo'),
-              // ),
-              // NavigationRailDestination(
-              //   icon: Icon(Icons.pause),
-              //   label: Text('Pausado'),
-              // ),
-              NavigationRailDestination(
-                icon: Icon(Icons.thumb_down),
+                icon: Icon(
+                  Icons.star,
+                ),
                 label: Column(
                   children: [
-                    Text('Não'),
-                    Text('Gostei'),
+                    Text(
+                      '5',
+                    ),
+                    Text(
+                      'Estrelas',
+                    ),
+                  ],
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.play_arrow,
+                ),
+                label: Text(
+                  'Lendo',
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.playlist_remove,
+                ),
+                label: Column(
+                  children: [
+                    Text(
+                      'Não',
+                    ),
+                    Text(
+                      'Finalizados',
+                    ),
+                  ],
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.playlist_add_check,
+                ),
+                label: Text(
+                  'Finalizados',
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.shopping_cart,
+                ),
+                label: Text(
+                  'Wishlist',
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.replay,
+                ),
+                label: Text(
+                  'Relendo',
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.pause,
+                ),
+                label: Text(
+                  'Pausado',
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.thumb_down,
+                ),
+                label: Column(
+                  children: [
+                    Text(
+                      'Não',
+                    ),
+                    Text(
+                      'Gostei',
+                    ),
                   ],
                 ),
               ),
@@ -126,9 +167,13 @@ class _BookcasePageState extends State<BookcasePage> {
                   stream: switch (navigationProvider.currentIndex) {
                     0 => showBooksProvider.showAllBooks(),
                     1 => showBooksProvider.showFiveStarsBooks(),
-                    2 => showBooksProvider.unfinishedBooks(),
-                    3 => showBooksProvider.finishedBooks(),
-                    4 => showBooksProvider.dislikeBooks(),
+                    2 => showBooksProvider.showReadingBooks(),
+                    3 => showBooksProvider.unfinishedBooks(),
+                    4 => showBooksProvider.finishedBooks(),
+                    5 => showBooksProvider.wishlistBooks(),
+                    6 => showBooksProvider.rereadingBooks(),
+                    7 => showBooksProvider.pausedBooks(),
+                    8 => showBooksProvider.dislikeBooks(),
                     _ => null,
                   },
                   builder:
