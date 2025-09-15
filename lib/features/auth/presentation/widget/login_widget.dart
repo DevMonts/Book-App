@@ -35,15 +35,11 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
       child: SingleChildScrollView(
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          //spacing: 10,
           children: [
-            // SizedBox(
-            //   height: 50,
-            // ),
-            const AppTextFormField(
+            AppTextFormField(
               keyboardType: TextInputType.emailAddress,
               hintText: AppStrings.email,
+              controller: emailController,
             ),
             SizedBox(
               height: 10,
@@ -56,20 +52,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                     child,
                   ) {
                     return AppTextFormField(
-                        hintText: AppStrings.password,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            passwordViewProvider.obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                          onPressed: () {
-                            Provider.of<PasswordViewProvider>(
-                              context,
-                              listen: false,
-                            ).changePasswordViewer();
-                          },
+                      hintText: AppStrings.password,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          passwordViewProvider.obscureText
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                         ),
+                        onPressed: () {
+                          Provider.of<PasswordViewProvider>(
+                            context,
+                            listen: false,
+                          ).changePasswordViewer();
+                        },
+                      ),
                       obscureText: passwordViewProvider.obscureText,
                       controller: passwordController,
                     );
@@ -84,117 +80,67 @@ class _LoginWidgetState extends State<LoginWidget> {
                   )
                 : Container(),
             Row(
-              mainAxisAlignment: MainAxisAlignment
-                  . //center
-                  spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
                   width: 10,
                 ),
                 Expanded(
-                  child: //Icon
-                      //Text
-                      ElevatedButton(
-                        // style: TextButton.styleFrom(
-                        //   backgroundColor: AppColors.pink,
-                        //   minimumSize: const Size(
-                        //     double.infinity,
-                        //     50,
-                        //   ),
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.zero,
-                        //   ),
-                        // ),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            // Navigator.pushNamed(
-                            //   context,
-                            //   '/register',
-                            // );
-                            context: context,
-                            builder:
-                                (
-                                  context,
-                                ) {
-                                  return RegisterUserWidget();
-                                },
-                            //backgroundColor: AppColors.transparent,
-                            //elevation: 0,
-                            isScrollControlled: true,
-                          );
-                        },
-                        child: //Icon
-                        Text(
-                          // Icons.add,
-                          AppStrings.register,
-                          // style: TextStyle(
-                          //   color: AppColors.violetBlue,
-                          // ),
-                        ),
-                      ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder:
+                            (
+                              context,
+                            ) {
+                              return RegisterUserWidget();
+                            },
+                        isScrollControlled: true,
+                      );
+                    },
+                    child: Text(
+                      AppStrings.register,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: 1,
                 ),
                 Expanded(
-                  child: //Icon
-                      //Text
-                      ElevatedButton(
-                        // style: TextButton.styleFrom(
-                        //   backgroundColor: AppColors.pink,
-                        //   minimumSize: const Size(
-                        //     double.infinity,
-                        //     50,
-                        //   ),
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.zero,
-                        //   ),
-                        // ),
-                        onPressed: () async {
-                          final authProvider = Provider.of<AuthProvider>(
-                            context,
-                            listen: false,
-                          );
-                          try {
-                            await authProvider.loginUser(
-                              context,
-                              emailController.text.trim(),
-                              passwordController.text.trim(),
-                            );
-                          } catch (e) {
-                            if (!mounted) return;
-                            // ScaffoldMessenger.of(
-                            //   context,
-                            // ).showSnackBar(
-                            //   SnackBar(
-                            //     content: Text(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final authProvider = Provider.of<AuthProvider>(
+                        context,
+                        listen: false,
+                      );
+                      try {
+                        await authProvider.loginUser(
+                          context,
+                          emailController.text.trim(),
+                          passwordController.text.trim(),
+                        );
+                      } catch (e) {
+                        if (!mounted) return;
+                        setState(() {
+                          error = e.toString();
+                        });
+                        Future.delayed(
+                          const Duration(
+                            seconds: 3,
+                          ),
+                          () {
                             setState(() {
-                              error = e.toString(); //,
-                              //     ),
-                              //   ),
-                              // );
+                              error = null;
                             });
-                            Future.delayed(
-                              const Duration(
-                                seconds: 3,
-                              ),
-                              () {
-                                setState(() {
-                                  error = null;
-                                });
-                              },
-                            );
-                          }
-                        },
-                        child: //Icon
-                        Text(
-                          // Icons.send,
-                          AppStrings.login,
-                          // style: TextStyle(
-                          //   color: AppColors.violetBlue,
-                          // ),
-                        ),
-                      ),
+                          },
+                        );
+                      }
+                    },
+                    child: Text(
+                      AppStrings.login,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: 10,

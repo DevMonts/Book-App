@@ -3,8 +3,8 @@ import 'package:book_app/common/constants/app_button.dart';
 import 'package:book_app/common/constants/app_card.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_strings.dart';
-import 'package:book_app/features/register/logic/providers/register_book_provider.dart';
-import 'package:book_app/features/register/presentation/widget/select_color_dialog.dart';
+import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
+import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -24,10 +24,10 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   String? selectedIcon;
   TextEditingController currentPageController = TextEditingController(
     text: '1',
-  ); //TODO: change to int
+  );
   TextEditingController pagesController = TextEditingController(
     text: '1',
-  ); //TODO: change to int
+  );
   TextEditingController authorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController colorController = TextEditingController(
@@ -235,7 +235,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   SizedBox(
                     width: 24,
                   ),
-                  
+
                   Expanded(
                     child: AppCard(
                       child: Row(
@@ -461,8 +461,12 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 color: selectedColor,
                 format: isEbook ? AppStrings.ebook : AppStrings.physical,
                 icon: (selectedIcon != null) ? selectedIcon : '',
-                currentPage: currentPageController.text,
-                pages: pagesController.text,
+                currentPage: int.parse(
+                  currentPageController.text,
+                ),
+                pages: int.parse(
+                  pagesController.text,
+                ),
                 author: authorController.text,
                 gender: genderController.text,
                 review: reviewController.text,

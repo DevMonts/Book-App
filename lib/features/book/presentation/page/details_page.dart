@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:book_app/common/constants/app_colors.dart';
-import 'package:book_app/features/details/logic/provider/delete_book_provider.dart';
+import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
 
 class DetailsPage extends StatelessWidget {
   final String bookId;
   final String title;
   final String author;
-  final String pages;
-  final String currentPage;
+  final int pages;
+  final int currentPage;
   final String gender;
   final String format;
   final String review;
@@ -116,8 +116,9 @@ class DetailsPage extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        '${title.isEmpty ? '' : '$title '}${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender, '}'
-                                        '${pages.isEmpty ? ' ' : 'Contem $pages páginas '}${currentPage.isEmpty ? '' : 'e foi lido até a página $currentPage '}${format.isEmpty ? '' : 'no formato $format'}.', //TODO: remain pages
+                                        //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
+                                        'O ${(format == 'ebook') ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm $pages páginas e dessas, você leu $currentPage.',
+                                        //TODO: remain pages
                                         style: TextStyle(
                                           color: AppColors.brown14,
                                         ),

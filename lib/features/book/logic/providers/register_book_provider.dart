@@ -20,6 +20,7 @@ class RegisterBookProvider extends ChangeNotifier {
     required review,
   }) async {
     final userId = firebaseAuth.currentUser!.uid;
+    final isFinished = (currentPage == pages) ? true : false;
     await firebaseFirestore
         .collection(
           'users',
@@ -40,9 +41,11 @@ class RegisterBookProvider extends ChangeNotifier {
             'icon': icon,
             'currentPage': currentPage,
             'pages': pages,
+            'isFinished': isFinished,
             'author': author,
             'gender': gender,
             'review': review,
+            //TODO: book cover
             'createdAt': FieldValue.serverTimestamp(),
           },
         );

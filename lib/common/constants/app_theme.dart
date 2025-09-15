@@ -64,7 +64,7 @@ class AppTheme {
                             ).brightness ==
                             Brightness.light
                         ? AppColors.brown07
-                        : AppColors.brown13,
+                        : AppColors.brown11,
                     height: 20,
                   ),
                   SizedBox(
