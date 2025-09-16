@@ -35,119 +35,122 @@ class DetailsPage extends StatelessWidget {
       listen: false,
     );
     return Scaffold(
-      appBar: AppBar(
-        //TODO: style AppBar
-        title: Text(
-          title,
-        ),
-        actions: [
-          Container(
-            width: 120,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: numberOfStars,
-              itemBuilder:
-                  (
-                    context,
-                    index,
-                  ) {
-                    return Icon(
+      backgroundColor: Colors.black54,
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(
+                      context,
+                    ).pop();
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: AppColors.brown10,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    numberOfStars,
+                    (
+                      index,
+                    ) => const Icon(
                       Icons.star,
                       color: Colors.yellow,
-                    );
-                  },
-            ),
-          ),
-          IconButton(
-            onPressed: () async {
-              await Provider.of<DeleteBookProvider>(
-                context,
-                listen: false,
-              ).deleteBookFromFirestore(
-                context: context,
-                bookId: bookId,
-                bookColor: bookColor,
-              );
-              Navigator.of(
-                context,
-              ).pop();
-            },
-            icon: Icon(
-              Icons.delete,
-              color: Colors.red,
-            ),
-          ),
-        ],
-      ),
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Center(
-              child: Consumer<DeleteBookProvider>(
-                builder:
-                    (
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    await Provider.of<DeleteBookProvider>(
                       context,
-                      deleteBookProvider,
-                      child,
-                    ) {
-                      return Hero(
-                        //TODO: fix text formatting on animate
-                        tag: bookId,
-                        child: Container(
-                          width: 300,
-                          height: 200,
-                          color: bookColor,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                              top: 10,
-                              bottom: 5,
-                            ),
-                            child: Container(
-                              color: AppColors.brown02,
-                              height: 200,
-                              child: Padding(
-                                padding: const EdgeInsets.all(
-                                  10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
-                                        'O ${(format == 'ebook') ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm $pages páginas e dessas, você leu $currentPage.',
-                                        //TODO: remain pages
-                                        style: TextStyle(
-                                          color: AppColors.brown14,
-                                        ),
+                      listen: false,
+                    ).deleteBookFromFirestore(
+                      context: context,
+                      bookId: bookId,
+                      bookColor: bookColor,
+                    );
+                    Navigator.of(
+                      context,
+                    ).pop();
+                  },
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            Consumer<DeleteBookProvider>(
+              builder:
+                  (
+                    context,
+                    deleteBookProvider,
+                    child,
+                  ) {
+                    return Hero(
+                      //TODO: fix text formatting on animate
+                      tag: bookId,
+                      child: Container(
+                        width: 300,
+                        height: 200,
+                        color: bookColor,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 5,
+                          ),
+                          child: Container(
+                            color: AppColors.brown02,
+                            height: 200,
+                            child: Padding(
+                              padding: const EdgeInsets.all(
+                                10,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
+                                      'O ${(format == 'ebook') ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm $pages páginas e dessas, você leu $currentPage.',
+                                      //TODO: remain pages
+                                      style: TextStyle(
+                                        color: AppColors.brown14,
                                       ),
                                     ),
-                                    VerticalDivider(
-                                      color: AppColors.brown04,
-                                    ),
-                                    Expanded(
-                                      //TODO: text scroll
-                                      child: Text(
-                                        review,
-                                        style: TextStyle(
-                                          color: AppColors.brown14,
-                                        ),
+                                  ),
+                                  VerticalDivider(
+                                    color: AppColors.brown04,
+                                  ),
+                                  Expanded(
+                                    //TODO: text scroll
+                                    child: Text(
+                                      review,
+                                      style: TextStyle(
+                                        color: AppColors.brown14,
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
-                      );
-                    },
-              ),
+                      ),
+                    );
+                  },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
