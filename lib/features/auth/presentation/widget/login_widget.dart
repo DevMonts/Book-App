@@ -1,5 +1,4 @@
 import 'package:book_app/common/constants/app_text_form_field.dart';
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:book_app/features/auth/presentation/widget/register_user_widget.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           children: [
             AppTextFormField(
               keyboardType: TextInputType.emailAddress,
-              hintText: AppStrings.email,
+              hintText: 'Email',
               controller: emailController,
             ),
             SizedBox(
@@ -52,7 +51,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     child,
                   ) {
                     return AppTextFormField(
-                      hintText: AppStrings.password,
+                      hintText: 'Senha',
                       suffixIcon: IconButton(
                         icon: Icon(
                           passwordViewProvider.obscureText
@@ -100,7 +99,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       );
                     },
                     child: Text(
-                      AppStrings.register,
+                      'Cadastrar',
                     ),
                   ),
                 ),
@@ -138,7 +137,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       }
                     },
                     child: Text(
-                      AppStrings.login,
+                      'Login',
                     ),
                   ),
                 ),

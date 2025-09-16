@@ -1,5 +1,4 @@
 import 'package:book_app/common/constants/app_text_form_field.dart';
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,7 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
           children: [
             AppTextFormField(
               keyboardType: TextInputType.emailAddress,
-              hintText: AppStrings.email,
+              hintText: 'email',
               controller: emailController,
             ),
             SizedBox(
@@ -54,7 +53,7 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
                     child,
                   ) {
                     return AppTextFormField(
-                      hintText: AppStrings.password,
+                      hintText: 'Senha',
                       suffixIcon: IconButton(
                         icon: Icon(
                           passwordViewProvider.obscureText
@@ -106,7 +105,7 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      AppStrings.success,
+                      'Conta criada!',
                     ),
                   ),
                 );
@@ -114,7 +113,7 @@ class _RegisterUserWidgetState extends State<RegisterUserWidget> {
               child: //Icon
               Text(
                 //Icons.send,
-                AppStrings.register,
+                'Cadastrar',
                 // style: TextStyle(
                 //   color: AppColors.violetBlue,
                 // ),

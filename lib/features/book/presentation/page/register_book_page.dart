@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:book_app/common/constants/app_button.dart';
 import 'package:book_app/common/constants/app_card.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
 import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
 import 'package:book_app/features/book/presentation/widget/switch_widget.dart';
@@ -39,9 +38,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   );
   TextEditingController authorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
-  TextEditingController colorController = TextEditingController(
-    text: AppStrings.color,
-  );
+  TextEditingController colorController = TextEditingController();
 
   TextEditingController reviewController = TextEditingController();
 
@@ -486,7 +483,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   Flexible(
                     flex: 3,
                     child: AppTextFormField(
-                      hintText: AppStrings.author,
+                      hintText: 'Autor',
                       controller: authorController,
                     ),
                   ),
@@ -496,7 +493,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   Flexible(
                     flex: 2,
                     child: AppTextFormField(
-                      hintText: AppStrings.gender,
+                      hintText: 'Gênero',
                       controller: genderController,
                     ),
                   ),
@@ -505,7 +502,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
 
               AppTextFormField(
                 controller: reviewController,
-                hintText: AppStrings.review,
+                hintText: 'Resenha',
                 maxLines: 10,
                 height: 300,
               ),
@@ -524,7 +521,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               ).showSnackBar(
                 SnackBar(
                   content: Text(
-                    AppStrings.requiredTitle,
+                    'Preencha o título',
                   ),
                 ),
               );

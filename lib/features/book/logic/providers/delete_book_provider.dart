@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,7 +38,7 @@ class DeleteBookProvider extends ChangeNotifier {
             ) {
               return AlertDialog(
                 title: Text(
-                  AppStrings.deleteConfirmation,
+                  'Deletar livro?',
                 ),
                 actions: [
                   IconButton(

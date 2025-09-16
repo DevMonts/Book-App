@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/auth/presentation/widget/login_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +16,13 @@ class AuthPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              AppStrings.title,
+              'Nome do App',
               style: TextStyle(
-                fontSize: 100,
+                fontSize: 60,
               ),
             ),
             Text(
-              AppStrings.description,
+              'Simples, bonito e leve',
             ),
             SizedBox(
               height: 10,

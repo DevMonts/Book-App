@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AppException implements Exception {
@@ -17,92 +16,92 @@ class AuthFirebaseException {
       switch (e.code) {
         case "account-exists-with-different-credential":
           return AppException(
-            AppStrings.accountExistsWithDifferentCredential,
+            'Conta existente com credenciais diferentes',
           );
         case "credential-already-in-use":
           return AppException(
-            AppStrings.credentialAlreadyInUse,
+            'Conta existente com credenciais diferentes',
           );
         case "email-already-in-use":
           return AppException(
-            AppStrings.emailAlreadyInUse,
+            'Outra pessoa já está usando esse email',
           );
         case "internal-error":
           return AppException(
-            AppStrings.internalError,
+            'Erro interno. Entre em contato com o desenvolvedor: (75) 9 9954-2609',
           );
         case "invalid-credential":
           return AppException(
-            AppStrings.invalidCredential,
+            'Credenciais inválidas',
           );
         case "invalid-email":
           return AppException(
-            AppStrings.invalidEmail,
+            'Email inválido',
           );
         case "invalid-password":
           return AppException(
-            AppStrings.invalidPassword,
+            'Senha inválida',
           );
         case "invalid-verification-code":
           return AppException(
-            AppStrings.invalidVerificationCode,
+            'Código de verificação inválido',
           );
         case "invalid-verification-id":
           return AppException(
-            AppStrings.invalidVerificationId,
+            'ID de verificação inválido',
           );
         case "network-request-failed":
           return AppException(
-            AppStrings.networkRequestFailed,
+            'Falha na conexão',
           );
         case "null-user":
           return AppException(
-            AppStrings.nullUser,
+            'Usuário nulo',
           );
         case "operation-not-allowed":
           return AppException(
-            AppStrings.operationNotAllowed,
+            'Erro: "operationNotAllowed". Entre em contato com o desenvolvedor: (75) 9 9954-2609',
           );
         case "requires-recent-login":
           return AppException(
-            AppStrings.requiresRecentLogin,
+            'Erro: "requiresRecentLogin". Entre em contato com o desenvolvedor: (75) 9 9954-2609',
           );
         case "too-many-requests":
           return AppException(
-            AppStrings.tooManyRequests,
+            'Tentativas excedidas',
           );
         case "user-disabled":
           return AppException(
-            AppStrings.userDisabled,
+            'Usuário desativado',
           );
         case "user-not-found":
           return AppException(
-            AppStrings.userNotFound,
+            'Usuário não encontrado',
           );
         case "weak-password":
           return AppException(
-            AppStrings.weakPassword,
+            'Senha fraca',
           );
         case "wrong-password":
           return AppException(
-            AppStrings.wrongPassword,
+            'Senha errada',
           );
         case "user-token-expired":
           return AppException(
-            AppStrings.userNotFound,
+            'Usuário não encontrado',
           );
         case "user-cancelled-operation":
           return AppException(
-            AppStrings.userNotFound,
+            'Usuário não encontrado',
           );
         default:
           return AppException(
-            AppStrings.accountExistsWithDifferentCredential,
+            'Conta existente com credenciais diferentes',
           );
       }
     }
     return AppException(
-      AppStrings.generalError,
+      'Erro',
     );
   }
 }

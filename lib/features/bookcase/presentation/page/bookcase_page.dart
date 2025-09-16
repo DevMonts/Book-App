@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/common/utils/color_converter.dart';
 import 'package:book_app/features/book/presentation/widget/book_widget.dart';
@@ -198,7 +197,7 @@ class _BookcasePageState extends State<BookcasePage> {
                             ),
                             child: Center(
                               child: Text(
-                                AppStrings.empty,
+                                'Clique no ícone + para adicionar um livro na sua estante',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 30,
