@@ -290,7 +290,6 @@ class _BookcasePageState extends State<BookcasePage> {
         },
         mini: true,
         child: Icon(
-          //TODO: circular progress indicator
           Icons.add,
         ),
       ),

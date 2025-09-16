@@ -29,6 +29,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   bool isRereading = false;
   bool isEbook = false;
   bool isInWishlist = false;
+  bool isLoading = false;
   String? selectedIcon;
   TextEditingController currentPageController = TextEditingController(
     text: '1',
@@ -528,6 +529,9 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 ),
               );
             } else {
+              setState(() {
+                isLoading = true;
+              });
               final registerBookProvider = Provider.of<RegisterBookProvider>(
                 context,
                 listen: false,
@@ -552,6 +556,11 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 review: reviewController.text,
                 //TODO: Use use books registered by other users
               );
+              setState(
+                () {
+                  isLoading = false;
+                },
+              );
               widget.pageController.animateToPage(
                 1,
                 duration: Duration(
@@ -561,10 +570,19 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               );
             }
           },
-          child: Icon(
-            //TODO: CircularProgressIndicator
-            Icons.add,
-          ),
+          child: isLoading
+              ? SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surface,
+                  ),
+                )
+              : Icon(
+                  Icons.add,
+                ),
         ),
       ),
     );
