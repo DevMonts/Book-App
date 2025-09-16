@@ -1,4 +1,5 @@
 import 'package:book_app/common/constants/app_strings.dart';
+import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -71,9 +72,16 @@ class DeleteBookProvider extends ChangeNotifier {
                             bookId,
                           )
                           .delete();
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        '/bookcase',
+                        MaterialPageRoute(
+                          builder:
+                              (
+                                context,
+                              ) => MainPage(
+                                initialIndex: 1,
+                              ),
+                        ),
                       );
                     },
                     icon: Icon(

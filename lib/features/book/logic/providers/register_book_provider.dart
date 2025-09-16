@@ -39,7 +39,7 @@ class RegisterBookProvider extends ChangeNotifier {
             'title': title,
             'numberOfStars': numberOfStars,
             'color':
-                '#${(color ?? AppColors.brown07).value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
+                '#${(color ?? AppColors.brown08).value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
             'format': format,
             'icon': icon,
             'currentPage': currentPage,

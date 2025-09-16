@@ -11,10 +11,10 @@ class AppTheme {
       onSecondary: AppColors.brown10,
       error: Colors.red,
       onError: AppColors.brown08,
-      surface: AppColors.brown07,
+      surface: AppColors.brown03,
       onSurface: AppColors.brown14,
     ),
-    scaffoldBackgroundColor: AppColors.brown03,
+    scaffoldBackgroundColor: AppColors.brown07,
   );
   static final ThemeData darkTheme = ThemeData(
     colorScheme: ColorScheme(
@@ -63,7 +63,7 @@ class AppTheme {
                               context,
                             ).brightness ==
                             Brightness.light
-                        ? AppColors.brown07
+                        ? AppColors.brown03
                         : AppColors.brown11,
                     height: 20,
                   ),

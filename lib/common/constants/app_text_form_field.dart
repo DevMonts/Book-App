@@ -33,7 +33,6 @@ class AppTextFormField extends StatelessWidget {
           ),
           SizedBox(
             height: height,
-
             child: TextFormField(
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -51,6 +50,9 @@ class AppTextFormField extends StatelessWidget {
                 ),
 
                 filled: true,
+                fillColor: Theme.of(
+                  context,
+                ).scaffoldBackgroundColor,
               ),
 
               controller: controller,

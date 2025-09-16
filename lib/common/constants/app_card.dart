@@ -15,6 +15,9 @@ class _AppCardState extends State<AppCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Theme.of(
+        context,
+      ).scaffoldBackgroundColor,
       margin: EdgeInsets.zero,
       elevation: 0,
       child: Padding(

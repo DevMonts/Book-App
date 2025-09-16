@@ -1,4 +1,5 @@
 import 'package:book_app/core/exceptions/app_exceptions.dart';
+import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,32 +61,22 @@ class AuthProvider extends ChangeNotifier {
         'isLogged',
         true,
       );
-      // if (firebaseAuth.currentUser != null) {
-      Navigator.pushReplacementNamed(
-        context,
-        '/bookcase',
-      );
-      // } else {
-      //   ScaffoldMessenger.of(
-      //     context,
-      //   ).showSnackBar(
-      //     const SnackBar(
-      //       content: Text(
-      //         AppStrings.generalError,
-      //       ),
-      //     ),
-      //   );
-      // }
+      if (firebaseAuth.currentUser != null) {
+        Navigator.of(
+          context,
+        ).pushReplacement(
+          MaterialPageRoute(
+            builder:
+                (
+                  context,
+                ) => const MainPage(
+                  initialIndex: 1,
+                ),
+          ),
+        );
+      }
     } catch (e) {
-      // ScaffoldMessenger.of(
-      //   context,
-      // ).showSnackBar(
-      //   SnackBar(
-      //     content: Text(
-      //       AppStrings.generalError,
-      //     ),
-      //   ),
-      // );
+      // }
       throw AuthFirebaseException.authFirebaseException(
         e,
       );

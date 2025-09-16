@@ -1,6 +1,7 @@
 import 'package:book_app/common/constants/app_theme.dart';
 import 'package:book_app/common/router/app_router.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
+import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,11 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: isLogged ? '/bookcase' : '/',
+      home: isLogged
+          ? MainPage(
+              initialIndex: 1,
+            )
+          : null,
     );
   }
 }

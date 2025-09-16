@@ -6,6 +6,7 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
 import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
 import 'package:book_app/features/book/presentation/widget/switch_widget.dart';
+import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -130,32 +131,52 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: TextFormField(
-          controller: titleController,
-          textAlign: TextAlign.center,
-          decoration: InputDecoration(
-            hintText: AppStrings.title,
-            border: InputBorder.none,
+        automaticallyImplyLeading: false,
+        title: Center(
+          child: IconButton(
+            onPressed: () {
+              Navigator.of(
+                context,
+              ).push(
+                MaterialPageRoute(
+                  builder:
+                      (
+                        context,
+                      ) => MainPage(
+                        initialIndex: 1,
+                      ),
+                ),
+                //TODO: animate navigation
+              );
+            },
+            icon: Icon(
+              //TODO: circular progress indicator
+              Icons.arrow_forward,
+            ),
           ),
         ),
-
-        actions: [
-          SizedBox(
-            width: 50,
-          ),
-        ],
       ),
-
+      backgroundColor: Theme.of(
+        context,
+      ).colorScheme.surface,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(
-            10,
+          padding: const EdgeInsets.only(
+            right: 10,
+            left: 10,
+            top: 30,
           ),
           child: Column(
             children: [
-              SizedBox(
-                height: 20,
+              AppTextFormField(
+                hintText: 'Título',
+                controller: titleController,
               ),
+
+              SizedBox(
+                height: 25,
+              ),
+
               AppCard(
                 child: Column(
                   children: [
@@ -536,10 +557,21 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               );
               Navigator.of(
                 context,
-              ).pop();
+              ).push(
+                MaterialPageRoute(
+                  builder:
+                      (
+                        context,
+                      ) => MainPage(
+                        initialIndex: 1,
+                      ),
+                ),
+              );
+              //TODO: animate navigator
             }
           },
           child: Icon(
+            //TODO: CircularProgressIndicator
             Icons.add,
           ),
         ),

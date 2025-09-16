@@ -4,6 +4,7 @@ import 'package:book_app/common/utils/color_converter.dart';
 import 'package:book_app/features/book/presentation/widget/book_widget.dart';
 import 'package:book_app/features/bookcase/logic/provider/navigation_provider.dart';
 import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
+import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -30,6 +31,7 @@ class _BookcasePageState extends State<BookcasePage> {
         children: [
           NavigationRail(
             //TODO: style destinations
+            trailingAtBottom: true,
             leading: IconButton(
               onPressed: () {
                 Navigator.of(
@@ -278,11 +280,20 @@ class _BookcasePageState extends State<BookcasePage> {
         onPressed: () {
           Navigator.of(
             context,
-          ).pushNamed(
-            '/register',
+          ).push(
+            MaterialPageRoute(
+              builder:
+                  (
+                    context,
+                  ) => MainPage(
+                    initialIndex: 0,
+                  ),
+            ),
           );
         },
+        mini: true,
         child: Icon(
+          //TODO: circular progress indicator
           Icons.add,
         ),
       ),
