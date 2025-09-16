@@ -6,14 +6,17 @@ import 'package:book_app/common/constants/app_strings.dart';
 import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
 import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
 import 'package:book_app/features/book/presentation/widget/switch_widget.dart';
-import 'package:book_app/features/main/presentation/page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class RegisterBookPage extends StatefulWidget {
-  const RegisterBookPage({super.key});
+  final PageController pageController;
+  const RegisterBookPage({
+    super.key,
+    required this.pageController,
+  });
   @override
   State<RegisterBookPage> createState() => _RegisterBookPageState();
 }
@@ -135,18 +138,12 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         title: Center(
           child: IconButton(
             onPressed: () {
-              Navigator.of(
-                context,
-              ).push(
-                MaterialPageRoute(
-                  builder:
-                      (
-                        context,
-                      ) => MainPage(
-                        initialIndex: 1,
-                      ),
+              widget.pageController.animateToPage(
+                1,
+                duration: Duration(
+                  milliseconds: 300,
                 ),
-                //TODO: animate navigation
+                curve: Curves.linear,
               );
             },
             icon: Icon(
@@ -555,19 +552,13 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 review: reviewController.text,
                 //TODO: Use use books registered by other users
               );
-              Navigator.of(
-                context,
-              ).push(
-                MaterialPageRoute(
-                  builder:
-                      (
-                        context,
-                      ) => MainPage(
-                        initialIndex: 1,
-                      ),
+              widget.pageController.animateToPage(
+                1,
+                duration: Duration(
+                  milliseconds: 300,
                 ),
+                curve: Curves.linear,
               );
-              //TODO: animate navigator
             }
           },
           child: Icon(

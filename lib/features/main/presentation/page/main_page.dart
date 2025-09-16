@@ -29,8 +29,12 @@ class _MainPageState extends State<MainPage> {
     return PageView(
       controller: pageController,
       children: [
-        RegisterBookPage(),
-        BookcasePage(),
+        RegisterBookPage(
+          pageController: pageController,
+        ),
+        BookcasePage(
+          pageController: pageController,
+        ),
       ],
     );
   }
