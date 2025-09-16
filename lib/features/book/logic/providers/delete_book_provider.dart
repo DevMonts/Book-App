@@ -55,7 +55,6 @@ class DeleteBookProvider extends ChangeNotifier {
                   ),
                   IconButton(
                     onPressed: () async {
-                      //TODO: circular progress indicator
                       final userId = firebaseAuth.currentUser!.uid;
                       await FirebaseFirestore.instance
                           .collection(

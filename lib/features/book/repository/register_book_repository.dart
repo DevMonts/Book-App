@@ -1,13 +1,16 @@
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
-//TODO: change to repository
-class RegisterBookProvider extends ChangeNotifier {
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+class RegisterBookRepository {
+  final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore firebaseFirestore;
+  RegisterBookRepository({
+    required this.firebaseAuth,
+    required this.firebaseFirestore,
+  });
   Future<void> sendBookToFirestore({
+    //TODO: model
     required title,
     required numberOfStars,
     required color,

@@ -2,19 +2,20 @@ import 'dart:ui';
 import 'package:book_app/common/constants/app_button.dart';
 import 'package:book_app/common/constants/app_card.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
-import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
+import 'package:book_app/features/book/repository/register_book_repository.dart';
 import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
 import 'package:book_app/features/book/presentation/widget/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:provider/provider.dart';
 
 class RegisterBookPage extends StatefulWidget {
   final PageController pageController;
+  final RegisterBookRepository registerBookRepository;
   const RegisterBookPage({
     super.key,
     required this.pageController,
+    required this.registerBookRepository,
   });
   @override
   State<RegisterBookPage> createState() => _RegisterBookPageState();
@@ -529,11 +530,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               setState(() {
                 isLoading = true;
               });
-              final registerBookProvider = Provider.of<RegisterBookProvider>(
-                context,
-                listen: false,
-              );
-              await registerBookProvider.sendBookToFirestore(
+              await widget.registerBookRepository.sendBookToFirestore(
                 title: titleController.text,
                 numberOfStars: numberOfStars,
                 color: selectedColor,

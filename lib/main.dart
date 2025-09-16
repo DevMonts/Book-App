@@ -3,7 +3,6 @@ import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
 import 'package:book_app/features/bookcase/logic/provider/navigation_provider.dart';
 import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
-import 'package:book_app/features/book/logic/providers/register_book_provider.dart';
 import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +28,6 @@ void main() async {
         ),
         ChangeNotifierProvider.value(
           value: authProvider,
-        ),
-        ChangeNotifierProvider(
-          create: (context) => RegisterBookProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => ShowBooksProvider(),

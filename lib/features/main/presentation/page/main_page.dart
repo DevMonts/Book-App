@@ -1,5 +1,8 @@
 import 'package:book_app/features/book/presentation/page/register_book_page.dart';
+import 'package:book_app/features/book/repository/register_book_repository.dart';
 import 'package:book_app/features/bookcase/presentation/page/bookcase_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -31,6 +34,10 @@ class _MainPageState extends State<MainPage> {
       children: [
         RegisterBookPage(
           pageController: pageController,
+          registerBookRepository: RegisterBookRepository(
+            firebaseAuth: FirebaseAuth.instance,
+            firebaseFirestore: FirebaseFirestore.instance,
+          ),
         ),
         BookcasePage(
           pageController: pageController,
