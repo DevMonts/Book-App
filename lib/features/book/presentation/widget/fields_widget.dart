@@ -26,7 +26,7 @@ class FieldsWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 24,
+              width: 10,
             ),
             Flexible(
               flex: 2,

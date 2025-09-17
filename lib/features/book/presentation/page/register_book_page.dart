@@ -83,8 +83,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
       ).colorScheme.surface,
 
       body: SingleChildScrollView(
-        child: //TODO: restyle register page
-        Padding(
+        child: Padding(
           padding: const EdgeInsets.only(
             right: 10,
             left: 10,
@@ -96,7 +95,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 controller: titleController,
               ),
 
-              SizedBox(height: 25),
+              SizedBox(height: 10),
 
               SwitchesWidget(
                 isPaused: isPaused,
@@ -119,7 +118,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 },
               ),
 
-              SizedBox(height: 25),
+              SizedBox(height: 10),
 
               Row(
                 children: [
@@ -131,7 +130,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                       });
                     },
                   ),
-                  SizedBox(width: 24),
+                  SizedBox(width: 10),
                   AppCheckbox(
                     isInWishlist: isInWishlist,
                     onChanged: (value) {
@@ -141,7 +140,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                     },
                     text: 'WishList',
                   ),
-                  SizedBox(width: 24),
+                  SizedBox(width: 10),
                   AppColorButton(
                     selectedColor: (selectedColor != null)
                         ? selectedColor!
@@ -156,7 +155,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 ],
               ),
 
-              SizedBox(height: 25),
+              SizedBox(height: 10),
 
               IconsWidget(
                 selectedIcon: selectedIcon,
@@ -167,7 +166,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 },
               ),
 
-              SizedBox(height: 25),
+              SizedBox(height: 10),
 
               PagesNumberWidget(
                 currentPageController: currentPageController,
