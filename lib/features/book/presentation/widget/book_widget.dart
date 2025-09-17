@@ -85,7 +85,11 @@ class _BookWidgetState extends State<BookWidget> {
                         child: Text(
                           widget.book['title'],
                           textAlign: TextAlign.center,
-                          //TODO: title color
+                          style: TextStyle(
+                            color: (widget.bookColor.computeLuminance() > .5)
+                                ? AppColors.brown14
+                                : AppColors.brown01,
+                          ),
                         ),
                       ),
                       VerticalDivider(
