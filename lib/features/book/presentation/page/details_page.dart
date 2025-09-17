@@ -121,8 +121,7 @@ class DetailsPage extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
-                                      'O ${(format == 'ebook') ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm $pages páginas e dessas, você leu $currentPage.',
-                                      //TODO: remain pages
+                                      'O ${(format == 'ebook') ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm $pages páginas e dessas, você leu $currentPage. Faltam',
                                       style: TextStyle(
                                         color: AppColors.brown14,
                                       ),
