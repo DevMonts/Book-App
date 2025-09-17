@@ -131,11 +131,12 @@ class DetailsPage extends StatelessWidget {
                                     color: AppColors.brown04,
                                   ),
                                   Expanded(
-                                    //TODO: text scroll
-                                    child: Text(
-                                      review,
-                                      style: TextStyle(
-                                        color: AppColors.brown14,
+                                    child: SingleChildScrollView(
+                                      child: Text(
+                                        review,
+                                        style: TextStyle(
+                                          color: AppColors.brown14,
+                                        ),
                                       ),
                                     ),
                                   ),
