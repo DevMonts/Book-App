@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SwitchWidget extends StatefulWidget {
+class AppSwitch extends StatefulWidget {
   final String text1;
   final String text2;
   final IconData icon1;
   final IconData icon2;
   final bool value;
   final ValueChanged<bool> onChanged;
-  const SwitchWidget({
+  const AppSwitch({
     super.key,
     required this.text1,
     required this.text2,
@@ -18,10 +18,10 @@ class SwitchWidget extends StatefulWidget {
   });
 
   @override
-  State<SwitchWidget> createState() => _SwitchWidgetState();
+  State<AppSwitch> createState() => _AppSwitchState();
 }
 
-class _SwitchWidgetState extends State<SwitchWidget> {
+class _AppSwitchState extends State<AppSwitch> {
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -2,15 +2,14 @@ import 'package:book_app/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-//TODO: rename class
-class SelectColorDialog extends StatefulWidget {
-  const SelectColorDialog({super.key});
+class AppColorWidget extends StatefulWidget {
+  const AppColorWidget({super.key,});
 
   @override
-  State<SelectColorDialog> createState() => _SelectColorDialogState();
+  State<AppColorWidget> createState() => _AppColorWidgetState();
 }
 
-class _SelectColorDialogState extends State<SelectColorDialog> {
+class _AppColorWidgetState extends State<AppColorWidget> {
   late Color selectedColor;
   @override
   void initState() {

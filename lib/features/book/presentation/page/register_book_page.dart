@@ -1,13 +1,15 @@
-import 'dart:ui';
-import 'package:book_app/common/constants/app_button.dart';
-import 'package:book_app/common/constants/app_card.dart';
+import 'package:book_app/common/constants/app_color_button.dart';
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
+import 'package:book_app/common/constants/app_checkbox.dart';
+import 'package:book_app/common/constants/app_stars_widget.dart';
+import 'package:book_app/features/book/presentation/widget/fields_widget.dart';
+import 'package:book_app/features/book/presentation/widget/icons_widget.dart';
+import 'package:book_app/features/book/presentation/widget/pages_number_widget.dart';
+import 'package:book_app/features/book/presentation/widget/register_book_button.dart';
+import 'package:book_app/features/book/presentation/widget/switches_widget.dart';
 import 'package:book_app/features/book/repository/register_book_repository.dart';
-import 'package:book_app/features/book/presentation/widget/select_color_dialog.dart';
-import 'package:book_app/features/book/presentation/widget/switch_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RegisterBookPage extends StatefulWidget {
   final PageController pageController;
@@ -24,7 +26,7 @@ class RegisterBookPage extends StatefulWidget {
 class _RegisterBookPageState extends State<RegisterBookPage> {
   TextEditingController titleController = TextEditingController();
   int? numberOfStars = 3;
-  Color? selectedColor;
+  Color? selectedColor = AppColors.brown08;
   bool isPaused = false;
   bool isRereading = false;
   bool isEbook = false;
@@ -40,7 +42,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   TextEditingController authorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController colorController = TextEditingController();
-
   TextEditingController reviewController = TextEditingController();
 
   @override
@@ -57,80 +58,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: componentize register page
-
-    final List<Map<String, dynamic>> iconsList = [
-      {'string': 'ac_unit', 'icon': Icons.ac_unit},
-      {
-        'string': 'anchor',
-        'icon': Icons.anchor,
-      },
-      {
-        'string': 'brightness_3',
-        'icon': Icons.brightness_3,
-      },
-      {
-        'string': 'church',
-        'icon': Icons.church,
-      },
-      {
-        'string': 'cloud',
-        'icon': Icons.cloud,
-      },
-      {
-        'string': 'cottage',
-        'icon': Icons.cottage,
-      },
-      {
-        'string': 'deck',
-        'icon': Icons.deck,
-      },
-      {
-        'string': 'delete',
-        'icon': Icons.delete,
-      },
-      {
-        'string': 'electric_bolt',
-        'icon': Icons.electric_bolt,
-      },
-      {
-        'string': 'explore',
-        'icon': Icons.explore,
-      },
-      {
-        'string': 'favorite',
-        'icon': Icons.favorite,
-      },
-      {
-        'string': 'heart_broken',
-        'icon': Icons.heart_broken,
-      },
-      {
-        'string': 'local_fire_department',
-        'icon': Icons.local_fire_department,
-      },
-      {
-        'string': 'local_florist',
-        'icon': Icons.local_florist,
-      },
-      {
-        'string': 'local_pizza',
-        'icon': Icons.local_pizza,
-      },
-      {
-        'string': 'sunny',
-        'icon': Icons.sunny,
-      },
-    ];
-
-    final remainPages =
-        int.parse(
-          pagesController.text,
-        ) -
-        int.parse(
-          currentPageController.text,
-        );
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -146,7 +73,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               );
             },
             icon: Icon(
-              //TODO: circular progress indicator
               Icons.arrow_forward,
             ),
           ),
@@ -155,12 +81,13 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
       backgroundColor: Theme.of(
         context,
       ).colorScheme.surface,
+
       body: SingleChildScrollView(
-        child: Padding(
+        child: //TODO: restyle register page
+        Padding(
           padding: const EdgeInsets.only(
             right: 10,
             left: 10,
-            top: 30,
           ),
           child: Column(
             children: [
@@ -169,415 +96,126 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                 controller: titleController,
               ),
 
-              SizedBox(
-                height: 25,
+              SizedBox(height: 25),
+
+              SwitchesWidget(
+                isPaused: isPaused,
+                isRereading: isRereading,
+                isEbook: isEbook,
+                onPausedChanged: (value) {
+                  setState(() {
+                    isPaused = value;
+                  });
+                },
+                onRereadingChanged: (value) {
+                  setState(() {
+                    isRereading = value;
+                  });
+                },
+                onEbookChanged: (value) {
+                  setState(() {
+                    isEbook = value;
+                  });
+                },
               ),
 
-              AppCard(
-                child: Column(
-                  children: [
-                    SwitchWidget(
-                      text1: 'LENDO',
-                      text2: 'PAUSADO',
-                      icon1: Icons.play_arrow,
-                      icon2: Icons.pause,
-                      value: isPaused,
-                      onChanged:
-                          (
-                            value,
-                          ) {
-                            setState(
-                              () {
-                                isPaused = value;
-                              },
-                            );
-                          },
-                    ),
-                    SwitchWidget(
-                      text1: 'LEITURA',
-                      text2: 'RELEITURA',
-                      icon1: Icons.auto_stories,
-                      icon2: Icons.replay,
-                      value: isRereading,
-                      onChanged:
-                          (
-                            value,
-                          ) {
-                            setState(
-                              () {
-                                isRereading = value;
-                              },
-                            );
-                          },
-                    ),
-                    SwitchWidget(
-                      text1: 'LIVRO',
-                      text2: 'EBOOK',
-                      icon1: Icons.book,
-                      icon2: Icons.tablet_android,
-                      value: isEbook,
-                      onChanged:
-                          (
-                            value,
-                          ) {
-                            setState(
-                              () {
-                                isEbook = value;
-                              },
-                            );
-                          },
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 25,
-              ),
+              SizedBox(height: 25),
 
               Row(
                 children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 67,
-                      child: AppCard(
-                        child: Center(
-                          child: RatingBar.builder(
-                            itemSize: 24,
-                            updateOnDrag: true,
-                            initialRating: 3,
-                            minRating: 1,
-                            itemCount: 5,
-                            itemBuilder:
-                                (
-                                  context,
-                                  _,
-                                ) => Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                            onRatingUpdate:
-                                (
-                                  rating,
-                                ) {
-                                  setState(
-                                    () {
-                                      numberOfStars = rating.toInt();
-                                    },
-                                  );
-                                },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    width: 24,
-                  ),
-
-                  AppCard(
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          value: isInWishlist,
-                          onChanged:
-                              (
-                                value,
-                              ) {
-                                setState(
-                                  () {
-                                    isInWishlist = value!;
-                                  },
-                                );
-                              },
-                        ),
-                        Text(
-                          'Wishlist',
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(
-                    width: 24,
-                  ),
-
-                  AppButton(
-                    onPressed: () async {
-                      final pickedColor = await showDialog<Color>(
-                        context: context,
-                        builder:
-                            (
-                              context,
-                            ) {
-                              return BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 5,
-                                  sigmaY: 5,
-                                ),
-                                child: SelectColorDialog(),
-                              );
-                            },
-                      );
-                      if (pickedColor != null) {
-                        setState(
-                          () {
-                            selectedColor = pickedColor;
-                            colorController.text =
-                                '#${pickedColor.value.toRadixString(
-                                  16,
-                                ).padLeft(
-                                  8,
-                                  '0',
-                                ).toUpperCase()}';
-                          },
-                        );
-                      }
+                  AppStarsWidget(
+                    numberOfStars: numberOfStars!,
+                    onRatingUpdate: (value) {
+                      setState(() {
+                        numberOfStars = value;
+                      });
                     },
-                    icon: Icon(
-                      Icons.palette,
-                      color: selectedColor,
-                    ),
+                  ),
+                  SizedBox(width: 24),
+                  AppCheckbox(
+                    isInWishlist: isInWishlist,
+                    onChanged: (value) {
+                      setState(() {
+                        isInWishlist = value;
+                      });
+                    },
+                    text: 'WishList',
+                  ),
+                  SizedBox(width: 24),
+                  AppColorButton(
+                    selectedColor: (selectedColor != null)
+                        ? selectedColor!
+                        : AppColors.brown08,
+                    colorController: colorController,
+                    onColorChanged: (value) {
+                      setState(() {
+                        selectedColor = value;
+                      });
+                    },
                   ),
                 ],
               ),
 
-              SizedBox(
-                height: 25,
+              SizedBox(height: 25),
+
+              IconsWidget(
+                selectedIcon: selectedIcon,
+                onIconSelected: (value) {
+                  setState(() {
+                    selectedIcon = value;
+                  });
+                },
               ),
 
-              AppCard(
-                child: SizedBox(
-                  height: 100,
-                  child: GridView.builder(
-                    itemCount: iconsList.length,
-                    itemBuilder:
-                        (
-                          context,
-                          index,
-                        ) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(
-                                () {
-                                  if (selectedIcon ==
-                                      iconsList[index]['string']) {
-                                    selectedIcon = null;
-                                  } else {
-                                    selectedIcon = iconsList[index]['string'];
-                                  }
-                                },
-                              );
-                            },
-                            child: Icon(
-                              iconsList[index]['icon'],
-                              color: selectedIcon == iconsList[index]['string']
-                                  ? [
-                                      Colors.cyanAccent,
-                                      Colors.grey,
-                                      Colors.yellow,
-                                      Colors.white,
-                                      Colors.white,
-                                      Colors.orange,
-                                      Colors.brown,
-                                      Colors.grey,
-                                      Colors.yellow,
-                                      Colors.grey,
-                                      Colors.red,
-                                      Colors.red,
-                                      Colors.orange,
-                                      Colors.pink,
-                                      Colors.yellow,
-                                      Colors.yellow,
-                                    ][index]
-                                  : Theme.of(
-                                      context,
-                                    ).scaffoldBackgroundColor,
-                            ),
-                          );
-                        },
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 8,
-                    ),
-                  ),
-                ),
+              SizedBox(height: 25),
+
+              PagesNumberWidget(
+                currentPageController: currentPageController,
+                pagesController: pagesController,
               ),
 
-              SizedBox(
-                height: 25,
-              ),
-
-              AppCard(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 100,
-                          width: 50,
-                          child: CupertinoPicker(
-                            itemExtent: 30,
-                            onSelectedItemChanged: (index) {
-                              final currentPage = (index + 1).toString();
-                              setState(() {
-                                currentPageController.text = currentPage;
-                              });
-                            },
-                            children: List<Widget>.generate(
-                              2000,
-                              (index) => Center(
-                                child: Text(
-                                  '${index + 1}',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '/',
-                          style: TextStyle(
-                            fontSize: 40,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 100,
-                          width: 50,
-                          child: CupertinoPicker(
-                            itemExtent: 30,
-                            onSelectedItemChanged: (index) {
-                              final pages = (index + 1).toString();
-                              setState(() {
-                                pagesController.text = pages;
-                              });
-                            },
-                            children: List<Widget>.generate(
-                              2000,
-                              (index) => Center(
-                                child: Text(
-                                  '${index + 1}',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '${currentPageController.text} página(s) lida(s) de ${pagesController.text} página(s) no total.',
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      'Restam $remainPages página(s) para terminar o livro.',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-
-              Row(
-                children: [
-                  Flexible(
-                    flex: 3,
-                    child: AppTextFormField(
-                      hintText: 'Autor',
-                      controller: authorController,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: AppTextFormField(
-                      hintText: 'Gênero',
-                      controller: genderController,
-                    ),
-                  ),
-                ],
-              ),
-
-              AppTextFormField(
-                controller: reviewController,
-                hintText: 'Resenha',
-                maxLines: 10,
-                height: 300,
+              FieldsWidget(
+                authorController: authorController,
+                genderController: genderController,
+                reviewController: reviewController,
               ),
             ],
           ),
         ),
       ),
-      floatingActionButton: SizedBox(
-        width: 70,
-        height: 70,
-        child: FloatingActionButton(
-          onPressed: () async {
-            if (titleController.text.isEmpty) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Preencha o título',
-                  ),
-                ),
-              );
-            } else {
-              setState(() {
-                isLoading = true;
-              });
-              await widget.registerBookRepository.sendBookToFirestore(
-                title: titleController.text,
-                numberOfStars: numberOfStars,
-                color: selectedColor,
-                format: isEbook ? 'ebook' : 'físico',
-                isPaused: isPaused,
-                isRereading: isRereading,
-                isInWishlist: isInWishlist,
-                icon: (selectedIcon != null) ? selectedIcon : '',
-                currentPage: int.parse(
-                  currentPageController.text,
-                ),
-                pages: int.parse(
-                  pagesController.text,
-                ),
-                author: authorController.text,
-                gender: genderController.text,
-                review: reviewController.text,
-                //TODO: Use use books registered by other users
-              );
-              setState(
-                () {
-                  isLoading = false;
-                },
-              );
-              widget.pageController.animateToPage(
-                1,
-                duration: Duration(
-                  milliseconds: 300,
-                ),
-                curve: Curves.linear,
-              );
-            }
-          },
-          child: isLoading
-              ? SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: CircularProgressIndicator(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.surface,
-                  ),
-                )
-              : Icon(
-                  Icons.add,
-                ),
-        ),
+
+      floatingActionButton: RegisterBookButton(
+        titleController: titleController,
+        currentPageController: currentPageController,
+        pagesController: pagesController,
+        authorController: authorController,
+        genderController: genderController,
+        reviewController: reviewController,
+        registerBookRepository: widget.registerBookRepository,
+        pageController: widget.pageController,
+        numberOfStars: 3,
+        selectedColor: selectedColor!,
+        isPaused: isPaused,
+        isRereading: isRereading,
+        isEbook: isEbook,
+        isInWishlist: isInWishlist,
+        selectedIcon: selectedIcon,
+        isLoading: isLoading,
+        onPressed: () {
+          setState(() {
+            isLoading = true;
+          });
+        },
+        startLoading: () {
+          setState(() {
+            isLoading = true;
+          });
+        },
+        stopLoading: () {
+          setState(() {
+            isLoading = false;
+          });
+        },
       ),
     );
   }
