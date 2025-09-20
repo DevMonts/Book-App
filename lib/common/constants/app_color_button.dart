@@ -5,7 +5,7 @@ import 'package:book_app/common/constants/app_color_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppColorButton extends StatefulWidget {
-  final Color selectedColor;
+  final Color selectedColor; //4- Receive
   final TextEditingController colorController;
   final Function(
     Color,
@@ -14,7 +14,7 @@ class AppColorButton extends StatefulWidget {
 
   const AppColorButton({
     super.key,
-    required this.selectedColor,
+    required this.selectedColor, //3- Requires receipt
     required this.colorController,
     required this.onColorChanged,
   });
@@ -37,7 +37,7 @@ class _AppColorButtonState extends State<AppColorButton> {
     return AppCard(
       child: IconButton(
         onPressed: () async {
-          final pickedColor = await showDialog<Color>(
+          final selectedColor = await showDialog<Color>(
             context: context,
             builder:
                 (
@@ -52,21 +52,14 @@ class _AppColorButtonState extends State<AppColorButton> {
                   );
                 },
           );
-          if (pickedColor != null) {
+          if (selectedColor != null) {
             setState(
               () {
-                selectedColor = pickedColor;
-                widget.colorController.text =
-                    '#${pickedColor.value.toRadixString(
-                      16,
-                    ).padLeft(
-                      8,
-                      '0',
-                    ).toUpperCase()}';
+                this.selectedColor = selectedColor;
               },
             );
             widget.onColorChanged(
-              pickedColor,
+              selectedColor,
             );
           }
         },

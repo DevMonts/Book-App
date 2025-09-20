@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class AppStarsWidget extends StatefulWidget {
-  final int numberOfStars;
+  final int numberOfStars; //4- Receipt
   final ValueChanged<int> onRatingUpdate;
   const AppStarsWidget({
     super.key,
-    required this.numberOfStars,
+    required this.numberOfStars, //3- Requires receipt
     required this.onRatingUpdate,
   });
 

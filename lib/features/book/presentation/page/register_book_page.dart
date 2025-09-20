@@ -24,24 +24,21 @@ class RegisterBookPage extends StatefulWidget {
 }
 
 class _RegisterBookPageState extends State<RegisterBookPage> {
+  //1- Declaration
   TextEditingController titleController = TextEditingController();
-  int? numberOfStars = 3;
-  Color? selectedColor = AppColors.brown08;
   bool isPaused = false;
   bool isRereading = false;
   bool isEbook = false;
-  bool isInWishlist = false;
   bool isLoading = false;
+  int numberOfStars = 3;
+  bool isInWishlist = false;
+  Color selectedColor = AppColors.brown08; //TODO: rainbow gradient
+  TextEditingController colorController = TextEditingController();
   String? selectedIcon;
-  TextEditingController currentPageController = TextEditingController(
-    text: '1',
-  );
-  TextEditingController pagesController = TextEditingController(
-    text: '1',
-  );
+  int currentPage = 1;
+  int pages = 1;
   TextEditingController authorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
-  TextEditingController colorController = TextEditingController();
   TextEditingController reviewController = TextEditingController();
 
   @override
@@ -49,8 +46,6 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
     titleController.dispose();
     authorController.dispose();
     genderController.dispose();
-    currentPageController.dispose();
-    pagesController.dispose();
     colorController.dispose();
     reviewController.dispose();
     super.dispose();
@@ -92,15 +87,17 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
             children: [
               AppTextFormField(
                 hintText: 'Título',
-                controller: titleController,
+                controller: titleController, //2- Passed as a parameter
               ),
 
               SizedBox(height: 10),
 
               SwitchesWidget(
+                //2- Passed as a parameter
                 isPaused: isPaused,
                 isRereading: isRereading,
                 isEbook: isEbook,
+
                 onPausedChanged: (value) {
                   setState(() {
                     isPaused = value;
@@ -123,7 +120,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               Row(
                 children: [
                   AppStarsWidget(
-                    numberOfStars: numberOfStars!,
+                    numberOfStars: numberOfStars, //2- Passed as a parameter
                     onRatingUpdate: (value) {
                       setState(() {
                         numberOfStars = value;
@@ -132,7 +129,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   ),
                   SizedBox(width: 10),
                   AppCheckbox(
-                    isInWishlist: isInWishlist,
+                    isInWishlist: isInWishlist, //2- Passed as a parameter
                     onChanged: (value) {
                       setState(() {
                         isInWishlist = value;
@@ -142,9 +139,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                   ),
                   SizedBox(width: 10),
                   AppColorButton(
-                    selectedColor: (selectedColor != null)
-                        ? selectedColor!
-                        : AppColors.brown08,
+                    selectedColor: selectedColor, //2- Passed as a parameter
                     colorController: colorController,
                     onColorChanged: (value) {
                       setState(() {
@@ -158,7 +153,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               SizedBox(height: 10),
 
               IconsWidget(
-                selectedIcon: selectedIcon,
+                selectedIcon: selectedIcon, //2- Passed as a parameter
                 onIconSelected: (value) {
                   setState(() {
                     selectedIcon = value;
@@ -169,11 +164,24 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               SizedBox(height: 10),
 
               PagesNumberWidget(
-                currentPageController: currentPageController,
-                pagesController: pagesController,
+                //2- Passed as a parameter
+                currentPage: currentPage,
+                pages: pages,
+
+                onCurrentPageChanged: (value) {
+                  setState(() {
+                    currentPage = value;
+                  });
+                },
+                onPagesChanged: (value) {
+                  setState(() {
+                    pages = value;
+                  });
+                },
               ),
 
               FieldsWidget(
+                //2- Passed as a parameter
                 authorController: authorController,
                 genderController: genderController,
                 reviewController: reviewController,
@@ -184,21 +192,23 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
       ),
 
       floatingActionButton: RegisterBookButton(
+        //5- Receipt updated parameter
         titleController: titleController,
-        currentPageController: currentPageController,
-        pagesController: pagesController,
-        authorController: authorController,
-        genderController: genderController,
-        reviewController: reviewController,
-        registerBookRepository: widget.registerBookRepository,
-        pageController: widget.pageController,
-        numberOfStars: 3,
-        selectedColor: selectedColor!,
         isPaused: isPaused,
         isRereading: isRereading,
         isEbook: isEbook,
+        numberOfStars: numberOfStars,
         isInWishlist: isInWishlist,
+        selectedColor: selectedColor,
         selectedIcon: selectedIcon,
+        currentPage: currentPage,
+        pages: pages,
+        authorController: authorController,
+        genderController: genderController,
+        reviewController: reviewController,
+
+        registerBookRepository: widget.registerBookRepository,
+        pageController: widget.pageController,
         isLoading: isLoading,
         onPressed: () {
           setState(() {

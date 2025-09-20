@@ -2,12 +2,21 @@ import 'package:book_app/common/constants/app_card.dart';
 import 'package:flutter/cupertino.dart';
 
 class PagesNumberWidget extends StatefulWidget {
-  final TextEditingController currentPageController;
-  final TextEditingController pagesController;
+  //4- Receive
+  final int currentPage;
+  final int pages;
+
+  final ValueChanged<int> onCurrentPageChanged;
+  final ValueChanged<int> onPagesChanged;
+
   const PagesNumberWidget({
     super.key,
-    required this.currentPageController,
-    required this.pagesController,
+    //3- Requires receipt
+    required this.currentPage,
+    required this.pages,
+
+    required this.onCurrentPageChanged,
+    required this.onPagesChanged,
   });
 
   @override
@@ -17,13 +26,10 @@ class PagesNumberWidget extends StatefulWidget {
 class _PagesNumberWidgetState extends State<PagesNumberWidget> {
   @override
   Widget build(BuildContext context) {
-    final remainPages =
-        int.parse(
-          widget.pagesController.text,
-        ) -
-        int.parse(
-          widget.currentPageController.text,
-        );
+    final currentPage = widget.currentPage;
+
+    final pages = widget.pages;
+    final remainPages = pages - currentPage;
     return AppCard(
       child: Column(
         children: [
@@ -34,12 +40,12 @@ class _PagesNumberWidgetState extends State<PagesNumberWidget> {
                 height: 100,
                 width: 50,
                 child: CupertinoPicker(
+                  scrollController: FixedExtentScrollController(
+                    initialItem: currentPage - 1,
+                  ),
                   itemExtent: 30,
                   onSelectedItemChanged: (index) {
-                    final currentPage = (index + 1).toString();
-                    setState(() {
-                      widget.currentPageController.text = currentPage;
-                    });
+                    widget.onCurrentPageChanged(index + 1);
                   },
                   children: List<Widget>.generate(
                     2000,
@@ -61,12 +67,12 @@ class _PagesNumberWidgetState extends State<PagesNumberWidget> {
                 height: 100,
                 width: 50,
                 child: CupertinoPicker(
+                  scrollController: FixedExtentScrollController(
+                    initialItem: pages - 1,
+                  ),
                   itemExtent: 30,
                   onSelectedItemChanged: (index) {
-                    final pages = (index + 1).toString();
-                    setState(() {
-                      widget.pagesController.text = pages;
-                    });
+                    widget.onPagesChanged(index + 1);
                   },
                   children: List<Widget>.generate(
                     2000,
@@ -81,7 +87,7 @@ class _PagesNumberWidgetState extends State<PagesNumberWidget> {
             ],
           ),
           Text(
-            '${widget.currentPageController.text} página(s) lida(s) de ${widget.pagesController.text} página(s) no total.',
+            '$currentPage página(s) lida(s) de $pages página(s) no total.',
             textAlign: TextAlign.center,
           ),
           Text(

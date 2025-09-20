@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTextFormField extends StatelessWidget {
   final String? hintText;
-  final TextEditingController? controller;
+  final TextEditingController controller; //4- Receipt
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final bool obscureText;
@@ -12,7 +12,7 @@ class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
     super.key,
     this.hintText,
-    this.controller,
+    required this.controller, //3- Requires receipt
     this.keyboardType,
     this.suffixIcon,
     this.obscureText = false,

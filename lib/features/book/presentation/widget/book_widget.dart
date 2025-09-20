@@ -122,7 +122,7 @@ class _BookWidgetState extends State<BookWidget> {
                                     pages: widget.book['pages'],
                                     currentPage: widget.book['currentPage'],
                                     gender: widget.book['gender'],
-                                    format: widget.book['format'],
+                                    isEbook: widget.book['isEbook'],
                                     review: widget.book['review'],
                                     bookColor: widget.bookColor,
                                     numberOfStars: widget.book['numberOfStars'],

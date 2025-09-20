@@ -10,7 +10,7 @@ class DetailsPage extends StatelessWidget {
   final int pages;
   final int currentPage;
   final String gender;
-  final String format;
+  final bool isEbook;
   final String review;
   final Color bookColor;
   final int numberOfStars;
@@ -22,7 +22,7 @@ class DetailsPage extends StatelessWidget {
     required this.pages,
     required this.currentPage,
     required this.gender,
-    required this.format,
+    required this.isEbook,
     required this.review,
     required this.bookColor,
     required this.numberOfStars,
@@ -34,6 +34,7 @@ class DetailsPage extends StatelessWidget {
       context,
       listen: false,
     );
+    final remainPages = pages - currentPage;
     return Scaffold(
       backgroundColor: Colors.black54,
       body: SizedBox(
@@ -121,7 +122,7 @@ class DetailsPage extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
-                                      'O ${(format == 'ebook') ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm $pages páginas e dessas, você leu $currentPage. Faltam',
+                                      'O ${isEbook ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm ${pages.toString()} páginas e dessas, você leu ${currentPage.toString()} Faltam ${remainPages.toString()} páginas para terminar',
                                       style: TextStyle(
                                         color: AppColors.brown14,
                                       ),

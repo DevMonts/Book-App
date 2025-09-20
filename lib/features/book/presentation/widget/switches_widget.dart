@@ -3,17 +3,22 @@ import 'package:book_app/common/constants/app_switch.dart';
 import 'package:flutter/material.dart';
 
 class SwitchesWidget extends StatefulWidget {
+  //4- Receipt
   final bool isPaused;
   final bool isRereading;
   final bool isEbook;
+
   final ValueChanged<bool> onPausedChanged;
   final ValueChanged<bool> onRereadingChanged;
   final ValueChanged<bool> onEbookChanged;
   const SwitchesWidget({
     super.key,
+
+    //3- Requires receipt
     required this.isPaused,
     required this.isRereading,
     required this.isEbook,
+
     required this.onPausedChanged,
     required this.onRereadingChanged,
     required this.onEbookChanged,

@@ -1,4 +1,3 @@
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -11,13 +10,15 @@ class RegisterBookRepository {
   });
   Future<void> sendBookToFirestore({
     //TODO: model
+
+    //9- Requires receipt
     required title,
-    required numberOfStars,
-    required color,
-    required format,
     required isPaused,
     required isRereading,
+    required isEbook,
+    required numberOfStars,
     required isInWishlist,
+    required color,
     required icon,
     required currentPage,
     required pages,
@@ -39,18 +40,24 @@ class RegisterBookRepository {
         )
         .add(
           {
+            //10- Send to Firestore
             'title': title,
+            'isPaused': isPaused,
+            'isRereading': isRereading,
+            'isEbook': isEbook,
             'numberOfStars': numberOfStars,
+            'isInWishlist': isInWishlist,
             'color':
-                '#${(color ?? AppColors.brown08).value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
-            'format': format,
+                '#${color.value.toRadixString(
+                  16,
+                ).padLeft(
+                  8,
+                  '0',
+                ).toUpperCase()}',
             'icon': icon,
             'currentPage': currentPage,
             'pages': pages,
             'isFinished': isFinished,
-            'isPaused': isPaused,
-            'isRereading': isRereading,
-            'isInWishlist': isInWishlist,
             'author': author,
             'gender': gender,
             'review': review,

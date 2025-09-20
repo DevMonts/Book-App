@@ -2,7 +2,7 @@ import 'package:book_app/common/constants/app_card.dart';
 import 'package:flutter/material.dart';
 
 class AppCheckbox extends StatefulWidget {
-  final bool isInWishlist;
+  final bool isInWishlist; //4- Receipt
   final ValueChanged<bool> onChanged;
   final String text;
   const AppCheckbox({

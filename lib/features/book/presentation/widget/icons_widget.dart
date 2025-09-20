@@ -2,14 +2,14 @@ import 'package:book_app/common/constants/app_card.dart';
 import 'package:flutter/material.dart';
 
 class IconsWidget extends StatefulWidget {
-  final String? selectedIcon;
+  final String? selectedIcon; //4- Receive
   final Function(
     String?,
   )
   onIconSelected;
   const IconsWidget({
     super.key,
-    required this.selectedIcon,
+    required this.selectedIcon, //3- Requires receipt
     required this.onIconSelected,
   });
 
