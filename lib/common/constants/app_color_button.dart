@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:book_app/common/constants/app_card.dart';
 import 'package:book_app/common/constants/app_color_widget.dart';
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppColorButton extends StatefulWidget {
@@ -63,10 +64,48 @@ class _AppColorButtonState extends State<AppColorButton> {
             );
           }
         },
-        icon: Icon(
-          Icons.palette,
-          color: widget.selectedColor,
-        ),
+        icon: selectedColor == Colors.transparent
+            ?
+              //TODO: change to animation
+              ShaderMask(
+                shaderCallback:
+                    (
+                      Rect bounds,
+                    ) {
+                      return LinearGradient(
+                        colors: [
+                          Colors.red,
+                          Colors.orange,
+                          Colors.yellow,
+                          Colors.green,
+                          Colors.blue,
+                          Colors.indigo,
+                          Colors.purple,
+                        ],
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        stops: [
+                          0.1,
+                          0.3,
+                          0.4,
+                          0.6,
+                          0.8,
+                          0.9,
+                          1.0,
+                        ],
+                      ).createShader(
+                        bounds,
+                      );
+                    },
+                child: Icon(
+                  Icons.palette,
+                  color: Colors.white,
+                ),
+              )
+            : Icon(
+                Icons.palette,
+                color: widget.selectedColor,
+              ),
       ),
     );
   }
