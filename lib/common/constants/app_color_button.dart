@@ -55,8 +55,7 @@ class _AppColorButtonState extends State<AppColorButton> {
       (
         timer,
       ) {
-        setState //TODO: fix dispose
-        (
+        setState(
           () {
             colorIndex = (colorIndex + 1) % rainbow.length;
             animatedColor = rainbow[colorIndex];
@@ -90,6 +89,7 @@ class _AppColorButtonState extends State<AppColorButton> {
             setState(
               () {
                 this.selectedColor = selectedColor;
+                timer?.cancel();
               },
             );
             widget.onColorChanged(
@@ -116,5 +116,11 @@ class _AppColorButtonState extends State<AppColorButton> {
               ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 }
