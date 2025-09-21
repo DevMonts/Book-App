@@ -96,7 +96,9 @@ class RegisterBookButton extends StatelessWidget {
             ),
             curve: Curves.linear,
           );
-          //TODO: close keyboard
+          FocusScope.of(
+            context,
+          ).unfocus();
         },
         child: isLoading
             ? SizedBox(

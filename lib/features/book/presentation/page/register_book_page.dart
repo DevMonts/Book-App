@@ -59,6 +59,9 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         title: Center(
           child: IconButton(
             onPressed: () {
+              FocusScope.of(
+                context,
+              ).unfocus();
               widget.pageController.animateToPage(
                 1,
                 duration: Duration(

@@ -55,7 +55,8 @@ class _AppColorButtonState extends State<AppColorButton> {
       (
         timer,
       ) {
-        setState(
+        setState //TODO: fix dispose
+        (
           () {
             colorIndex = (colorIndex + 1) % rainbow.length;
             animatedColor = rainbow[colorIndex];
