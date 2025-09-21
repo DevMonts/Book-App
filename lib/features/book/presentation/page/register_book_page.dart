@@ -32,7 +32,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   bool isLoading = false;
   int numberOfStars = 3;
   bool isInWishlist = false;
-  Color selectedColor = Colors.transparent;
+  Color selectedColor = AppColors.brown08;
   TextEditingController colorController = TextEditingController();
   String? selectedIcon;
   int currentPage = 1;

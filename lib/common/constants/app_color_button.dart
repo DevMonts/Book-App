@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:book_app/common/constants/app_card.dart';
@@ -26,11 +27,42 @@ class AppColorButton extends StatefulWidget {
 
 class _AppColorButtonState extends State<AppColorButton> {
   late Color selectedColor = widget.selectedColor;
+  final List rainbow = [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.indigo,
+    Colors.purple,
+  ];
+  Color animatedColor = Colors.red;
+  int colorIndex = 0;
+  Timer? timer;
 
   @override
   void initState() {
     super.initState();
     selectedColor = widget.selectedColor;
+    if (selectedColor == AppColors.brown08) colorAnimation();
+  }
+
+  void colorAnimation() {
+    timer = Timer.periodic(
+      Duration(
+        seconds: 1,
+      ),
+      (
+        timer,
+      ) {
+        setState(
+          () {
+            colorIndex = (colorIndex + 1) % rainbow.length;
+            animatedColor = rainbow[colorIndex];
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -64,42 +96,17 @@ class _AppColorButtonState extends State<AppColorButton> {
             );
           }
         },
-        icon: selectedColor == Colors.transparent
-            ?
-              //TODO: change to animation
-              ShaderMask(
-                shaderCallback:
-                    (
-                      Rect bounds,
-                    ) {
-                      return LinearGradient(
-                        colors: [
-                          Colors.red,
-                          Colors.orange,
-                          Colors.yellow,
-                          Colors.green,
-                          Colors.blue,
-                          Colors.indigo,
-                          Colors.purple,
-                        ],
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        stops: [
-                          0.1,
-                          0.3,
-                          0.4,
-                          0.6,
-                          0.8,
-                          0.9,
-                          1.0,
-                        ],
-                      ).createShader(
-                        bounds,
-                      );
-                    },
+        icon: selectedColor == AppColors.brown08
+            ? AnimatedSwitcher(
+                duration: Duration(
+                  seconds: 1,
+                ),
                 child: Icon(
                   Icons.palette,
-                  color: Colors.white,
+                  key: ValueKey(
+                    animatedColor,
+                  ),
+                  color: animatedColor,
                 ),
               )
             : Icon(
