@@ -1,9 +1,8 @@
+import 'package:book_app/features/book/data/model/book_model.dart';
 import 'package:book_app/features/book/repository/register_book_repository.dart';
 import 'package:flutter/material.dart';
 
 class RegisterBookButton extends StatelessWidget {
-  //TODO: model
-
   //7- Receipt to manipulate
   final TextEditingController titleController;
   final bool isPaused;
@@ -71,7 +70,7 @@ class RegisterBookButton extends StatelessWidget {
             return;
           }
           startLoading();
-          await registerBookRepository.sendBookToFirestore(
+          final bookModel = BookModel(
             //8- Passed as a parameter
             title: titleController.text,
             isPaused: isPaused,
@@ -80,12 +79,16 @@ class RegisterBookButton extends StatelessWidget {
             numberOfStars: numberOfStars,
             isInWishlist: isInWishlist,
             color: selectedColor,
-            icon: (selectedIcon != null) ? selectedIcon : '',
+            icon: selectedIcon,
             currentPage: currentPage,
             pages: pages,
             author: authorController.text,
             gender: genderController.text,
             review: reviewController.text,
+            createdAt: DateTime.now(),
+          );
+          await registerBookRepository.sendBookToFirestore(
+            bookModel,
             //TODO: Use use books registered by other users
           );
           stopLoading();
