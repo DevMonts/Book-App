@@ -42,6 +42,7 @@ class DetailsPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //TODO: book cover
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

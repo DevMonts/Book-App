@@ -1,6 +1,7 @@
 import 'package:book_app/app.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
+import 'package:book_app/features/book/logic/providers/upload_image_provider.dart';
 import 'package:book_app/features/bookcase/logic/provider/navigation_provider.dart';
 import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
 import 'package:book_app/features/bookcase/logic/provider/show_books_provider.dart';
@@ -37,6 +38,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => NavigationProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UploadImageProvider(),
         ),
       ],
       child: const App(),

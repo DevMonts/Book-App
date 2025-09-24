@@ -32,7 +32,9 @@ class _BookcasePageState extends State<BookcasePage> {
       body: Row(
         children: [
           NavigationRail(
+            //TODO: avatar
             //TODO: style destinations
+            //TODO: order by color
             leading: IconButton(
               onPressed: () {
                 Navigator.of(

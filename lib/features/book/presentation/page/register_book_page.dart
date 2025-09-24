@@ -1,5 +1,6 @@
 import 'package:book_app/common/constants/app_color_button.dart';
 import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/common/constants/app_image_widget.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_checkbox.dart';
 import 'package:book_app/common/constants/app_stars_widget.dart';
@@ -10,6 +11,7 @@ import 'package:book_app/features/book/presentation/widget/register_book_button.
 import 'package:book_app/features/book/presentation/widget/switches_widget.dart';
 import 'package:book_app/features/book/repository/register_book_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterBookPage extends StatefulWidget {
   final PageController pageController;
@@ -31,6 +33,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   bool isEbook = false;
   bool isLoading = false;
   int numberOfStars = 3;
+  XFile? bookCover;
   bool isInWishlist = false;
   Color selectedColor = AppColors.brown08;
   TextEditingController colorController = TextEditingController();
@@ -120,37 +123,78 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
 
               SizedBox(height: 10),
 
-              Row(
-                children: [
-                  AppStarsWidget(
-                    numberOfStars: numberOfStars, //2- Passed as a parameter
-                    onRatingUpdate: (value) {
-                      setState(() {
-                        numberOfStars = value;
-                      });
-                    },
-                  ),
-                  SizedBox(width: 10),
-                  AppCheckbox(
-                    isInWishlist: isInWishlist, //2- Passed as a parameter
-                    onChanged: (value) {
-                      setState(() {
-                        isInWishlist = value;
-                      });
-                    },
-                    text: 'WishList',
-                  ),
-                  SizedBox(width: 10),
-                  AppColorButton(
-                    selectedColor: selectedColor, //2- Passed as a parameter
-                    colorController: colorController,
-                    onColorChanged: (value) {
-                      setState(() {
-                        selectedColor = value;
-                      });
-                    },
-                  ),
-                ],
+              SizedBox(
+                height: 184,
+                child: Row(
+                  children: [
+                    AppImageWidget(
+                      img: bookCover, //2- Passed as a parameter
+                      onImageSelected: () async {
+                        ImagePicker imagePicker = ImagePicker();
+                        XFile? image = await imagePicker.pickImage(
+                          source: ImageSource.gallery,
+                        );
+                        if (image != null) {
+                          setState(() {
+                            bookCover = image;
+                          });
+                        }
+                      },
+                      onImageDeleted: () {
+                        setState(() {
+                          bookCover = null;
+                        });
+                      },
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          AppStarsWidget(
+                            numberOfStars:
+                                numberOfStars, //2- Passed as a parameter
+                            onRatingUpdate: (value) {
+                              setState(() {
+                                numberOfStars = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 10),
+                          SizedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: AppCheckbox(
+                                    isInWishlist:
+                                        isInWishlist, //2- Passed as a parameter
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isInWishlist = value;
+                                      });
+                                    },
+                                    text: 'WishList',
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                AppColorButton(
+                                  selectedColor:
+                                      selectedColor, //2- Passed as a parameter
+                                  colorController: colorController,
+                                  onColorChanged: (value) {
+                                    setState(() {
+                                      selectedColor = value;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
 
               SizedBox(height: 10),
@@ -200,6 +244,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         isPaused: isPaused,
         isRereading: isRereading,
         isEbook: isEbook,
+        bookCover: bookCover,
         numberOfStars: numberOfStars,
         isInWishlist: isInWishlist,
         selectedColor: selectedColor,

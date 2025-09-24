@@ -25,7 +25,6 @@ class RegisterBookRepository {
         )
         .add(
           bookModel.toMap(), //10- Send to Firestore
-          //TODO: book cover
         );
   }
 }

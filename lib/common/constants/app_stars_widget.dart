@@ -24,8 +24,10 @@ class _AppStarsWidgetState extends State<AppStarsWidget> {
         child: AppCard(
           child: Center(
             child: RatingBar.builder(
+              itemPadding: const EdgeInsets.symmetric(
+                horizontal: 5,
+              ),
               itemSize: 24,
-              updateOnDrag: true,
               initialRating: 3,
               minRating: 1,
               itemCount: 5,

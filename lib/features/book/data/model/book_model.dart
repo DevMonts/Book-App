@@ -5,6 +5,7 @@ class BookModel {
   final bool isPaused;
   final bool isRereading;
   final bool isEbook;
+  final String? bookCoverUrl;
   final int numberOfStars;
   final bool isInWishlist;
   final Color? color;
@@ -20,7 +21,8 @@ class BookModel {
     this.isPaused = false,
     this.isRereading = false,
     this.isEbook = false,
-    this.numberOfStars = 0,
+    this.bookCoverUrl,
+    this.numberOfStars = 3,
     this.isInWishlist = false,
     this.color,
     this.icon,
@@ -38,6 +40,7 @@ class BookModel {
       'isPaused': isPaused,
       'isRereading': isRereading,
       'isEbook': isEbook,
+      'bookCoverUrl': bookCoverUrl ?? '',
       'numberOfStars': numberOfStars,
       'isInWishlist': isInWishlist,
       'color':

@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:book_app/features/book/data/model/book_model.dart';
+import 'package:book_app/features/book/logic/providers/upload_image_provider.dart';
 import 'package:book_app/features/book/repository/register_book_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterBookButton extends StatelessWidget {
   //7- Receipt to manipulate
@@ -9,6 +13,7 @@ class RegisterBookButton extends StatelessWidget {
   final bool isRereading;
   final bool isEbook;
   final int numberOfStars;
+  final XFile? bookCover;
   final bool isInWishlist;
   final Color selectedColor;
   final String? selectedIcon;
@@ -33,6 +38,7 @@ class RegisterBookButton extends StatelessWidget {
     required this.isRereading,
     required this.isEbook,
     required this.numberOfStars,
+    required this.bookCover,
     required this.isInWishlist,
     required this.selectedColor,
     required this.selectedIcon,
@@ -70,12 +76,22 @@ class RegisterBookButton extends StatelessWidget {
             return;
           }
           startLoading();
+          String? imageUrl;
+          if (bookCover != null) {
+            final uploadImageProvider = UploadImageProvider();
+            imageUrl = await uploadImageProvider.uploadImage(
+              File(
+                bookCover!.path,
+              ),
+            );
+          }
           final bookModel = BookModel(
             //8- Passed as a parameter
             title: titleController.text,
             isPaused: isPaused,
             isRereading: isRereading,
             isEbook: isEbook,
+            bookCoverUrl: imageUrl,
             numberOfStars: numberOfStars,
             isInWishlist: isInWishlist,
             color: selectedColor,

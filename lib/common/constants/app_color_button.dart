@@ -7,7 +7,7 @@ import 'package:book_app/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppColorButton extends StatefulWidget {
-  final Color selectedColor; //4- Receive
+  final Color selectedColor; //4- Receive //TODO: selectedColor = bookCoverColor
   final TextEditingController colorController;
   final Function(
     Color,
