@@ -49,7 +49,7 @@ class BookOpenWidget extends StatelessWidget {
               ),
               child: Text(
                 //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
-                'O ${isEbook ? 'ebook' : 'livro'} ${title}, ${author.isEmpty ? '' : 'de ${author}, '}${gender.isEmpty ? '' : 'é do gênero ${gender}'}. Contêm ${pages.toString()} páginas e dessas, você leu ${currentPage.toString()} Faltam ${(pages - currentPage).toString()} páginas para terminar',
+                'O ${isEbook ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm ${pages.toString()} páginas e dessas, você leu ${currentPage.toString()} Faltam ${(pages - currentPage).toString()} páginas para terminar',
                 style: TextStyle(
                   color: AppColors.brown14,
                 ),
