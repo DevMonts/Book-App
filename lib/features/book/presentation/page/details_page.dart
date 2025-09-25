@@ -1,9 +1,11 @@
+import 'package:book_app/features/book/presentation/widget/book_close_widget.dart';
+import 'package:book_app/features/book/presentation/widget/book_open_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
   final String bookId;
   final String title;
   final String author;
@@ -14,6 +16,7 @@ class DetailsPage extends StatelessWidget {
   final String review;
   final Color bookColor;
   final int numberOfStars;
+  final String? bookCoverUrl;
   const DetailsPage({
     super.key,
     required this.bookId,
@@ -26,15 +29,21 @@ class DetailsPage extends StatelessWidget {
     required this.review,
     required this.bookColor,
     required this.numberOfStars,
+    required this.bookCoverUrl,
   });
 
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  bool isOpen = false;
   @override
   Widget build(BuildContext context) {
     Provider.of<DeleteBookProvider>(
       context,
       listen: false,
     );
-    final remainPages = pages - currentPage;
     return Scaffold(
       backgroundColor: Colors.black54,
       body: SizedBox(
@@ -42,9 +51,8 @@ class DetailsPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //TODO: book cover
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
                   onPressed: () {
@@ -60,7 +68,7 @@ class DetailsPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
-                    numberOfStars,
+                    widget.numberOfStars,
                     (
                       index,
                     ) => const Icon(
@@ -76,8 +84,8 @@ class DetailsPage extends StatelessWidget {
                       listen: false,
                     ).deleteBookFromFirestore(
                       context: context,
-                      bookId: bookId,
-                      bookColor: bookColor,
+                      bookId: widget.bookId,
+                      bookColor: widget.bookColor,
                     );
                     Navigator.of(
                       context,
@@ -90,66 +98,32 @@ class DetailsPage extends StatelessWidget {
                 ),
               ],
             ),
-            Consumer<DeleteBookProvider>(
-              builder:
-                  (
-                    context,
-                    deleteBookProvider,
-                    child,
-                  ) {
-                    return Hero(
-                      //TODO: fix text formatting on animate
-                      tag: bookId,
-                      child: Container(
-                        width: 300,
-                        height: 200,
-                        color: bookColor,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 10,
-                            right: 10,
-                            top: 10,
-                            bottom: 5,
-                          ),
-                          child: Container(
-                            color: AppColors.brown02,
-                            height: 200,
-                            child: Padding(
-                              padding: const EdgeInsets.all(
-                                10,
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      //O livro/ebook tal, de Fulano é do gênero tal. Contêm x páginas e dessas, você leu y.
-                                      'O ${isEbook ? 'ebook' : 'livro'} $title, ${author.isEmpty ? '' : 'de $author, '}${gender.isEmpty ? '' : 'é do gênero $gender'}. Contêm ${pages.toString()} páginas e dessas, você leu ${currentPage.toString()} Faltam ${remainPages.toString()} páginas para terminar',
-                                      style: TextStyle(
-                                        color: AppColors.brown14,
-                                      ),
-                                    ),
-                                  ),
-                                  VerticalDivider(
-                                    color: AppColors.brown04,
-                                  ),
-                                  Expanded(
-                                    child: SingleChildScrollView(
-                                      child: Text(
-                                        review,
-                                        style: TextStyle(
-                                          color: AppColors.brown14,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+            Hero(
+              tag: widget.bookId,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isOpen = !isOpen;
+                  });
+                },
+                child: isOpen == true
+                    ? BookOpenWidget(
+                        bookColor: widget.bookColor,
+                        title: widget.title,
+                        author: widget.author,
+                        pages: widget.pages,
+                        currentPage: widget.currentPage,
+                        gender: widget.gender,
+                        isEbook: widget.isEbook,
+                        review: widget.review,
+                        bookCoverUrl: widget.bookCoverUrl,
+                    )
+                    : BookCloseWidget(
+                        bookColor: widget.bookColor,
+                        title: widget.title,
+                        bookCoverUrl: widget.bookCoverUrl,
                       ),
-                    );
-                  },
+              ),
             ),
           ],
         ),

@@ -23,7 +23,7 @@ class _AppImageWidgetState extends State<AppImageWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: double.infinity,
-      width: 128,
+      width: 150,
       child: (widget.img == null)
           ? ElevatedButton(
               style: ElevatedButton.styleFrom(

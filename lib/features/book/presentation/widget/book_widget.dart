@@ -19,9 +19,13 @@ class BookWidget extends StatefulWidget {
 }
 
 class _BookWidgetState extends State<BookWidget> {
+  bool isLoading = false;
+  bool isClickable = true;
   @override
   Widget build(BuildContext context) {
-    return Hero(
+    return
+    //TODO: redesign
+    Hero(
       tag: widget.book.id,
       child: RotatedBox(
         quarterTurns: 1,
@@ -47,7 +51,7 @@ class _BookWidgetState extends State<BookWidget> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.brown02,
+                  color: Colors.grey.shade100,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(
                       10,
@@ -70,14 +74,85 @@ class _BookWidgetState extends State<BookWidget> {
               ),
               Expanded(
                 child: TextButton(
+                  onPressed: isClickable
+                      ? () async {
+                          setState(
+                            () {
+                              isLoading = true;
+                              isClickable = false;
+                            },
+                          );
+                          final String? bookCover = widget.book['bookCoverUrl'];
+                          if (bookCover != null) {
+                            await precacheImage(
+                              NetworkImage(
+                                bookCover,
+                              ),
+                              context,
+                            );
+                          }
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              opaque: false,
+                              pageBuilder:
+                                  (
+                                    _,
+                                    animation,
+                                    __,
+                                  ) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                          sigmaX: 5,
+                                          sigmaY: 5,
+                                        ),
+                                        child: DetailsPage(
+                                          bookId: widget.book.id,
+                                          title: widget.book['title'],
+                                          author: widget.book['author'],
+                                          pages: widget.book['pages'],
+                                          currentPage:
+                                              widget.book['currentPage'],
+                                          gender: widget.book['gender'],
+                                          isEbook: widget.book['isEbook'],
+                                          review: widget.book['review'],
+                                          bookColor: widget.bookColor,
+                                          numberOfStars:
+                                              widget.book['numberOfStars'],
+                                          bookCoverUrl:
+                                              widget.book['bookCoverUrl'],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                            ),
+                          );
+                          setState(
+                            () {
+                              isLoading = false;
+                              isClickable = true;
+                            },
+                          );
+                        }
+                      : null,
                   child: Row(
                     children: [
-                      RotatedBox(
-                        quarterTurns: 3,
-                        child: BookIconWidget(
-                          book: widget.book,
-                        ),
-                      ),
+                      isLoading
+                          ? const Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : RotatedBox(
+                              quarterTurns: 3,
+                              child: BookIconWidget(
+                                book: widget.book,
+                              ),
+                            ),
                       VerticalDivider(
                         color: AppColors.brown14,
                       ),
@@ -97,42 +172,6 @@ class _BookWidgetState extends State<BookWidget> {
                       ),
                     ],
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        opaque: false,
-                        pageBuilder:
-                            (
-                              _,
-                              animation,
-                              __,
-                            ) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                    sigmaX: 5,
-                                    sigmaY: 5,
-                                  ),
-                                  child: DetailsPage(
-                                    bookId: widget.book.id,
-                                    title: widget.book['title'],
-                                    author: widget.book['author'],
-                                    pages: widget.book['pages'],
-                                    currentPage: widget.book['currentPage'],
-                                    gender: widget.book['gender'],
-                                    isEbook: widget.book['isEbook'],
-                                    review: widget.book['review'],
-                                    bookColor: widget.bookColor,
-                                    numberOfStars: widget.book['numberOfStars'],
-                                  ),
-                                ),
-                              );
-                            },
-                      ),
-                    );
-                  },
                 ),
               ),
             ],

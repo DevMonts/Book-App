@@ -40,7 +40,7 @@ class BookModel {
       'isPaused': isPaused,
       'isRereading': isRereading,
       'isEbook': isEbook,
-      'bookCoverUrl': bookCoverUrl ?? '',
+      'bookCoverUrl': bookCoverUrl,
       'numberOfStars': numberOfStars,
       'isInWishlist': isInWishlist,
       'color':

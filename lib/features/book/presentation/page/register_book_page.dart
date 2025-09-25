@@ -124,7 +124,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
               SizedBox(height: 10),
 
               SizedBox(
-                height: 184,
+                height: 200,
                 child: Row(
                   children: [
                     AppImageWidget(
