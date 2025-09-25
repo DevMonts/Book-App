@@ -30,7 +30,6 @@ class _PagesNumberWidgetState extends State<PagesNumberWidget> {
 
     final pages = widget.pages;
     final remainPages = pages - currentPage;
-    //TODO: percentage
     return AppCard(
       child: Column(
         children: [
