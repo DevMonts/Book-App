@@ -4,6 +4,7 @@ import 'package:book_app/common/constants/app_image_widget.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_checkbox.dart';
 import 'package:book_app/common/constants/app_stars_widget.dart';
+import 'package:book_app/features/book/logic/providers/catch_book_color_provider.dart';
 import 'package:book_app/features/book/presentation/widget/fields_widget.dart';
 import 'package:book_app/features/book/presentation/widget/icons_widget.dart';
 import 'package:book_app/features/book/presentation/widget/pages_number_widget.dart';
@@ -12,6 +13,8 @@ import 'package:book_app/features/book/presentation/widget/switches_widget.dart'
 import 'package:book_app/features/book/repository/register_book_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
+import 'package:provider/provider.dart';
 
 class RegisterBookPage extends StatefulWidget {
   final PageController pageController;
@@ -135,9 +138,38 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                           source: ImageSource.gallery,
                         );
                         if (image != null) {
-                          setState(() {
-                            bookCover = image;
-                          });
+                          final imageBytes = await image.readAsBytes();
+                          final decodeImage = img.decodeImage(
+                            imageBytes,
+                          );
+                          if (decodeImage != null) {
+                            final bookPixelColor = decodeImage.getPixel(
+                              0,
+                              decodeImage.height - 1,
+                            );
+                            final r = bookPixelColor.r;
+                            final g = bookPixelColor.g;
+                            final b = bookPixelColor.b;
+
+                            final bookColor = Color.fromRGBO(
+                              r.toInt(),
+                              g.toInt(),
+                              b.toInt(),
+                              1,
+                            );
+                            Provider.of<CatchBookColorProvider>(
+                              context,
+                              listen: false,
+                            ).catchColor(
+                              bookColor,
+                            );
+                            setState(
+                              () {
+                                bookCover = image;
+                                selectedColor = bookColor;
+                              },
+                            );
+                          }
                         }
                       },
                       onImageDeleted: () {

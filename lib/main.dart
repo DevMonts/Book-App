@@ -1,6 +1,7 @@
 import 'package:book_app/app.dart';
 import 'package:book_app/features/auth/logic/providers/auth_provider.dart';
 import 'package:book_app/features/auth/logic/providers/password_view_provider.dart';
+import 'package:book_app/features/book/logic/providers/catch_book_color_provider.dart';
 import 'package:book_app/features/book/logic/providers/upload_image_provider.dart';
 import 'package:book_app/features/bookcase/logic/provider/navigation_provider.dart';
 import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
@@ -41,6 +42,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => UploadImageProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CatchBookColorProvider(),
         ),
       ],
       child: const App(),

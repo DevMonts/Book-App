@@ -7,19 +7,19 @@ import 'package:book_app/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppColorButton extends StatefulWidget {
-  final Color selectedColor; //4- Receive //TODO: selectedColor = bookCoverColor
-  final TextEditingController colorController;
-  final Function(
-    Color,
-  )
-  onColorChanged;
-
   const AppColorButton({
     super.key,
     required this.selectedColor, //3- Requires receipt
     required this.colorController,
     required this.onColorChanged,
   });
+
+  final Color selectedColor; //4- Receive
+  final TextEditingController colorController;
+  final Function(
+    Color,
+  )
+  onColorChanged;
 
   @override
   State<AppColorButton> createState() => _AppColorButtonState();
