@@ -11,7 +11,7 @@ import 'package:book_app/features/book/presentation/widget/icons_widget.dart';
 import 'package:book_app/features/book/presentation/widget/pages_number_widget.dart';
 import 'package:book_app/features/book/presentation/widget/register_book_button.dart';
 import 'package:book_app/features/book/presentation/widget/switches_widget.dart';
-import 'package:book_app/features/book/repository/register_book_repository.dart';
+import 'package:book_app/features/book/repositories/register_book_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;

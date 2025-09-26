@@ -1,17 +1,10 @@
 import 'dart:async';
 
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:flutter/material.dart';
 
 class ColorAnimationProvider extends ChangeNotifier {
-  List<Color> rainbow = [
-    Colors.red,
-    Colors.orange,
-    Colors.yellow,
-    Colors.green,
-    Colors.blue,
-    Colors.indigo,
-    Colors.purple,
-  ];
+  final colorRepository = ColorsRepository();
   int colorIndex = 0;
   late Timer timer;
   Color animatedColor = Colors.red;
@@ -24,8 +17,8 @@ class ColorAnimationProvider extends ChangeNotifier {
       (
         _,
       ) {
-        colorIndex = (colorIndex + 1) % rainbow.length;
-        animatedColor = rainbow[colorIndex];
+        colorIndex = (colorIndex + 1) % colorRepository.rainbow.length;
+        animatedColor = colorRepository.rainbow[colorIndex];
         notifyListeners();
       },
     );

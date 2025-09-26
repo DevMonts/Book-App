@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:book_app/features/book/data/model/book_model.dart';
 import 'package:book_app/features/book/logic/providers/upload_image_provider.dart';
-import 'package:book_app/features/book/repository/register_book_repository.dart';
+import 'package:book_app/features/book/repositories/register_book_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
