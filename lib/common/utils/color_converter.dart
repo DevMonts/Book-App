@@ -1,13 +1,8 @@
 import 'dart:ui';
 
-import 'package:book_app/common/constants/app_colors.dart';
-
 Color colorConverter(
   String hexColor,
 ) {
-  if (hexColor.isEmpty) {
-    return AppColors.brown08;
-  }
   hexColor = hexColor.replaceAll(
     '#',
     '',
