@@ -2,7 +2,8 @@ import 'package:book_app/features/book/data/model/book_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class RegisterBookRepository {
+class RegisterBookRepository //TODO: rename
+{
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore firebaseFirestore;
   RegisterBookRepository({

@@ -33,6 +33,7 @@ class _BookcasePageState extends State<BookcasePage> {
         children: [
           NavigationRail(
             //TODO: avatar
+            //TODO: avatar history
             //TODO: style destinations
             //TODO: order by color
             leading: IconButton(

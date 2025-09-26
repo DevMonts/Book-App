@@ -5,6 +5,7 @@ import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_checkbox.dart';
 import 'package:book_app/common/constants/app_stars_widget.dart';
 import 'package:book_app/features/book/logic/providers/catch_book_color_provider.dart';
+import 'package:book_app/features/book/logic/providers/color_animation_provider.dart';
 import 'package:book_app/features/book/presentation/widget/fields_widget.dart';
 import 'package:book_app/features/book/presentation/widget/icons_widget.dart';
 import 'package:book_app/features/book/presentation/widget/pages_number_widget.dart';
@@ -48,17 +49,8 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   TextEditingController reviewController = TextEditingController();
 
   @override
-  void dispose() {
-    titleController.dispose();
-    authorController.dispose();
-    genderController.dispose();
-    colorController.dispose();
-    reviewController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final animatedColor = context.watch<ColorAnimationProvider>().animatedColor;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -218,6 +210,23 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                                       selectedColor = value;
                                     });
                                   },
+                                  icon: selectedColor == AppColors.brown08
+                                      ? AnimatedSwitcher(
+                                          duration: Duration(
+                                            seconds: 1,
+                                          ),
+                                          child: Icon(
+                                            Icons.palette,
+                                            key: ValueKey(
+                                              animatedColor,
+                                            ),
+                                            color: animatedColor,
+                                          ),
+                                        )
+                                      : Icon(
+                                          Icons.palette,
+                                          color: selectedColor,
+                                        ),
                                 ),
                               ],
                             ),
@@ -307,5 +316,15 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    authorController.dispose();
+    genderController.dispose();
+    colorController.dispose();
+    reviewController.dispose();
+    super.dispose();
   }
 }
