@@ -60,15 +60,22 @@ class _BookcasePageState extends State<BookcasePage> {
               ),
               NavigationRailDestination(
                 icon: Icon(
+                  Icons.looks,
+                ),
+                label: Text(
+                  'Ordenados\npor cor',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
                   Icons.star,
                 ),
                 label: Column(
                   children: [
                     Text(
-                      '5',
-                    ),
-                    Text(
-                      'Estrelas',
+                      '5\nestrelas',
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
@@ -88,10 +95,8 @@ class _BookcasePageState extends State<BookcasePage> {
                 label: Column(
                   children: [
                     Text(
-                      'Não',
-                    ),
-                    Text(
-                      'Finalizados',
+                      'Não\nfinalizados',
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
@@ -135,10 +140,8 @@ class _BookcasePageState extends State<BookcasePage> {
                 label: Column(
                   children: [
                     Text(
-                      'Não',
-                    ),
-                    Text(
-                      'Gostei',
+                      'Não\ngostei',
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
@@ -172,14 +175,15 @@ class _BookcasePageState extends State<BookcasePage> {
                 StreamBuilder<QuerySnapshot>(
                   stream: switch (navigationProvider.currentIndex) {
                     0 => showBooksProvider.showAllBooks(),
-                    1 => showBooksProvider.showFiveStarsBooks(),
-                    2 => showBooksProvider.showReadingBooks(),
-                    3 => showBooksProvider.unfinishedBooks(),
-                    4 => showBooksProvider.finishedBooks(),
-                    5 => showBooksProvider.wishlistBooks(),
-                    6 => showBooksProvider.rereadingBooks(),
-                    7 => showBooksProvider.pausedBooks(),
-                    8 => showBooksProvider.dislikeBooks(),
+                    1 => showBooksProvider.showAllBooks(),
+                    2 => showBooksProvider.showFiveStarsBooks(),
+                    3 => showBooksProvider.showReadingBooks(),
+                    4 => showBooksProvider.unfinishedBooks(),
+                    5 => showBooksProvider.finishedBooks(),
+                    6 => showBooksProvider.wishlistBooks(),
+                    7 => showBooksProvider.rereadingBooks(),
+                    8 => showBooksProvider.pausedBooks(),
+                    9 => showBooksProvider.dislikeBooks(),
                     _ => null,
                   },
                   builder:
@@ -210,6 +214,28 @@ class _BookcasePageState extends State<BookcasePage> {
                           );
                         }
                         final books = snapshot.data!.docs;
+                        if (navigationProvider.currentIndex == 1) {
+                          books.sort(
+                            (
+                              bookA,
+                              bookB,
+                            ) {
+                              final colorA = HSVColor.fromColor(
+                                colorConverter(
+                                  bookA['color'],
+                                ),
+                              );
+                              final colorB = HSVColor.fromColor(
+                                colorConverter(
+                                  bookB['color'],
+                                ),
+                              );
+                              return colorA.hue.compareTo(
+                                colorB.hue,
+                              );
+                            },
+                          );
+                        }
                         return SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

@@ -42,6 +42,7 @@ class _MainPageState extends State<MainPage> {
         BookcasePage(
           pageController: pageController,
         ),
+        //TODO: social
       ],
     );
   }

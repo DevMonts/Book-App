@@ -105,7 +105,6 @@ class RegisterBookButton extends StatelessWidget {
           );
           await registerBookRepository.sendBookToFirestore(
             bookModel,
-            //TODO: Use use books registered by other users
           );
           stopLoading();
           pageController.animateToPage(
