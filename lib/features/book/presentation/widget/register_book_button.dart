@@ -7,45 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterBookButton extends StatelessWidget {
-  //7- Receipt to manipulate
-  final TextEditingController titleController;
-  final bool isPaused;
-  final bool isRereading;
-  final bool isEbook;
-  final int numberOfStars;
-  final XFile? bookCover;
-  final bool isInWishlist;
-  final Color selectedColor;
-  final String? selectedIcon;
-  final int currentPage;
-  final int pages;
-  final TextEditingController authorController;
-  final TextEditingController genderController;
-  final TextEditingController reviewController;
-
-  final RegisterBookRepository registerBookRepository;
-  final PageController pageController;
-  final bool isLoading;
-  final VoidCallback onPressed;
-  final VoidCallback startLoading;
-  final VoidCallback stopLoading;
   const RegisterBookButton({
     super.key,
 
-    //6- Requires receipt
+    //4- Requires receipt
     required this.titleController,
-    required this.isPaused,
-    required this.isRereading,
-    required this.isEbook,
-    required this.numberOfStars,
-    required this.bookCover,
-    required this.isInWishlist,
-    required this.selectedColor,
-    required this.selectedIcon,
-    required this.currentPage,
+    required this.category,
     required this.pages,
+    required this.numberOfStars,
+    required this.selectedColor,
     required this.authorController,
     required this.genderController,
+    required this.isEbook,
+    required this.bookCover,
+    required this.selectedIcon,
     required this.reviewController,
 
     required this.registerBookRepository,
@@ -55,6 +30,26 @@ class RegisterBookButton extends StatelessWidget {
     required this.startLoading,
     required this.stopLoading,
   });
+
+  //5- Receipt to manipulate
+  final TextEditingController titleController;
+  final String category;
+  final int pages;
+  final int numberOfStars;
+  final Color selectedColor;
+  final TextEditingController authorController;
+  final TextEditingController genderController;
+  final bool isEbook;
+  final XFile? bookCover;
+  final String? selectedIcon;
+  final TextEditingController reviewController;
+
+  final RegisterBookRepository registerBookRepository;
+  final PageController pageController;
+  final bool isLoading;
+  final VoidCallback onPressed;
+  final VoidCallback startLoading;
+  final VoidCallback stopLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -86,20 +81,17 @@ class RegisterBookButton extends StatelessWidget {
             );
           }
           final bookModel = BookModel(
-            //8- Passed as a parameter
+            //6- Passed as a parameter
             title: titleController.text,
-            isPaused: isPaused,
-            isRereading: isRereading,
-            isEbook: isEbook,
-            bookCoverUrl: imageUrl,
-            numberOfStars: numberOfStars,
-            isInWishlist: isInWishlist,
-            color: selectedColor,
-            icon: selectedIcon,
-            currentPage: currentPage,
+            category: category,
             pages: pages,
+            numberOfStars: numberOfStars,
+            color: selectedColor,
             author: authorController.text,
             gender: genderController.text,
+            isEbook: isEbook,
+            bookCoverUrl: imageUrl,
+            icon: selectedIcon,
             review: reviewController.text,
             createdAt: DateTime.now(),
           );

@@ -8,7 +8,6 @@ class DeleteBookProvider extends ChangeNotifier {
   bool isDeleteConfirmed = false;
   Future<void> deleteBookFromFirestore({
     required String bookId,
-    required Color bookColor,
     required BuildContext context,
   }) async {
     if (isDeleteConfirmed) {
@@ -36,7 +35,10 @@ class DeleteBookProvider extends ChangeNotifier {
             (
               context,
             ) {
-              return AlertDialog(
+              return
+              //TODO: move to out
+              //TODO: redesign delete widget
+              AlertDialog(
                 title: Text(
                   'Deletar livro?',
                 ),
@@ -96,7 +98,6 @@ class DeleteBookProvider extends ChangeNotifier {
         notifyListeners();
         await deleteBookFromFirestore(
           bookId: bookId,
-          bookColor: bookColor,
           context: context,
         );
       } else {

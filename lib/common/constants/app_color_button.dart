@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 class AppColorButton extends StatefulWidget {
   const AppColorButton({
     super.key,
-    required this.selectedColor, //3- Requires receipt
+    required this.selectedColor,
     required this.colorController,
     required this.onColorChanged,
     required this.icon,
   });
 
-  final Color selectedColor; //4- Receive
+  final Color selectedColor;
   final TextEditingController colorController;
   final Function(
     Color,
@@ -28,32 +28,39 @@ class AppColorButton extends StatefulWidget {
 class _AppColorButtonState extends State<AppColorButton> {
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      child: IconButton(
-        onPressed: () async {
-          final selectedColor = await showDialog<Color>(
-            context: context,
-            builder:
-                (
-                  context,
-                ) {
-                  return BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 5,
-                      sigmaY: 5,
-                    ),
-                    child: AppColorWidget(),
-                  );
-                },
-          );
-          if (selectedColor != null) {
-            widget.onColorChanged(
-              selectedColor,
-            );
-          }
-        },
-        icon: widget.icon,
-      ),
+    return Column(
+      children: [
+        Text(
+          'Cor',
+        ),
+        AppCard(
+          child: IconButton(
+            onPressed: () async {
+              final selectedColor = await showDialog<Color>(
+                context: context,
+                builder:
+                    (
+                      context,
+                    ) {
+                      return BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 5,
+                          sigmaY: 5,
+                        ),
+                        child: AppColorWidget(),
+                      );
+                    },
+              );
+              if (selectedColor != null) {
+                widget.onColorChanged(
+                  selectedColor,
+                );
+              }
+            },
+            icon: widget.icon,
+          ),
+        ),
+      ],
     );
   }
 

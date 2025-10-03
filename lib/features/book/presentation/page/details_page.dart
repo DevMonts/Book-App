@@ -1,35 +1,36 @@
+import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/presentation/widget/book_close_widget.dart';
-import 'package:book_app/features/book/presentation/widget/book_open_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
 
 class DetailsPage extends StatefulWidget {
   final String bookId;
   final String title;
-  final String author;
+  final String category;
   final int pages;
-  final int currentPage;
+  final int numberOfStars;
+  final Color bookColor;
+  final String author;
   final String gender;
   final bool isEbook;
-  final String review;
-  final Color bookColor;
-  final int numberOfStars;
   final String? bookCoverUrl;
+  final String icon;
+  final String review;
   const DetailsPage({
     super.key,
     required this.bookId,
     required this.title,
-    required this.author,
+    required this.category,
     required this.pages,
-    required this.currentPage,
+    required this.numberOfStars,
+    required this.bookColor,
+    required this.author,
     required this.gender,
     required this.isEbook,
-    required this.review,
-    required this.bookColor,
-    required this.numberOfStars,
     required this.bookCoverUrl,
+    required this.icon,
+    required this.review,
   });
 
   @override
@@ -45,87 +46,39 @@ class _DetailsPageState extends State<DetailsPage> {
       listen: false,
     );
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.black87,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(
+            Icons.cancel,
+            color: AppColors.brown01,
+            size: 50,
+          ),
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).pop();
+          },
+        ),
+      ),
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pop();
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: AppColors.brown10,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    widget.numberOfStars,
-                    (
-                      index,
-                    ) => const Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    await Provider.of<DeleteBookProvider>(
-                      context,
-                      listen: false,
-                    ).deleteBookFromFirestore(
-                      context: context,
-                      bookId: widget.bookId,
-                      bookColor: widget.bookColor,
-                    );
-                    Navigator.of(
-                      context,
-                    ).pop();
-                  },
-                  icon: Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                  ),
-                ),
-              ],
-            ),
-            Hero(
-              tag: widget.bookId,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isOpen = !isOpen;
-                  });
-                },
-                child: isOpen == true
-                    ? BookOpenWidget(
-                        bookColor: widget.bookColor,
-                        title: widget.title,
-                        author: widget.author,
-                        pages: widget.pages,
-                        currentPage: widget.currentPage,
-                        gender: widget.gender,
-                        isEbook: widget.isEbook,
-                        review: widget.review,
-                        bookCoverUrl: widget.bookCoverUrl,
-                    )
-                    : BookCloseWidget(
-                        bookColor: widget.bookColor,
-                        title: widget.title,
-                        bookCoverUrl: widget.bookCoverUrl,
-                      ),
-              ),
-            ),
-          ],
+        child: GestureDetector(
+          child: BookCloseWidget(
+            bookId: widget.bookId,
+            title: widget.title,
+            category: widget.category,
+            pages: widget.pages,
+            numberOfStars: widget.numberOfStars,
+            bookColor: widget.bookColor,
+            author: widget.author,
+            gender: widget.gender,
+            isEbook: widget.isEbook,
+            bookCoverUrl: widget.bookCoverUrl,
+            icon: widget.icon,
+            review: widget.review,
+          ),
         ),
       ),
     );

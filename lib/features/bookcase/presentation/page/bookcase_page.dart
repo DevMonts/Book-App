@@ -28,14 +28,15 @@ class _BookcasePageState extends State<BookcasePage> {
       context,
     );
 
+    //TODO: disable native back
     return Scaffold(
       body: Row(
         children: [
           NavigationRail(
             //TODO: avatar
             //TODO: avatar history
+            //Todo: gamification
             //TODO: style destinations
-            //TODO: order by color
             leading: IconButton(
               onPressed: () {
                 Navigator.of(
@@ -58,6 +59,8 @@ class _BookcasePageState extends State<BookcasePage> {
                   'Todos',
                 ),
               ),
+
+              //TODO: order by time
               NavigationRailDestination(
                 icon: Icon(
                   Icons.looks,
@@ -67,6 +70,7 @@ class _BookcasePageState extends State<BookcasePage> {
                   textAlign: TextAlign.center,
                 ),
               ),
+
               NavigationRailDestination(
                 icon: Icon(
                   Icons.star,
@@ -80,59 +84,8 @@ class _BookcasePageState extends State<BookcasePage> {
                   ],
                 ),
               ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.play_arrow,
-                ),
-                label: Text(
-                  'Lendo',
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.playlist_remove,
-                ),
-                label: Column(
-                  children: [
-                    Text(
-                      'Não\nfinalizados',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.playlist_add_check,
-                ),
-                label: Text(
-                  'Finalizados',
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.shopping_cart,
-                ),
-                label: Text(
-                  'Wishlist',
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.replay,
-                ),
-                label: Text(
-                  'Relendo',
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.pause,
-                ),
-                label: Text(
-                  'Pausado',
-                ),
-              ),
+
+              //TODO: add categories
               NavigationRailDestination(
                 icon: Icon(
                   Icons.thumb_down,
@@ -177,13 +130,8 @@ class _BookcasePageState extends State<BookcasePage> {
                     0 => showBooksProvider.showAllBooks(),
                     1 => showBooksProvider.showAllBooks(),
                     2 => showBooksProvider.showFiveStarsBooks(),
-                    3 => showBooksProvider.showReadingBooks(),
-                    4 => showBooksProvider.unfinishedBooks(),
-                    5 => showBooksProvider.finishedBooks(),
-                    6 => showBooksProvider.wishlistBooks(),
-                    7 => showBooksProvider.rereadingBooks(),
-                    8 => showBooksProvider.pausedBooks(),
-                    9 => showBooksProvider.dislikeBooks(),
+                    //TODO: add categories
+                    3 => showBooksProvider.dislikeBooks(),
                     _ => null,
                   },
                   builder:

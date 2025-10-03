@@ -16,13 +16,10 @@ class AuthPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Nome do App',
+              'Bookle',
               style: TextStyle(
-                fontSize: 60,
+                fontSize: 100,
               ),
-            ),
-            Text(
-              'Simples, bonito e leve',
             ),
             SizedBox(
               height: 10,

@@ -6,11 +6,11 @@ import 'package:image_picker/image_picker.dart';
 class AppImageWidget extends StatefulWidget {
   const AppImageWidget({
     super.key,
-    required this.img, //3- Requires receipt
+    required this.img,
     required this.onImageSelected,
     required this.onImageDeleted,
   });
-  final XFile? img; //4- Receipt
+  final XFile? img;
   final VoidCallback onImageDeleted;
   final VoidCallback onImageSelected;
 
@@ -22,7 +22,7 @@ class _AppImageWidgetState extends State<AppImageWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: double.infinity,
+      height: 200,
       width: 150,
       child: (widget.img == null)
           ? ElevatedButton(

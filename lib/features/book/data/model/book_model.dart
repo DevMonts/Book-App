@@ -1,55 +1,48 @@
 import 'package:flutter/material.dart';
 
 class BookModel {
+  BookModel({
+    //7- Requires receipt
+    required this.title,
+    required this.category,
+    required this.pages,
+    required this.numberOfStars,
+    required this.color,
+    required this.author,
+    required this.gender,
+    required this.isEbook,
+    required this.bookCoverUrl,
+    required this.icon,
+    required this.review,
+    required this.createdAt,
+  });
+  //8- Receipt
   final String title;
-  final bool isPaused;
-  final bool isRereading;
-  final bool isEbook;
-  final String? bookCoverUrl;
-  final int numberOfStars;
-  final bool isInWishlist;
-  final Color? color;
-  final String? icon;
-  final int currentPage;
+  final String category;
   final int pages;
+  final int numberOfStars;
+  final Color? color;
   final String? author;
   final String? gender;
+  final bool isEbook;
+  final String? bookCoverUrl;
+  final String? icon;
   final String? review;
   final DateTime? createdAt;
-  BookModel({
-    required this.title,
-    this.isPaused = false,
-    this.isRereading = false,
-    this.isEbook = false,
-    this.bookCoverUrl,
-    this.numberOfStars = 3,
-    this.isInWishlist = false,
-    this.color,
-    this.icon,
-    this.currentPage = 0,
-    this.pages = 0,
-    this.author,
-    this.gender,
-    this.review,
-    this.createdAt,
-  });
-  bool get isFinished => (currentPage == pages) ? true : false;
+
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'isPaused': isPaused,
-      'isRereading': isRereading,
-      'isEbook': isEbook,
-      'bookCoverUrl': bookCoverUrl,
-      'numberOfStars': numberOfStars,
-      'isInWishlist': isInWishlist,
-      'color':
-          '#${color?.value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
-      'icon': icon ?? '',
-      'currentPage': currentPage,
+      'category': category,
       'pages': pages,
+      'numberOfStars': numberOfStars,
+      'color':
+          '#${color?.value.toRadixString(16).padLeft(8, '0').toUpperCase()}', //TODO: create function
       'author': author ?? '',
       'gender': gender ?? '',
+      'isEbook': isEbook,
+      'bookCoverUrl': bookCoverUrl,
+      'icon': icon ?? '',
       'review': review ?? '',
       'createdAt': createdAt,
     };

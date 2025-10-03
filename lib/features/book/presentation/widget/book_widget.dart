@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/presentation/widget/book_icon_widget.dart';
 import 'package:book_app/features/book/presentation/page/details_page.dart';
@@ -103,27 +101,21 @@ class _BookWidgetState extends State<BookWidget> {
                                   ) {
                                     return FadeTransition(
                                       opacity: animation,
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(
-                                          sigmaX: 5,
-                                          sigmaY: 5,
-                                        ),
-                                        child: DetailsPage(
-                                          bookId: widget.book.id,
-                                          title: widget.book['title'],
-                                          author: widget.book['author'],
-                                          pages: widget.book['pages'],
-                                          currentPage:
-                                              widget.book['currentPage'],
-                                          gender: widget.book['gender'],
-                                          isEbook: widget.book['isEbook'],
-                                          review: widget.book['review'],
-                                          bookColor: widget.bookColor,
-                                          numberOfStars:
-                                              widget.book['numberOfStars'],
-                                          bookCoverUrl:
-                                              widget.book['bookCoverUrl'],
-                                        ),
+                                      child: DetailsPage(
+                                        bookId: widget.book.id,
+                                        title: widget.book['title'],
+                                        category: widget.book['category'],
+                                        pages: widget.book['pages'],
+                                        numberOfStars:
+                                            widget.book['numberOfStars'],
+                                        bookColor: widget.bookColor,
+                                        author: widget.book['author'],
+                                        gender: widget.book['gender'],
+                                        isEbook: widget.book['isEbook'],
+                                        bookCoverUrl:
+                                            widget.book['bookCoverUrl'],
+                                        icon: widget.book['icon'],
+                                        review: widget.book['review'],
                                       ),
                                     );
                                   },

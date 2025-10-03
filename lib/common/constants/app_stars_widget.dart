@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class AppStarsWidget extends StatefulWidget {
-  final int numberOfStars; //4- Receipt
+  final int numberOfStars;
   final ValueChanged<int> onRatingUpdate;
   const AppStarsWidget({
     super.key,
-    required this.numberOfStars, //3- Requires receipt
+    required this.numberOfStars,
     required this.onRatingUpdate,
   });
 
@@ -18,15 +18,12 @@ class AppStarsWidget extends StatefulWidget {
 class _AppStarsWidgetState extends State<AppStarsWidget> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        height: 67,
-        child: AppCard(
+    return Column(
+      children: [
+        Text('Avaliação'),
+        AppCard(
           child: Center(
             child: RatingBar.builder(
-              itemPadding: const EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
               itemSize: 24,
               initialRating: 3,
               minRating: 1,
@@ -50,7 +47,7 @@ class _AppStarsWidgetState extends State<AppStarsWidget> {
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

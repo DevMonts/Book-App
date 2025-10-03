@@ -1,22 +1,27 @@
 import 'package:book_app/common/constants/app_card.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:book_app/common/constants/app_number_picker.dart';
+import 'package:flutter/material.dart';
 
 class PagesNumberWidget extends StatefulWidget {
-  //4- Receive
-  final int currentPage;
-  final int pages;
-
-  final ValueChanged<int> onCurrentPageChanged;
-  final ValueChanged<int> onPagesChanged;
+  final String thousands;
+  final String hundred;
+  final String ten;
+  final String unit;
+  final ValueChanged<int> onFirstNumberSelected;
+  final ValueChanged<int> onSecondNumberSelected;
+  final ValueChanged<int> onThirdNumberSelected;
+  final ValueChanged<int> onFourthNumberSelected;
 
   const PagesNumberWidget({
     super.key,
-    //3- Requires receipt
-    required this.currentPage,
-    required this.pages,
-
-    required this.onCurrentPageChanged,
-    required this.onPagesChanged,
+    required this.thousands,
+    required this.hundred,
+    required this.ten,
+    required this.unit,
+    required this.onFirstNumberSelected,
+    required this.onSecondNumberSelected,
+    required this.onThirdNumberSelected,
+    required this.onFourthNumberSelected,
   });
 
   @override
@@ -26,76 +31,48 @@ class PagesNumberWidget extends StatefulWidget {
 class _PagesNumberWidgetState extends State<PagesNumberWidget> {
   @override
   Widget build(BuildContext context) {
-    final currentPage = widget.currentPage;
-
-    final pages = widget.pages;
-    final remainPages = pages - currentPage;
-    return AppCard(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 100,
-                width: 50,
-                child: CupertinoPicker(
-                  scrollController: FixedExtentScrollController(
-                    initialItem: currentPage - 1,
-                  ),
-                  itemExtent: 30,
-                  onSelectedItemChanged: (index) {
-                    widget.onCurrentPageChanged(index + 1);
-                  },
-                  children: List<Widget>.generate(
-                    2000,
-                    (index) => Center(
-                      child: Text(
-                        '${index + 1}',
-                      ),
-                    ),
+    return Column(
+      children: [
+        Text(
+          'Páginas',
+        ),
+        AppCard(
+          child: SizedBox(
+            width: double.maxFinite,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.height,
+                ),
+                Expanded(
+                  child: AppNumberPicker(
+                    number: widget.thousands,
+                    onSelectedItemChanged: widget.onFirstNumberSelected
                   ),
                 ),
-              ),
-              Text(
-                '/',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              SizedBox(
-                height: 100,
-                width: 50,
-                child: CupertinoPicker(
-                  scrollController: FixedExtentScrollController(
-                    initialItem: pages - 1,
-                  ),
-                  itemExtent: 30,
-                  onSelectedItemChanged: (index) {
-                    widget.onPagesChanged(index + 1);
-                  },
-                  children: List<Widget>.generate(
-                    2000,
-                    (index) => Center(
-                      child: Text(
-                        '${index + 1}',
-                      ),
-                    ),
+                Expanded(
+                  child: AppNumberPicker(
+                    number: widget.hundred,
+                    onSelectedItemChanged: widget.onSecondNumberSelected
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: AppNumberPicker(
+                    number: widget.ten,
+                    onSelectedItemChanged: widget.onThirdNumberSelected
+                  ),
+                ),
+                Expanded(
+                  child: AppNumberPicker(
+                    number: widget.unit, //TODO: start with 1
+                    onSelectedItemChanged: widget.onFourthNumberSelected
+                  ),
+                ),
+              ],
+            ),
           ),
-          Text(
-            '$currentPage página(s) lida(s) de $pages página(s) no total.',
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            'Restam $remainPages página(s) para terminar o livro.',
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

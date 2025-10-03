@@ -21,7 +21,8 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRouter.onGenerateRoute,
-      home: isLogged
+      home: //TODO: splash page with phrases
+      isLogged
           ? MainPage(
               initialIndex: 1,
             )
