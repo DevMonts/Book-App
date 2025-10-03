@@ -57,259 +57,265 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
     final animatedColor = context.watch<ColorAnimationProvider>().animatedColor;
     final pageNumberProvider = context.watch<PageNumberProvider>();
 
-    //TODO: disable native back
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
 
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('ADICIONAR LIVRO'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              FocusScope.of(
-                context,
-              ).unfocus();
-              widget.pageController.animateToPage(
-                1,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.linear,
-              );
-            },
-            icon: Row(
-              children: [
-                Icon(Icons.shelves),
-                Icon(Icons.arrow_forward),
-              ],
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              AppTextFormField(
-                hintText: 'Título',
-                controller: titleController, //2- Passed as a parameter
-              ),
-
-              GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                childAspectRatio: 2 / 3,
-                physics: NeverScrollableScrollPhysics(),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text('ADICIONAR LIVRO'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                FocusScope.of(
+                  context,
+                ).unfocus();
+                widget.pageController.animateToPage(
+                  1,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.linear,
+                );
+              },
+              icon: Row(
                 children: [
-                  CategoriesWidget(
-                    selectedCategory: category, //2- Passed as a parameter
-                    setState: (value) {
-                      setState(() => category = value!);
-                    },
-                  ),
+                  Icon(Icons.shelves),
+                  Icon(Icons.arrow_forward),
+                ],
+              ),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                AppTextFormField(
+                  hintText: 'Título',
+                  controller: titleController, //2- Passed as a parameter
+                ),
 
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      PagesNumberWidget(
-                        //2- Passed as a parameter
-                        thousands: pageNumberProvider.thousands,
-                        hundred: pageNumberProvider.hundred,
-                        ten: pageNumberProvider.ten,
-                        unit: pageNumberProvider.unit,
+                GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  childAspectRatio: 2 / 3,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    CategoriesWidget(
+                      selectedCategory: category, //2- Passed as a parameter
+                      setState: (value) {
+                        setState(() => category = value!);
+                      },
+                    ),
 
-                        onFirstNumberSelected: (value) =>
-                            pageNumberProvider.setThousands(value.toString()),
-                        onSecondNumberSelected: (value) =>
-                            pageNumberProvider.setHundred(value.toString()),
-                        onThirdNumberSelected: (value) =>
-                            pageNumberProvider.setTen(value.toString()),
-                        onFourthNumberSelected: (value) =>
-                            pageNumberProvider.setUnit(value.toString()),
-                      ),
-
-                      AppStarsWidget(
-                        numberOfStars: numberOfStars, //2- Passed as a parameter
-                        onRatingUpdate: (value) {
-                          setState(() {
-                            numberOfStars = value;
-                          });
-                        },
-                      ),
-
-                      AppColorButton(
-                        selectedColor: selectedColor, //2- Passed as a parameter
-                        colorController: colorController,
-                        onColorChanged: (value) {
-                          setState(() {
-                            selectedColor = value;
-                          });
-                        },
-                        icon: selectedColor == AppColors.brown08
-                            ? AnimatedSwitcher(
-                                duration: Duration(
-                                  seconds: 1,
-                                ),
-                                child: Icon(
-                                  Icons.palette,
-                                  key: ValueKey(
-                                    animatedColor,
-                                  ),
-                                  color: animatedColor,
-                                ),
-                              )
-                            : Icon(
-                                Icons.palette,
-                                color: selectedColor,
-                              ),
-                      ),
-                    ],
-                  ),
-
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          AppTextFormField(
-                            hintText: 'Autor',
-                            controller:
-                                authorController, //2- Passed as a parameter
-                          ),
-
-                          AppTextFormField(
-                            hintText: 'Gênero',
-                            controller:
-                                genderController, //2- Passed as a parameter
-                          ),
-                        ],
-                      ),
-
-                      FormatBookWidget(
-                        isEbook: isEbook,
-                        onChanged: (value) => setState(() => isEbook = value),
-                      ),
-                    ],
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          'Capa do Livro',
-                        ),
-                        Expanded(
-                          child: AppImageWidget(
-                            img: bookCover, //2- Passed as a parameter
-                            onImageSelected: () async {
-                              ImagePicker imagePicker = ImagePicker();
-                              XFile? image = await imagePicker.pickImage(
-                                source: ImageSource.gallery,
-                              );
-                              if (image != null) {
-                                final imageBytes = await image.readAsBytes();
-                                final decodeImage = img.decodeImage(
-                                  imageBytes,
-                                );
-                                if (decodeImage != null) {
-                                  final bookPixelColor = decodeImage.getPixel(
-                                    0,
-                                    decodeImage.height - 1,
-                                  );
-                                  final r = bookPixelColor.r;
-                                  final g = bookPixelColor.g;
-                                  final b = bookPixelColor.b;
+                        PagesNumberWidget(
+                          //2- Passed as a parameter
+                          thousands: pageNumberProvider.thousands,
+                          hundred: pageNumberProvider.hundred,
+                          ten: pageNumberProvider.ten,
+                          unit: pageNumberProvider.unit,
 
-                                  final bookColor = Color.fromRGBO(
-                                    r.toInt(),
-                                    g.toInt(),
-                                    b.toInt(),
-                                    1,
-                                  );
-                                  Provider.of<CatchBookColorProvider>(
-                                    context,
-                                    listen: false,
-                                  ).catchColor(
-                                    bookColor,
-                                  );
-                                  setState(
-                                    () {
-                                      bookCover = image;
-                                      selectedColor = bookColor;
-                                    },
-                                  );
-                                }
-                              }
-                            },
-                            onImageDeleted: () {
-                              setState(() {
-                                bookCover = null;
-                              });
-                            },
-                          ),
+                          onFirstNumberSelected: (value) =>
+                              pageNumberProvider.setThousands(value.toString()),
+                          onSecondNumberSelected: (value) =>
+                              pageNumberProvider.setHundred(value.toString()),
+                          onThirdNumberSelected: (value) =>
+                              pageNumberProvider.setTen(value.toString()),
+                          onFourthNumberSelected: (value) =>
+                              pageNumberProvider.setUnit(value.toString()),
+                        ),
+
+                        AppStarsWidget(
+                          numberOfStars:
+                              numberOfStars, //2- Passed as a parameter
+                          onRatingUpdate: (value) {
+                            setState(() {
+                              numberOfStars = value;
+                            });
+                          },
+                        ),
+
+                        AppColorButton(
+                          selectedColor:
+                              selectedColor, //2- Passed as a parameter
+                          colorController: colorController,
+                          onColorChanged: (value) {
+                            setState(() {
+                              selectedColor = value;
+                            });
+                          },
+                          icon: selectedColor == AppColors.brown08
+                              ? AnimatedSwitcher(
+                                  duration: Duration(
+                                    seconds: 1,
+                                  ),
+                                  child: Icon(
+                                    Icons.palette,
+                                    key: ValueKey(
+                                      animatedColor,
+                                    ),
+                                    color: animatedColor,
+                                  ),
+                                )
+                              : Icon(
+                                  Icons.palette,
+                                  color: selectedColor,
+                                ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
 
-              IconsWidget(
-                selectedIcon: selectedIcon, //2- Passed as a parameter
-                onIconSelected: (value) {
-                  setState(() {
-                    selectedIcon = value;
-                  });
-                },
-              ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            AppTextFormField(
+                              hintText: 'Autor',
+                              controller:
+                                  authorController, //2- Passed as a parameter
+                            ),
 
-              AppTextFormField(
-                controller: reviewController, //2- Passed as a parameter
-                hintText: 'Resenha',
-                maxLines: 10,
-                height: 300,
-              ),
+                            AppTextFormField(
+                              hintText: 'Gênero',
+                              controller:
+                                  genderController, //2- Passed as a parameter
+                            ),
+                          ],
+                        ),
 
-              //TODO: DETAILED REGISTER:
-              // synopsis...
-            ],
+                        FormatBookWidget(
+                          isEbook: isEbook,
+                          onChanged: (value) => setState(() => isEbook = value),
+                        ),
+                      ],
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Capa do Livro',
+                          ),
+                          Expanded(
+                            child: AppImageWidget(
+                              img: bookCover, //2- Passed as a parameter
+                              onImageSelected: () async {
+                                ImagePicker imagePicker = ImagePicker();
+                                XFile? image = await imagePicker.pickImage(
+                                  source: ImageSource.gallery,
+                                );
+                                if (image != null) {
+                                  final imageBytes = await image.readAsBytes();
+                                  final decodeImage = img.decodeImage(
+                                    imageBytes,
+                                  );
+                                  if (decodeImage != null) {
+                                    final bookPixelColor = decodeImage.getPixel(
+                                      0,
+                                      decodeImage.height - 1,
+                                    );
+                                    final r = bookPixelColor.r;
+                                    final g = bookPixelColor.g;
+                                    final b = bookPixelColor.b;
+
+                                    final bookColor = Color.fromRGBO(
+                                      r.toInt(),
+                                      g.toInt(),
+                                      b.toInt(),
+                                      1,
+                                    );
+                                    Provider.of<CatchBookColorProvider>(
+                                      context,
+                                      listen: false,
+                                    ).catchColor(
+                                      bookColor,
+                                    );
+                                    setState(
+                                      () {
+                                        bookCover = image;
+                                        selectedColor = bookColor;
+                                      },
+                                    );
+                                  }
+                                }
+                              },
+                              onImageDeleted: () {
+                                setState(() {
+                                  bookCover = null;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+
+                IconsWidget(
+                  selectedIcon: selectedIcon, //2- Passed as a parameter
+                  onIconSelected: (value) {
+                    setState(() {
+                      selectedIcon = value;
+                    });
+                  },
+                ),
+
+                AppTextFormField(
+                  controller: reviewController, //2- Passed as a parameter
+                  hintText: 'Resenha',
+                  maxLines: 10,
+                  height: 300,
+                ),
+
+                //TODO: DETAILED REGISTER:
+                // synopsis...
+              ],
+            ),
           ),
         ),
-      ),
 
-      floatingActionButton: RegisterBookButton(
-        //3- Receipt updated parameter
-        titleController: titleController,
-        category: category,
-        pages: context.read<PageNumberProvider>().pages,
-        numberOfStars: numberOfStars,
-        selectedColor: selectedColor,
-        authorController: authorController,
-        genderController: genderController,
-        isEbook: isEbook,
-        bookCover: bookCover,
-        selectedIcon: selectedIcon,
-        reviewController: reviewController,
+        floatingActionButton: RegisterBookButton(
+          //3- Receipt updated parameter
+          titleController: titleController,
+          category: category,
+          pages: context.read<PageNumberProvider>().pages,
+          numberOfStars: numberOfStars,
+          selectedColor: selectedColor,
+          authorController: authorController,
+          genderController: genderController,
+          isEbook: isEbook,
+          bookCover: bookCover,
+          selectedIcon: selectedIcon,
+          reviewController: reviewController,
 
-        registerBookRepository: widget.registerBookRepository,
-        pageController: widget.pageController,
-        isLoading: isLoading,
-        onPressed: () {
-          setState(() {
-            isLoading = true;
-          });
-        },
-        startLoading: () {
-          setState(() {
-            isLoading = true;
-          });
-        },
-        stopLoading: () {
-          setState(() {
-            isLoading = false;
-          });
-        },
+          registerBookRepository: widget.registerBookRepository,
+          pageController: widget.pageController,
+          isLoading: isLoading,
+          onPressed: () {
+            setState(() {
+              isLoading = true;
+            });
+          },
+          startLoading: () {
+            setState(() {
+              isLoading = true;
+            });
+          },
+          stopLoading: () {
+            setState(() {
+              isLoading = false;
+            });
+          },
+        ),
       ),
     );
   }
