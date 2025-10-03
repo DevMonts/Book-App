@@ -1,6 +1,6 @@
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/presentation/widget/book_icon_widget.dart';
 import 'package:book_app/features/book/presentation/page/details_page.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:flutter/material.dart';
 
 class BookWidget extends StatefulWidget {
@@ -146,7 +146,7 @@ class _BookWidgetState extends State<BookWidget> {
                               ),
                             ),
                       VerticalDivider(
-                        color: AppColors.brown14,
+                        color: ColorsRepository().browns[13],
                       ),
                       Expanded(
                         child: Text(
@@ -154,13 +154,13 @@ class _BookWidgetState extends State<BookWidget> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: (widget.bookColor.computeLuminance() > .5)
-                                ? AppColors.brown14
-                                : AppColors.brown01,
+                                ? ColorsRepository().browns[13]
+                                : ColorsRepository().browns[0],
                           ),
                         ),
                       ),
                       VerticalDivider(
-                        color: AppColors.brown14,
+                        color: ColorsRepository().browns[13],
                       ),
                     ],
                   ),

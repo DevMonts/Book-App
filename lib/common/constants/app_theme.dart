@@ -1,34 +1,34 @@
-import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme(
       brightness: Brightness.light,
-      primary: AppColors.brown10,
-      onPrimary: AppColors.brown03,
-      secondary: AppColors.brown03,
-      onSecondary: AppColors.brown10,
+      primary: ColorsRepository().browns[9],
+      onPrimary: ColorsRepository().browns[2],
+      secondary: ColorsRepository().browns[2],
+      onSecondary: ColorsRepository().browns[9],
       error: Colors.red,
-      onError: AppColors.brown08,
-      surface: AppColors.brown03,
-      onSurface: AppColors.brown14,
+      onError: ColorsRepository().browns[7],
+      surface: ColorsRepository().browns[2],
+      onSurface: ColorsRepository().browns[13],
     ),
-    scaffoldBackgroundColor: AppColors.brown07,
+    scaffoldBackgroundColor: ColorsRepository().browns[6],
   );
   static final ThemeData darkTheme = ThemeData(
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
-      primary: AppColors.brown09,
-      onPrimary: AppColors.brown14,
-      secondary: AppColors.brown14,
-      onSecondary: AppColors.brown09,
+      primary: ColorsRepository().browns[8],
+      onPrimary: ColorsRepository().browns[13],
+      secondary: ColorsRepository().browns[13],
+      onSecondary: ColorsRepository().browns[8],
       error: Colors.red,
-      onError: AppColors.brown08,
-      surface: AppColors.brown11,
-      onSurface: AppColors.brown03,
+      onError: ColorsRepository().browns[7],
+      surface: ColorsRepository().browns[10],
+      onSurface: ColorsRepository().browns[2],
     ),
-    scaffoldBackgroundColor: AppColors.brown14,
+    scaffoldBackgroundColor: ColorsRepository().browns[13],
   );
   static Widget bookcaseBg(
     BuildContext context,
@@ -53,8 +53,8 @@ class AppTheme {
                               context,
                             ).brightness ==
                             Brightness.light
-                        ? AppColors.brown06
-                        : AppColors.brown13,
+                        ? ColorsRepository().browns[5]
+                        : ColorsRepository().browns[12],
                     height: 110,
                   ),
                   Container(
@@ -63,8 +63,8 @@ class AppTheme {
                               context,
                             ).brightness ==
                             Brightness.light
-                        ? AppColors.brown03
-                        : AppColors.brown11,
+                        ? ColorsRepository().browns[2]
+                        : ColorsRepository().browns[10],
                     height: 20,
                   ),
                   SizedBox(

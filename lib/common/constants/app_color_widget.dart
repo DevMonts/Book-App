@@ -1,9 +1,11 @@
-import 'package:book_app/common/constants/app_colors.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class AppColorWidget extends StatefulWidget {
-  const AppColorWidget({super.key,});
+  const AppColorWidget({
+    super.key,
+  });
 
   @override
   State<AppColorWidget> createState() => _AppColorWidgetState();
@@ -14,7 +16,7 @@ class _AppColorWidgetState extends State<AppColorWidget> {
   @override
   void initState() {
     super.initState();
-    selectedColor = AppColors.brown08;
+    selectedColor = ColorsRepository().browns[7];
   }
 
   @override

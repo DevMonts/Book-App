@@ -1,5 +1,4 @@
 import 'package:book_app/common/constants/app_color_button.dart';
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/common/constants/app_image_widget.dart';
 import 'package:book_app/common/constants/app_text_form_field.dart';
 import 'package:book_app/common/constants/app_stars_widget.dart';
@@ -11,6 +10,7 @@ import 'package:book_app/features/book/presentation/widget/format_book_widget.da
 import 'package:book_app/features/book/presentation/widget/icons_widget.dart';
 import 'package:book_app/features/book/presentation/widget/pages_number_widget.dart';
 import 'package:book_app/features/book/presentation/widget/register_book_button.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:book_app/features/book/repositories/register_book_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -38,7 +38,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
   String category = 'Lido';
 
   int numberOfStars = 3;
-  Color selectedColor = AppColors.brown08;
+  Color selectedColor = ColorsRepository().browns[7];
   TextEditingController colorController = TextEditingController();
 
   TextEditingController authorController = TextEditingController();
@@ -150,7 +150,7 @@ class _RegisterBookPageState extends State<RegisterBookPage> {
                               selectedColor = value;
                             });
                           },
-                          icon: selectedColor == AppColors.brown08
+                          icon: selectedColor == ColorsRepository().browns[7]
                               ? AnimatedSwitcher(
                                   duration: Duration(
                                     seconds: 1,

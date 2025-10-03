@@ -1,5 +1,5 @@
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/presentation/widget/book_close_widget.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:book_app/features/book/logic/providers/delete_book_provider.dart';
@@ -52,7 +52,7 @@ class _DetailsPageState extends State<DetailsPage> {
         leading: IconButton(
           icon: Icon(
             Icons.cancel,
-            color: AppColors.brown01,
+            color: ColorsRepository().browns[0],
             size: 50,
           ),
           onPressed: () {

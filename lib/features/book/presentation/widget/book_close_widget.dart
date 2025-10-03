@@ -1,5 +1,5 @@
-import 'package:book_app/common/constants/app_colors.dart';
 import 'package:book_app/features/book/presentation/widget/book_open_widget.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:flutter/material.dart';
 
 class BookCloseWidget extends StatelessWidget {
@@ -74,8 +74,8 @@ class BookCloseWidget extends StatelessWidget {
                       title,
                       style: TextStyle(
                         color: (bookColor.computeLuminance() > .5)
-                            ? AppColors.brown14
-                            : AppColors.brown01,
+                            ? ColorsRepository().browns[13]
+                            : ColorsRepository().browns[0],
                       ),
                     ),
                   )
