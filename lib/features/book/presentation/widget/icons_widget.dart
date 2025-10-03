@@ -1,4 +1,5 @@
 import 'package:book_app/common/constants/app_card.dart';
+import 'package:book_app/features/book/repositories/colors_repository.dart';
 import 'package:book_app/features/book/repositories/icons_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -55,25 +56,7 @@ class _IconsWidgetState extends State<IconsWidget> {
                         color:
                             widget.selectedIcon ==
                                 iconsRepository.iconsList[index]['string']
-                            ? [
-                                //TODO: change to icon colors repository
-                                Colors.cyanAccent,
-                                Colors.grey,
-                                Colors.yellow,
-                                Colors.white,
-                                Colors.white,
-                                Colors.orange,
-                                Colors.brown,
-                                Colors.grey,
-                                Colors.yellow,
-                                Colors.grey,
-                                Colors.red,
-                                Colors.red,
-                                Colors.orange,
-                                Colors.pink,
-                                Colors.yellow,
-                                Colors.yellow,
-                              ][index]
+                            ? ColorsRepository.iconColors[index]
                             : Theme.of(
                                 context,
                               ).colorScheme.surface,
